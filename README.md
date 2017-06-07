@@ -300,7 +300,7 @@ if __name__ == '__main__':
 
 **≤‚ ‘±®∏Ê**
 
-![sum.png](Img/sum.PNG "sum.png")
+![sum.png](Img/sum.png "sum.png")
 
 ![detail.png](Img/detail.PNG "detail.png")
 
