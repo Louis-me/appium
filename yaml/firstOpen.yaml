@@ -1,0 +1,14 @@
+testinfo:
+    - id: test001
+      title: 第一次打开
+testcase:
+    - operate_type: swipeLeft
+      time: 4
+      element_info: android.widget.ImageView
+      find_type: class_name
+    - element_info: com.jianshu.haruki:id/tv_enter
+      find_type: id
+      operate_type: click
+check:
+    - element_info: com.jianshu.haruki:id/btn_login
+      find_type: id
