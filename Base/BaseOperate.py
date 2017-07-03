@@ -63,19 +63,20 @@ class OperateElement:
             self.elements_by(mOperate).click()
 
     '''
-    切换webview和native
+    切换native
     
     '''
-    def switchToContext(self, webview=True):
-        if webview:
+    def switchToNative(self):
+        self.driver._switch_to.context("NATIVE_APP")  # 切换到native
+
+    '''
+    切换webview
+    '''
+    def switchToWebview(self):
             for cons in self.driver.contexts:
                 if cons.lower().startswith("webview"):
                     self.driver._switch_to.context(cons)
                     break
-        else:
-            self.driver._switch_to.context("NATIVE_APP") # 切换到native
-
-
 
     # 左滑动
     def swipeLeft(self, mOperate):

@@ -27,12 +27,14 @@ class Write:
     logTest 日记记录器
     '''
     def prefix(self, logTest):
-        result = self.operateElement.operate(mOperate=self._prefix[0], testInfo=self.testInfo, logTest=logTest)
-        self.operateElement.switchToContext(self._prefix[0]["isWebView"])
-        if not result:
-            print("前置条件失败")
-            self.isOperate = False
-            return
+        for item in self._prefix:
+            if item.get("isWebView", "1") == True:
+                self.operateElement.switchToContext(item.get["isWebView"])
+            result = self.operateElement.operate(item, self.testInfo, logTest)
+            if not result:
+                print("前置条件失败")
+                self.isOperate = False
+                break
     '''
        操作步骤
         logTest 日记记录器
@@ -41,13 +43,15 @@ class Write:
     def operate(self, logTest):
 
         self.prefix(logTest)
-
-        for item in self.testCase:
-            result = self.operateElement.operate(item, self.testInfo, logTest)
-            if not result:
-                print("操作失败")
-                self.isOperate = False
-                break
+        if not self.isOperate:
+            print("前置条件失败") # 如果前置条件失败，操作步骤肯定也失败
+        else:
+            for item in self.testCase:
+                result = self.operateElement.operate(item, self.testInfo, logTest)
+                if not result:
+                    print("操作失败")
+                    self.isOperate = False
+                    break
     '''
     检查点
     '''
