@@ -1,7 +1,0 @@
-2017-06-07 19:39:35,972  - INFO - ----  test001_µÚÒ»´Î´ò¿ª_android.widget.ImageView   START     ----
-2017-06-07 19:39:44,433  - INFO - [CheckPoint_1]: FirstOpenTest: NG
-2017-06-07 19:40:02,013  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/btn_login   START     ----
-2017-06-07 19:40:03,075  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/et_tel   START     ----
-2017-06-07 19:40:07,460  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/et_password   START     ----
-2017-06-07 19:40:08,480  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/btn_register_1   START     ----
-2017-06-07 19:40:13,640  - INFO - ----  test0002_µÇÂ¼_//android.widget.ImageView[@index='0']   START     ----

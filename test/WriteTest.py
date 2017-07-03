@@ -16,5 +16,5 @@ class WriteTest(ParametrizedTestCase):
     def setUp(self):
         super(WriteTest, self).setUp()
 
-    def tearDown(self):
-        self.driver.close()
+    # def tearDown(self):
+    #     self.driver.close()

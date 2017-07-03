@@ -1,15 +1,17 @@
 testinfo:
     - id: test0003
-      title: 登录
+      title: 发布文章
+prefix:
+      - element_info: com.jianshu.haruki:id/iv_write
+        find_type: id
+        operate_type: click
+        isWebView: true
 testcase:
-    - element_info: com.jianshu.haruki:id/tab_writting
-      find_type: id
-      operate_type: click
-    - element_info: //android.view.View[@index='1']
+    - element_info: //android.view.View[@content-desc='请输入标题']
       find_type: xpath
       operate_type: set_value
       text: pls input title
-    - element_info: //android.view.View[@index='2']
+    - element_info: //android.view.View[@content-desc='请输入正文']
       find_type: xpath
       operate_type: set_value
       text: auto test msg

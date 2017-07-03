@@ -1,7 +1,7 @@
-﻿ - devices:  emulator-5554
-   port: 4724
-   config: appium --session-override  -p 4724 -bp 4734 -U  emulator-5554
-   platformName: android
+﻿# - devices:  emulator-5554
+#   port: 4724
+#   config: appium --session-override  -p 4724 -bp 4734 -U  emulator-5554
+#   platformName: android
  - devices: DU2TAN15AJ049163
    port: 4725
    config: appium --session-override  -p 4725 -bp 4735 -U  DU2TAN15AJ049163

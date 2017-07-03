@@ -21,10 +21,10 @@ def appium_testcase(devices):
     desired_caps['appPackage'] = devices["appPackage"]
     desired_caps['appActivity'] = devices["appActivity"]
     desired_caps['udid'] = devices["deviceName"]
-    desired_caps["unicodeKeyboard"] = "True"
-    desired_caps["resetKeyboard"] = "True"
+    # desired_caps["unicodeKeyboard"] = "True"
+    # desired_caps["resetKeyboard"] = "True"
     desired_caps["noReset"] = "True"
-    desired_caps['app'] = devices["app"]
+    # desired_caps['app'] = devices["app"]
 
     remote = "http://127.0.0.1:" + str(devices["port"]) + "/wd/hub"
     driver = webdriver.Remote(remote, desired_caps)

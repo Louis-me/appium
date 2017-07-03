@@ -51,9 +51,9 @@ def runnerPool(getDevices):
 def runnerCaseApp(devices):
     starttime = datetime.now()
     suite = unittest.TestSuite()
-    suite.addTest(ParametrizedTestCase.parametrize(FirstOpenTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(LoginTest, param=devices))
-    # suite.addTest(ParametrizedTestCase.parametrize(WriteTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(FirstOpenTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(LoginTest, param=devices))
+    suite.addTest(ParametrizedTestCase.parametrize(WriteTest, param=devices))
     # fp = open(PATH("../report/index.html"), "wb")
     # runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u"自动化测试报告", description=u"用例执行情况")
     # runner.run(suite)

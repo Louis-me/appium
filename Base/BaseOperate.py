@@ -24,10 +24,10 @@ class OperateElement:
         try:
             if type(mOperate) == list:  # 多检查点
                 for item in mOperate:
-                    WebDriverWait(self.driver, baseElement.WAIT_TIME).until(lambda x: elements_by(item, self.driver))
+                    WebDriverWait(self.driver, baseElement.WAIT_TIME).until(lambda x: self.elements_by(item))
                 return True
             if type(mOperate) == dict:  # 单检查点
-                WebDriverWait(self.driver, baseElement.WAIT_TIME).until(lambda x: elements_by(mOperate, self.driver))
+                WebDriverWait(self.driver, baseElement.WAIT_TIME).until(lambda x: self.elements_by(mOperate))
                 return True
         except selenium.common.exceptions.TimeoutException:
             return False
@@ -48,29 +48,42 @@ class OperateElement:
     def operate(self, mOperate, testInfo, logTest):
         if self.findElement(mOperate):
             elements = {
-                baseElement.CLICK: lambda: click(mOperate, self.driver),
-                baseElement.SET_VALUE: lambda: set_value(mOperate, self.driver),
-                baseElement.SWIPELEFT: lambda: swipeLeft(mOperate, self.driver)
+                baseElement.CLICK: lambda: self.click(mOperate),
+                baseElement.SET_VALUE: lambda: self.set_value(mOperate),
+                baseElement.SWIPELEFT: lambda: self.swipeLeft(mOperate)
             }
             logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate["element_info"])  # 记录日志
             elements[mOperate["operate_type"]]()
             return True
         return False
 
+    # 点击事件
+    def click(self, mOperate):
+        if mOperate["find_type"] == baseElement.find_element_by_id or mOperate["find_type"] == baseElement.find_element_by_xpath:
+            self.elements_by(mOperate).click()
 
-# 点击事件
-def click(mOperate, driver):
-    if mOperate["find_type"] == baseElement.find_element_by_id or mOperate["find_type"] == baseElement.find_element_by_xpath:
-        elements_by(mOperate, driver).click()
+    '''
+    切换webview和native
+    
+    '''
+    def switchToContext(self, webview=True):
+        if webview:
+            for cons in self.driver.contexts:
+                if cons.lower().startswith("webview"):
+                    self.driver._switch_to.context(cons)
+                    break
+        else:
+            self.driver._switch_to.context("NATIVE_APP") # 切换到native
 
 
-# 左滑动
-def swipeLeft(mOperate, driver):
-    # time.sleep(1)
-    width = driver.get_window_size()["width"]
-    height = driver.get_window_size()["height"]
-    for i in range(mOperate["time"]):
-        driver.swipe(width / 4 * 3, height / 2, width / 4 * 1, height / 2, 600)
+
+    # 左滑动
+    def swipeLeft(self, mOperate):
+        # time.sleep(1)
+        width = self.driver.get_window_size()["width"]
+        height = self.driver.get_window_size()["height"]
+        for i in range(mOperate["time"]):
+            self.driver.swipe(width / 4 * 3, height / 2, width / 4 * 1, height / 2, 600)
 
 
 # start_x,start_y,end_x,end_y
@@ -79,16 +92,16 @@ def swipeLeft(mOperate, driver):
 # def operate_tap(elemen_by,driver,element_info, xy=[]):
 #     elements_by(elemen_by, driver, element_info).tap(x=xy[0], y=xy[1])
 
-def set_value(mOperate, driver):
-    elements_by(mOperate, driver).set_value(mOperate["text"])
+    def set_value(self, mOperate):
+        self.elements_by(mOperate).set_value(mOperate["text"])
 
 
 # 封装常用的标签
-def elements_by(mOperate, driver):
-    elements = {
-        baseElement.find_element_by_id: lambda: driver.find_element_by_id(mOperate["element_info"]),
-        baseElement.find_element_by_xpath: lambda: driver.find_element_by_xpath(mOperate["element_info"]),
-        baseElement.find_element_by_class_name: lambda: driver.find_element_by_class_name(mOperate['element_info'])
+    def elements_by(self, mOperate):
+        elements = {
+            baseElement.find_element_by_id: lambda: self.driver.find_element_by_id(mOperate["element_info"]),
+            baseElement.find_element_by_xpath: lambda: self.driver.find_element_by_xpath(mOperate["element_info"]),
+            baseElement.find_element_by_class_name: lambda: self.driver.find_element_by_class_name(mOperate['element_info'])
 
-    }
-    return elements[mOperate["find_type"]]()
+        }
+        return elements[mOperate["find_type"]]()

@@ -1,5 +1,0 @@
-2017-06-07 20:11:09,214  - INFO - ----  test0003_登录_com.jianshu.haruki:id/tab_writting   START     ----
-2017-06-07 20:11:12,449  - INFO - ----  test0003_登录_//android.view.View[@content-desc='请输入标题']   START     ----
-2017-06-07 20:11:14,481  - INFO - ----  test0003_登录_//android.view.View[@content-desc='请输入正文']   START     ----
-2017-06-07 20:11:15,994  - INFO - ----  test0003_登录_com.jianshu.haruki:id/tv_publish   START     ----
-2017-06-07 20:11:24,746  - INFO - [CheckPoint_1]: WriteTest: NG
