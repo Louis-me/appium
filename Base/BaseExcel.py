@@ -87,33 +87,35 @@ class OperateReport:
 
 
 
-        worksheet.merge_range('A1:G1', '测试详情', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
+        worksheet.merge_range('A1:I1', '测试详情', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
                                                                     'valign': 'vcenter', 'bg_color': 'blue',
                                                                     'font_color': '#ffffff'}))
         _write_center(worksheet, "A2", '机型', self.wd)
         _write_center(worksheet, "B2", '用例ID', self.wd)
         _write_center(worksheet, "C2", '用例介绍', self.wd)
-        _write_center(worksheet, "D2", '用例名字', self.wd)
-        _write_center(worksheet, "E2", '测试结果 ', self.wd)
-        _write_center(worksheet, "F2", '截图', self.wd)
+        _write_center(worksheet, "D2", '用例函数', self.wd)
+        _write_center(worksheet, "E2", '操作步骤 ', self.wd)
+        _write_center(worksheet, "F2", '检查点 ', self.wd)
+        _write_center(worksheet, "G2", '测试结果 ', self.wd)
+        _write_center(worksheet, "H2", '备注 ', self.wd)
+        _write_center(worksheet, "I2", '截图', self.wd)
 
-        # data = {"info": [{"test_id": "1001", "test_name": "登陆", "t_method": "post", "t_url": "http://XXX?login", "t_param": "{user_name:test,pwd:111111}",
-        #                   "t_hope": "{code:1,msg:登陆成功}", "t_actual": "{code:0,msg:密码错误}", "test_result": "失败"}, {"test_id": "1002", "test_name": "商品列表", "t_method": "get", "t_url": "http://XXX?getFoodList", "t_param": "{}",
-        #                   "t_hope": "{code:1,msg:成功,info:[{name:123,detal:dfadfa,img:product/1.png},{name:456,detal:dfadfa,img:product/1.png}]}", "t_actual": "{code:1,msg:成功,info:[{name:123,detal:dfadfa,img:product/1.png},{name:456,detal:dfadfa,img:product/1.png}]}", "test_result": "成功"}],
-        #         "test_sum" 100,"test_success": 20, "test_failed": 80}
         temp = 3
         for item in info:
-            print(item)
+            # print(item)
             _write_center(worksheet, "A" + str(temp), item["phoneName"], self.wd)
             _write_center(worksheet, "B" + str(temp), item["id"], self.wd)
             _write_center(worksheet, "C" + str(temp), item["title"], self.wd)
             _write_center(worksheet, "D" + str(temp), item["caseName"], self.wd)
-            _write_center(worksheet, "E" + str(temp), item["result"], self.wd)
+            _write_center(worksheet, "E" + str(temp), item["step"], self.wd)
+            _write_center(worksheet, "F" + str(temp), item["checkStep"], self.wd)
+            _write_center(worksheet, "G" + str(temp), item["result"], self.wd)
+            _write_center(worksheet, "H" + str(temp), item.get("msg", "无"), self.wd)
             if item.get("img", "false") == "false":
-                _write_center(worksheet, "F" + str(temp), "", self.wd)
+                _write_center(worksheet, "I" + str(temp), "", self.wd)
                 worksheet.set_row(temp, 30)
             else:
-                worksheet.insert_image('F' + str(temp), item["img"],
+                worksheet.insert_image('I' + str(temp), item["img"],
                                        {'x_scale': 0.1, 'y_scale': 0.1, 'border': 1})
                 worksheet.set_row(temp - 1, 110)
             temp = temp + 1

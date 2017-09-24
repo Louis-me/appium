@@ -62,7 +62,8 @@ class ApkInfo():
             return match.group(1)
 if __name__ == '__main__':
     pass
-    ApkInfo(r"D:\app\appium\Img\Jianshu-2.3.1.apk").getApkActivity()
+    # ApkInfo(r"D:\app\appium\Img\Jianshu-2.3.1.apk").getApkActivity()
+    # ApkInfo(r"D:\app\appium\Img\Jianshu-2.3.1.apk").getApkActivity()
     # # ApkInfo(r"D:\app\appium_study\Img\t.apk").get_apk_version()
     # # ApkInfo(r"D:\app\appium_study\Img\t.apk").get_apk_name()
     # ApkInfo(r"D:\app\appium_study\img\t.apk").get_apk_activity()

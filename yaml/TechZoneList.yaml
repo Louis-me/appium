@@ -1,0 +1,44 @@
+testinfo:
+    - id: test0001
+      title: 知识技术专区列表
+testcase:
+    - element_info: //android.widget.RadioButton[@text='知识']
+      find_type: xpath
+      operate_type: click
+      info: 点击底部菜单的知识按钮
+#    - element_info: com.huawei.works:id/dialog_negative_button
+#      find_type: id
+#      operate_type: click
+    - element_info: //android.widget.TextView[@text='技术专区']
+      find_type: xpath
+      operate_type: click
+      info: 点击知识专区卡片
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[1]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: get_value
+      info: 获取知识专区卡片列表的第一个数据项的标题值
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[2]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: get_value
+      info: 获取知识专区列表卡片的第二个数据项的标题值
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[3]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: get_value
+      info: 获取知识专区列表卡片的第三个数据项的标题值
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击左上角按钮回到列表页
+check:
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[2]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: get_value
+      info: 获取知识专区首页卡片列表的第一个数据项的标题值，并与详情页标题对比
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[2]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: get_value
+      info: 获取知识专区首页卡片列表的第二个数据项的标题值，并与详情页标题对比
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[2]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[3]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: get_value
+      info: 获取知识专区首页卡片列表的第三个数据项的标题值，并与详情页标题对比

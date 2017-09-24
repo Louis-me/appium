@@ -24,15 +24,20 @@ class OperateElement:
         try:
             if type(mOperate) == list:  # 多检查点
                 for item in mOperate:
+                    # if item.get("is_webview", "0") == 1:  # 1表示切换到webview
+                    #     self.switchToWebview()
                     WebDriverWait(self.driver, baseElement.WAIT_TIME).until(lambda x: self.elements_by(item))
                 return True
             if type(mOperate) == dict:  # 单检查点
+                # if mOperate.get("is_webview", "0") == 1: # 1表示切换到webview
+                #     self.switchToWebview()
                 WebDriverWait(self.driver, baseElement.WAIT_TIME).until(lambda x: self.elements_by(mOperate))
                 return True
         except selenium.common.exceptions.TimeoutException:
+            print("查找元素"+mOperate["element_info"]+"超时")
             return False
         except selenium.common.exceptions.NoSuchElementException:
-            print("找不到数据")
+            print("查找元素" + mOperate["element_info"] + "不存在")
             return False
 
     '''
@@ -47,14 +52,16 @@ class OperateElement:
 
     def operate(self, mOperate, testInfo, logTest):
         if self.findElement(mOperate):
-            elements = {
-                baseElement.CLICK: lambda: self.click(mOperate),
-                baseElement.SET_VALUE: lambda: self.set_value(mOperate),
-                baseElement.SWIPELEFT: lambda: self.swipeLeft(mOperate)
-            }
             logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate["element_info"])  # 记录日志
-            elements[mOperate["operate_type"]]()
-            return True
+            if mOperate["operate_type"] == baseElement.CLICK:
+                self.click(mOperate)
+                return True
+            if mOperate["operate_type"] == baseElement.GET_VALUE:
+                return self.get_value(mOperate)
+            if mOperate["operate_type"] == baseElement.SWIPELEFT:
+                self.swipeLeft(mOperate)
+                return True
+
         return False
 
     # 点击事件
@@ -67,16 +74,19 @@ class OperateElement:
     
     '''
     def switchToNative(self):
-        self.driver._switch_to.context("NATIVE_APP")  # 切换到native
+        self.driver.switch_to.context("NATIVE_APP")  # 切换到native
 
     '''
     切换webview
     '''
     def switchToWebview(self):
-            for cons in self.driver.contexts:
-                if cons.lower().startswith("webview"):
-                    self.driver._switch_to.context(cons)
-                    break
+        for cons in self.driver.contexts:
+            if cons.lower().startswith("webview"):
+                self.driver.switch_to.context(cons)
+                print("---切换webview---")
+                print(self.driver.current_context)
+
+                break
 
     # 左滑动
     def swipeLeft(self, mOperate):
@@ -94,15 +104,39 @@ class OperateElement:
 #     elements_by(elemen_by, driver, element_info).tap(x=xy[0], y=xy[1])
 
     def set_value(self, mOperate):
+        '''
+        输入值，代替过时的send_keys
+        :param mOperate:
+        :return:
+        '''
         self.elements_by(mOperate).set_value(mOperate["text"])
 
+    def get_value(self, mOperate):
+        '''
+        读取element的值
+        :param mOperate:
+        :return:
+        '''
+
+        return self.elements_by(mOperate).get_attribute("text")
 
 # 封装常用的标签
     def elements_by(self, mOperate):
         elements = {
             baseElement.find_element_by_id: lambda: self.driver.find_element_by_id(mOperate["element_info"]),
             baseElement.find_element_by_xpath: lambda: self.driver.find_element_by_xpath(mOperate["element_info"]),
+            baseElement.find_element_by_css_selector: lambda: self.driver.find_element_by_css_selector(mOperate['element_info']),
             baseElement.find_element_by_class_name: lambda: self.driver.find_element_by_class_name(mOperate['element_info'])
 
         }
         return elements[mOperate["find_type"]]()
+        # if mOperate["find_type"] == baseElement.find_element_by_id:
+        #     return self.driver.find_element_by_id(mOperate["element_info"])
+        # if mOperate["find_type"] == baseElement.find_element_by_xpath:
+        #     return self.driver.find_element_by_xpath(mOperate["element_info"])
+        # if mOperate["find_type"] == baseElement.find_elements_by_xpath:
+        #     return self.driver.find_elements_by_xpath(mOperate["element_info"])
+        # if mOperate["find_type"] == baseElement.find_element_by_class_name:
+        #     return self.driver.find_element_by_class_name(mOperate["element_info"])
+        # if mOperate["find_type"]  == baseElement.find_element_by_css_selector:
+        #     return self.driver.find_element_by_css_selector(mOperate["element_info"])

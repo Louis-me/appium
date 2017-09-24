@@ -27,22 +27,41 @@ testinfo
 def countInfo(**kwargs):
     get_phone = getPhoneInfo(kwargs["devices"])
     phone_name = get_phone["brand"] + "_" + get_phone["model"] + "_" + "android" + "_" + get_phone["release"]
+    _info = {}
+    step = ""  # 操作步骤信息
+    check_step = "检查点步骤"  # 检查点步骤信息
 
-    info = {}
-    if kwargs["result"]:
-        info["result"] = "通过"
+    for case in kwargs["testCase"]:
+        step = step + case["info"] + ";"
+
+    if type(kwargs["testCheck"]) == list: # 检查点为列表
+        for check in kwargs["testCheck"]:
+            check_step = check_step + check["info"] + ";"
+    elif type(kwargs["testCheck"]) == dict:
+        check_step = kwargs["testCheck"]["info"]
     else:
-        info["result"] = "失败"
-        info["img"] = kwargs["logTest"].checkPointNG(driver=kwargs["driver"], caseName=kwargs["testInfo"][0]["title"],
-                                                     checkPoint=kwargs["caseName"])
-    info["id"] = kwargs["testInfo"][0]["id"]
-    info["title"] = kwargs["testInfo"][0]["title"]
-    info["caseName"] = kwargs["caseName"]
-    info["phoneName"] = phone_name
-    print("--------- Element.INFO--------")
-    print(info)
-    writeInfo(data=info, path=PATH("../Log/info.pickle"))
-    print(read(PATH("../Log/info.pickle")))
+        print("获取检查点步骤数据错误，请检查")
+        print(kwargs["testCheck"])
+
+    _info["step"] = step
+    _info["checkStep"] = check_step
+
+    if kwargs["result"]:
+        _info["result"] = "通过"
+    else:
+        _info["result"] = "失败"
+        _info["img"] = kwargs["logTest"].checkPointNG(driver=kwargs["driver"], caseName=kwargs["testInfo"][0]["title"], checkPoint=kwargs["caseName"]+"_"+kwargs["testInfo"][0].get("msg", "none"))
+    _info["id"] = kwargs["testInfo"][0]["id"]
+    _info["title"] = kwargs["testInfo"][0]["title"]
+    _info["caseName"] = kwargs["caseName"]
+    _info["phoneName"] = phone_name
+    _info["msg"] = kwargs["testInfo"][0].get("msg", "none")
+
+
+
+
+    writeInfo(data=_info, path=PATH("../Log/info.pickle"))
+    # print(read(PATH("../Log/info.pickle")))
 
 
 def countSum(result):

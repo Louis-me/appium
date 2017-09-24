@@ -8,17 +8,19 @@ PATH = lambda p: os.path.abspath(
 )
 import threading
 class AppiumServer:
-    def __init__(self, l_devices):
-        self.l_devices = l_devices
+    def __init__(self, port, bport, devices):
+        self.port = str(port)
+        self.bport = str(bport)
+        self.devices = devices
     def start_server(self):
         """start the appium server
         :return:
         """
-        for i in range(0, len(self.l_devices)):
-            print("---------start_server----------")
-            t1 = RunServer(self.l_devices[i]["config"])
-            p = Process(target=t1.start())
-            p.start()
+        print("---------start_server----------")
+        cmd = "appium --session-override  -p %s -bp %s -U %s" %(self.port, self.bport, self.devices)
+        t1 = RunServer(cmd)
+        p = Process(target=t1.start())
+        p.start()
     def stop_server(self):
         """stop the appium server
         selenium_appium: appium selenium
@@ -42,20 +44,19 @@ class AppiumServer:
         :return:True or False
         """
         response = None
-        for i in range(0, len(self.l_devices)):
-            url = " http://127.0.0.1:"+str(self.l_devices[i]["port"])+"/wd/hub"+"/status"
-            try:
-                response = urllib.request.urlopen(url, timeout=5)
+        url = " http://127.0.0.1:"+ self.port + "/wd/hub"+"/status"
+        try:
+            response = urllib.request.urlopen(url, timeout=5)
 
-                if str(response.getcode()).startswith("2"):
-                    return True
-                else:
-                    return False
-            except URLError:
+            if str(response.getcode()).startswith("2"):
+                return True
+            else:
                 return False
-            finally:
-                if response:
-                    response.close()
+        except URLError:
+            return False
+        finally:
+            if response:
+                response.close()
 class RunServer(threading.Thread):
     def __init__(self, cmd):
         threading.Thread.__init__(self)

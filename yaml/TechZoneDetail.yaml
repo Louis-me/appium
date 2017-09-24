@@ -1,0 +1,19 @@
+testinfo:
+    - id: test0002
+      title: 知识技术专区详情页
+testcase:
+    - element_info: //android.widget.RadioButton[@text='知识']
+      find_type: xpath
+      operate_type: click
+      info: 点击底部menu的知识 #建议去掉，发现加上点击底部知识按钮，会多耗时5秒钟左右
+    - element_info: //android.widget.ListView[1]/android.widget.LinearLayout[2]/android.widget.RelativeLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]//android.widget.TextView[@resource-id='com.huawei.works.knowledge:id/title']
+      find_type: xpath
+      operate_type: click
+      get_value: 1 # 表示需要取元素到值
+      info: 获取首页知识技术列表第一条数据，点击进入到详情页
+check:
+    element_info: //*[@id="app"]/div/div[2]/section[2]/div[1]/div
+    find_type: xpath
+    operate_type: get_value
+#    is_webview: 1
+    info: 获取详情页到标题

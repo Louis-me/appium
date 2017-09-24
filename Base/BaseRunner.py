@@ -1,7 +1,5 @@
-from Base.BaseLog import myLog
-
-__author__ = 'shikun'
 # -*- coding: utf-8 -*-
+from Base.BaseLog import myLog
 import unittest
 from appium import webdriver
 import os
@@ -12,7 +10,7 @@ PATH = lambda p: os.path.abspath(
 
 
 def appium_testcase(devices):
-    getRun = getYam(PATH("../yaml/run.yaml"))
+    # getRun = getYam(PATH("../yaml/run.yaml"))
     print(devices)
     desired_caps = {}
     desired_caps['platformName'] = devices["platformName"]
@@ -21,6 +19,7 @@ def appium_testcase(devices):
     desired_caps['appPackage'] = devices["appPackage"]
     desired_caps['appActivity'] = devices["appActivity"]
     desired_caps['udid'] = devices["deviceName"]
+    # desired_caps['recreateChromeDriverSessions'] = True
     # desired_caps["unicodeKeyboard"] = "True"
     # desired_caps["resetKeyboard"] = "True"
     desired_caps["noReset"] = "True"
@@ -28,6 +27,7 @@ def appium_testcase(devices):
 
     remote = "http://127.0.0.1:" + str(devices["port"]) + "/wd/hub"
     driver = webdriver.Remote(remote, desired_caps)
+    # driver.find_element_by_xpath("").g
     return driver
 
 class ParametrizedTestCase(unittest.TestCase):
@@ -40,10 +40,10 @@ class ParametrizedTestCase(unittest.TestCase):
 
     def setUp(self):
         self.driver = appium_testcase(self.devices)
-        self. logTest = myLog().getLog(self.devices["deviceName"]) # 每个设备实例化一个日志记录器
+        self.logTest = myLog().getLog(self.devices["deviceName"]) # 每个设备实例化一个日志记录器
 
-    # def tearDown(self):
-    #     self.driver.quit()
+    def tearDown(self):
+        self.driver.quit()
 
     @staticmethod
     def parametrize(testcase_klass, param=None):

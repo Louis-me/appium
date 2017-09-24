@@ -19,25 +19,7 @@
 
 # configure
 
-**configure run.yaml**
 
-```
-app: Jianshu.apk
-```
-
-**configure devices.yaml**
-
-```
- - devices:  emulator-5554
-   port: 4724
-   config: appium --session-override  -p 4724 -bp 4734 -U  emulator-5554
-   platformName: android
- - devices: DU2TAN15AJ049163
-   port: 4725
-   config: appium --session-override  -p 4725 -bp 4735 -U  DU2TAN15AJ049163
-   platformName: android
-
-```
 
 # Example - first boot app
 
@@ -159,19 +141,33 @@ def runnerCaseApp(devices):
 	
 	
 if __name__ == '__main__':
-    if AndroidDebugBridge().attached_devices():
-        getDevices = init()
-        appium_server = AppiumServer(getDevices)
-        appium_server.start_server()
-        while not appium_server.is_runnnig():
-            time.sleep(2)
-        runnerPool(getDevices)
-        appium_server.stop_server()
+    devicess = AndroidDebugBridge().attached_devices()
+    if len(devicess) > 0:
+        l_devices = []
+        init()
+        for devices in devicess:
+            app = {}
+            port = random.randint(4700, 4900)
+            bpport = random.randint(4700, 4900)
+            app["port"] = str(port)
+            app["devices"] = devices
+            l_devices.append(app)
+            appium_server = AppiumServer(port=port, bport=bpport, devices=devices)
+            appium_server.start_server()
+            while not appium_server.is_runnnig():
+                time.sleep(2)
+        runnerPool(l_devices)
+        stopAppiumMacAndroid(l_devices)
         writeExcel()
     else:
-        print("Device does not exist")
+        print("没有可用的安卓设备")
 ```
 
+## run command
+
+```
+python runner.py
+```
 
 
 # show report
@@ -182,7 +178,7 @@ samsung_GT-I9500_android_4.4，screenshot
 
 ```
 2017-06-07 19:39:35,972  - INFO - ----  test001_FirstOpenTest_android.widget.ImageView   START     ----
-2017-06-07 19:39:44,433  - INFO - [CheckPoint_1]: FirstOpenTest: NG
+2017-09-23 17:28:26,074  - INFO - [CheckPoint_1]: TechZoneDetailTest_请检查元素//*[@id="app"]/div/div[2]/section[2]/div[1]/div是否存在: NG
 ........
 
 ```
@@ -191,7 +187,7 @@ samsung_GT-I9500_android_4.4，screenshot
 
 ![sum.png](Img/sum.png "sum.png")
 
-![detail.png](Img/detail.PNG "detail.png")
+![detail.jpg](Img/detail.jpg "detail.jpg")
 
 
 # other

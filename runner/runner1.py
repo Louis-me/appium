@@ -4,16 +4,15 @@
 __author__ = 'shikun'
 
 import sys
-
+import random
 sys.path.append("..")
 import time
 from Base.BaseAndroidPhone import *
 from Base.BaseAdb import *
 from Base.BaseRunner import ParametrizedTestCase
-from TestCase.LoginTest import LoginTest
 from TestCase.TechZoneListTest import TechZoneListTest
 from TestCase.TechZoneDetailTest import TechZoneDetailTest
-from Base.BaseAppiumServer import AppiumServer
+from Base.BaseAppiumServer1 import AppiumServer
 from multiprocessing import Pool
 import unittest
 from Base.BaseInit import init
@@ -26,6 +25,16 @@ PATH = lambda p: os.path.abspath(
 )
 
 
+def stopAppiumMacAndroid(devices):
+    for device in devices:
+    # mac
+        cmd = "lsof -i :{0}".format(device["port"])
+        plist = os.popen(cmd).readlines()
+        plisttmp = plist[1].split("    ")
+        plists = plisttmp[1].split(" ")
+        # print plists[0]
+        os.popen("kill -9 {0}".format(plists[0]))
+
 def runnerPool(getDevices):
     devices_Pool = []
 
@@ -36,10 +45,12 @@ def runnerPool(getDevices):
         _initApp = {}
         _initApp["deviceName"] = getDevices[i]["devices"]
         _initApp["platformVersion"] = getPhoneInfo(devices=_initApp["deviceName"])["release"]
-        _initApp["platformName"] = getDevices[i]["platformName"]
+        _initApp["platformName"] = "android"
         _initApp["port"] = getDevices[i]["port"]
-        _initApp["appPackage"] = getDevices[i]["appPackage"]
-        _initApp["appActivity"] = getDevices[i]["appActivity"]
+        _initApp["appPackage"] = "com.huawei.works"
+        _initApp["appActivity"] = "huawei.w3.ui.welcome.W3SplashScreenActivity"
+        # _initApp["appPackage"] = apkInfo.getApkBaseInfo()[0]
+        # _initApp["appActivity"] = apkInfo.getApkActivity()
         # _initApp["app"] = getDevices[i]["app"]
         _pool.append(_initApp)
         devices_Pool.append(_initApp)
@@ -62,14 +73,24 @@ def runnerCaseApp(devices):
     endtime = datetime.now()
     countDate(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), str((endtime - starttime).seconds) + "秒")
 if __name__ == '__main__':
-    if AndroidDebugBridge().attached_devices():
-        getDevices = init()
-        appium_server = AppiumServer(getDevices)
-        appium_server.start_server()
-        while not appium_server.is_runnnig():
-            time.sleep(2)
-        runnerPool(getDevices)
-        appium_server.stop_server()
+    devicess = AndroidDebugBridge().attached_devices()
+    if len(devicess) > 0:
+        l_devices = []
+        init()
+        for devices in devicess:
+            app = {}
+            port = random.randint(4700, 4900)
+            bpport = random.randint(4700, 4900)
+            app["port"] = str(port)
+            app["devices"] = devices
+            l_devices.append(app)
+            appium_server = AppiumServer(port=port, bport=bpport, devices=devices)
+            appium_server.start_server()
+            while not appium_server.is_runnnig():
+                time.sleep(2)
+        runnerPool(l_devices)
+        stopAppiumMacAndroid(l_devices)
         writeExcel()
     else:
-        print(u"设备不存在")
+        print("没有可用的安卓设备")
+
