@@ -3,6 +3,7 @@
 
 
 import os
+import random
 
 
 class AndroidDebugBridge(object):
@@ -31,6 +32,7 @@ class AndroidDebugBridge(object):
         #     return True
         # else:
         #     return False
+
         return [device for device in devices if len(device) > 2]
     # 状态
     def get_state(self):

@@ -9,7 +9,7 @@ PATH = lambda p: os.path.abspath(
 
 class TechZoneDetailTest(ParametrizedTestCase):
 
-    def testTechZoneList(self):
+    def testTechZoneDetail(self):
         techZoneDetail = TechZoneDetail(driver=self.driver, path=PATH("../yaml/TechZoneDetail.yaml"))
         techZoneDetail.operate(logTest=self.logTest)
         techZoneDetail.checkPoint(caseName=self.__class__.__name__, logTest=self.logTest, devices=self.devices["deviceName"])

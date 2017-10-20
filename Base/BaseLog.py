@@ -42,9 +42,10 @@ class Log:
         :param caseNo:
         :return:
         """
-
-        startLine = "----  " + caseNo + "   " + "START" + "   " + \
+        startLine = "----  " + caseNo + "   " + "   " + \
                     "  ----"
+        # startLine = "----  " + caseNo + "   " + "START" + "   " + \
+        #             "  ----"
         self.logger.info(startLine)
 
     def buildEndLine(self, caseNo):

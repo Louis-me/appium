@@ -68,37 +68,43 @@ class OperateReport:
 
     def detail(self, worksheet, info):
         # 设置列行的宽高
-        # worksheet.set_column("A:A", 30)
-        # worksheet.set_column("B:B", 20)
-        # worksheet.set_column("C:C", 20)
-        # worksheet.set_column("D:D", 20)
-        # worksheet.set_column("E:E", 20)
-        # worksheet.set_column("F:F", 20)
-        # worksheet.set_column("G:G", 20)
-        # worksheet.set_column("H:H", 20)
+        worksheet.set_column("A:A", 30)
+        worksheet.set_column("B:B", 20)
+        worksheet.set_column("C:C", 20)
+        worksheet.set_column("D:D", 20)
+        worksheet.set_column("E:E", 20)
+        worksheet.set_column("F:F", 20)
+        worksheet.set_column("G:G", 20)
+        worksheet.set_column("H:H", 20)
+        worksheet.set_column("I:I", 20)
+        worksheet.set_column("J:J", 20)
 
         worksheet.set_row(1, 30)
         worksheet.set_row(2, 30)
-        # worksheet.set_row(3, 30)
-        # worksheet.set_row(4, 30)
-        # worksheet.set_row(5, 30)
-        # worksheet.set_row(6, 30)
-        # worksheet.set_row(7, 30)
+        worksheet.set_row(3, 30)
+        worksheet.set_row(4, 30)
+        worksheet.set_row(5, 30)
+        worksheet.set_row(6, 30)
+        worksheet.set_row(7, 30)
+        worksheet.set_row(8, 30)
+        worksheet.set_row(9, 30)
+        worksheet.set_row(10, 30)
 
 
 
-        worksheet.merge_range('A1:I1', '测试详情', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
+        worksheet.merge_range('A1:J1', '测试详情', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
                                                                     'valign': 'vcenter', 'bg_color': 'blue',
                                                                     'font_color': '#ffffff'}))
         _write_center(worksheet, "A2", '机型', self.wd)
         _write_center(worksheet, "B2", '用例ID', self.wd)
         _write_center(worksheet, "C2", '用例介绍', self.wd)
         _write_center(worksheet, "D2", '用例函数', self.wd)
-        _write_center(worksheet, "E2", '操作步骤 ', self.wd)
-        _write_center(worksheet, "F2", '检查点 ', self.wd)
-        _write_center(worksheet, "G2", '测试结果 ', self.wd)
-        _write_center(worksheet, "H2", '备注 ', self.wd)
-        _write_center(worksheet, "I2", '截图', self.wd)
+        _write_center(worksheet, "E2", '前置条件', self.wd)
+        _write_center(worksheet, "F2", '操作步骤 ', self.wd)
+        _write_center(worksheet, "G2", '检查点 ', self.wd)
+        _write_center(worksheet, "H2", '测试结果 ', self.wd)
+        _write_center(worksheet, "I2", '备注 ', self.wd)
+        _write_center(worksheet, "J2", '截图', self.wd)
 
         temp = 3
         for item in info:
@@ -107,15 +113,16 @@ class OperateReport:
             _write_center(worksheet, "B" + str(temp), item["id"], self.wd)
             _write_center(worksheet, "C" + str(temp), item["title"], self.wd)
             _write_center(worksheet, "D" + str(temp), item["caseName"], self.wd)
-            _write_center(worksheet, "E" + str(temp), item["step"], self.wd)
-            _write_center(worksheet, "F" + str(temp), item["checkStep"], self.wd)
-            _write_center(worksheet, "G" + str(temp), item["result"], self.wd)
-            _write_center(worksheet, "H" + str(temp), item.get("msg", "无"), self.wd)
+            _write_center(worksheet, "E" + str(temp), item["info"], self.wd)
+            _write_center(worksheet, "F" + str(temp), item["step"], self.wd)
+            _write_center(worksheet, "G" + str(temp), item["checkStep"], self.wd)
+            _write_center(worksheet, "H" + str(temp), item["result"], self.wd)
+            _write_center(worksheet, "I" + str(temp), item.get("msg", ""), self.wd)
             if item.get("img", "false") == "false":
-                _write_center(worksheet, "I" + str(temp), "", self.wd)
+                _write_center(worksheet, "J" + str(temp), "", self.wd)
                 worksheet.set_row(temp, 30)
             else:
-                worksheet.insert_image('I' + str(temp), item["img"],
+                worksheet.insert_image('J' + str(temp), item["img"],
                                        {'x_scale': 0.1, 'y_scale': 0.1, 'border': 1})
                 worksheet.set_row(temp - 1, 110)
             temp = temp + 1
@@ -160,7 +167,7 @@ def pie(workbook, worksheet):
     'categories':'=测试总况!$C$4:$C$5',
    'values':    '=测试总况!$D$4:$D$5',
     })
-    chart1.set_title({'name': '接口测试统计'})
+    chart1.set_title({'name': '测试统计'})
     chart1.set_style(10)
     worksheet.insert_chart('A9', chart1, {'x_offset': 25, 'y_offset': 10})
 

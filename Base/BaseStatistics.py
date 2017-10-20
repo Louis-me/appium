@@ -43,22 +43,20 @@ def countInfo(**kwargs):
         print("获取检查点步骤数据错误，请检查")
         print(kwargs["testCheck"])
 
-    _info["step"] = step
-    _info["checkStep"] = check_step
+    _info["step"] = step # 用例操作步骤
+    _info["checkStep"] = check_step # 用例检查点
 
     if kwargs["result"]:
         _info["result"] = "通过"
     else:
-        _info["result"] = "失败"
+        _info["result"] = "失败" # 用例接开关
         _info["img"] = kwargs["logTest"].checkPointNG(driver=kwargs["driver"], caseName=kwargs["testInfo"][0]["title"], checkPoint=kwargs["caseName"]+"_"+kwargs["testInfo"][0].get("msg", "none"))
-    _info["id"] = kwargs["testInfo"][0]["id"]
-    _info["title"] = kwargs["testInfo"][0]["title"]
-    _info["caseName"] = kwargs["caseName"]
-    _info["phoneName"] = phone_name
-    _info["msg"] = kwargs["testInfo"][0].get("msg", "none")
-
-
-
+    _info["id"] = kwargs["testInfo"][0]["id"] # 用例id
+    _info["title"] = kwargs["testInfo"][0]["title"] # 用例名称
+    _info["caseName"] = kwargs["caseName"] # 测试函数
+    _info["phoneName"] = phone_name # 手机名
+    _info["msg"] = kwargs["testInfo"][0].get("msg", "") # 备注
+    _info["info"] = kwargs["testInfo"][0]["info"] #前置条件
 
     writeInfo(data=_info, path=PATH("../Log/info.pickle"))
     # print(read(PATH("../Log/info.pickle")))
@@ -84,9 +82,7 @@ def countDate(testDate, testSumDate):
     data = read(PATH("../Log/sum.pickle"))
     print(data)
     if data:
-        # data["testDate"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         data["testDate"] = testDate
-        # data["testSumDate"] = str((endtime - starttime).seconds) + "秒"
         data["testSumDate"] = testSumDate
         write(data=data, path=PATH("../Log/sum.pickle"))
     else:

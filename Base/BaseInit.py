@@ -15,17 +15,16 @@ PATH = lambda p: os.path.abspath(
 
 
 def init():
-    getDevices = getYam(PATH("../yaml/devices.yaml"))
+    # getDevices = getYam(PATH("../yaml/devices.yaml"))
     # apkPath = PATH("../yaml/" + getYam(PATH("../yaml/run.yaml"))["app"])
     # print(apkPath)
     # apkInfo = ApkInfo(apkPath=apkPath)
-    for item in getDevices:
-        # item["app"] = apkPath
-        # item["appPackage"] = apkInfo.getApkBaseInfo()[0]
-        # item["appActivity"] = apkInfo.getApkActivity()
-        item["appPackage"] = "com.huawei.works"
-        item["appActivity"] = "huawei.w3.ui.welcome.W3SplashScreenActivity"
-    # 统计
+    # for item in getDevices:
+    #     # item["app"] = apkPath
+    #     # item["appPackage"] = apkInfo.getApkBaseInfo()[0]
+    #     # item["appActivity"] = apkInfo.getApkActivity()
+    #     item["appPackage"] = "com.huawei.works"
+    #     item["appActivity"] = "huawei.w3.ui.welcome.W3SplashScreenActivity"
 
     destroy()
     of = OperateFile(PATH("../Log/info.pickle"))
@@ -45,7 +44,6 @@ def init():
     data["fail"] = 0
 
     write(data=data, path=PATH("../Log/sum.pickle"))
-    return getDevices
 
 
 def destroy():

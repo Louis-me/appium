@@ -3,37 +3,22 @@ import os
 import urllib.request
 from urllib.error import URLError
 from multiprocessing import Process
-import time
-import platform
-import subprocess
-
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
 import threading
 class AppiumServer:
-    def __init__(self, kwargs={}):
-        # self.port = str(kwargs["port"])
-        # print("port="+self.port)
-        # self.bport = str(kwargs["bport"])
-        # self.devices = kwargs["devices"]
-        self.kwargs = kwargs
+    def __init__(self, l_devices):
+        self.l_devices = l_devices
     def start_server(self):
         """start the appium server
+        :return:
         """
-        for i in range(0, len(self.kwargs)):
+        for i in range(0, len(self.l_devices)):
             print("---------start_server----------")
-            cmd = "appium --session-override  -p %s -bp %s -U %s" %(self.kwargs[i]["port"], self.kwargs[i]["bport"], self.kwargs[i]["devices"])
-            if platform.system() == "Windows":  # windows下，另外在匹配后续优化
-                subprocess.Popen(cmd, shell=True)
-            else:
-                appium = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=1, close_fds=True)
-                while True:
-                    appium_line = appium.stdout.readline().strip().decode()
-                    time.sleep(1)
-                    if 'listener started' in appium_line or 'Error: listen' in appium_line:
-                        break
-
+            t1 = RunServer(self.l_devices[i]["config"])
+            p = Process(target=t1.start())
+            p.start()
     def stop_server(self):
         """stop the appium server
         selenium_appium: appium selenium
@@ -52,6 +37,31 @@ class AppiumServer:
         """
         self.stop_server()
         self.start_server()
+    def is_runnnig(self):
+        """Determine whether server is running
+        :return:True or False
+        """
+        response = None
+        for i in range(0, len(self.l_devices)):
+            url = " http://127.0.0.1:"+str(self.l_devices[i]["port"])+"/wd/hub"+"/status"
+            try:
+                response = urllib.request.urlopen(url, timeout=5)
+
+                if str(response.getcode()).startswith("2"):
+                    return True
+                else:
+                    return False
+            except URLError:
+                return False
+            finally:
+                if response:
+                    response.close()
+class RunServer(threading.Thread):
+    def __init__(self, cmd):
+        threading.Thread.__init__(self)
+        self.cmd = cmd
+    def run(self):
+        os.system(self.cmd)
 
 
 # if __name__ == "__main__":

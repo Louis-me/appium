@@ -10,15 +10,16 @@ PATH = lambda p: os.path.abspath(
 class TechZoneListTest(ParametrizedTestCase):
 
     def testTechZoneList(self):
-        techZoneList = TechZoneList(driver=self.driver, path=PATH("../yaml/TechZoneList.yaml"))
-        techZoneList.operate(logTest=self.logTest)
-        techZoneList.checkPoint(caseName=self.__class__.__name__, logTest=self.logTest, devices=self.devices["deviceName"])
-
-    # def testWrongPwd(self):
-    #     pass
+        techZoneList = TechZoneList(driver=self.driver, path=PATH("../yaml/TechZoneList.yaml")) # 调用测试用例yaml
+        techZoneList.operate(logTest=self.logTest) # 调用page层中的用例执行
+        techZoneList.checkPoint(caseName=self.__class__.__name__, logTest=self.logTest,
+                                devices=self.devices["deviceName"])# 调用page层的用例检查点
 
     def setUp(self):
         super(TechZoneListTest, self).setUp()
 
+    '''
+    用例结束后，关闭app
+    '''
     def tearDown(self):
         super(TechZoneListTest, self).tearDown()

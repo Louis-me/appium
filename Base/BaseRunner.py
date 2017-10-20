@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from Base.BaseAppiumServer import AppiumServer
 from Base.BaseLog import myLog
 import unittest
 from appium import webdriver
 import os
+import time
 from Base.BaseYaml import getYam
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
@@ -11,6 +13,7 @@ PATH = lambda p: os.path.abspath(
 
 def appium_testcase(devices):
     # getRun = getYam(PATH("../yaml/run.yaml"))
+
     print(devices)
     desired_caps = {}
     desired_caps['platformName'] = devices["platformName"]
@@ -19,16 +22,18 @@ def appium_testcase(devices):
     desired_caps['appPackage'] = devices["appPackage"]
     desired_caps['appActivity'] = devices["appActivity"]
     desired_caps['udid'] = devices["deviceName"]
-    # desired_caps['recreateChromeDriverSessions'] = True
+
+    desired_caps["noReset"] = "True"
+    desired_caps['noSign'] = "True"
     # desired_caps["unicodeKeyboard"] = "True"
     # desired_caps["resetKeyboard"] = "True"
-    desired_caps["noReset"] = "True"
     # desired_caps['app'] = devices["app"]
 
     remote = "http://127.0.0.1:" + str(devices["port"]) + "/wd/hub"
     driver = webdriver.Remote(remote, desired_caps)
-    # driver.find_element_by_xpath("").g
+
     return driver
+
 
 class ParametrizedTestCase(unittest.TestCase):
     """ TestCase classes that want to be parametrized should  
@@ -39,16 +44,18 @@ class ParametrizedTestCase(unittest.TestCase):
         self.devices = param
 
     def setUp(self):
+
         self.driver = appium_testcase(self.devices)
         self.logTest = myLog().getLog(self.devices["deviceName"]) # 每个设备实例化一个日志记录器
+
 
     def tearDown(self):
         self.driver.quit()
 
     @staticmethod
     def parametrize(testcase_klass, param=None):
-        print("---parametrize-----")
-        print(param)
+        # print("---parametrize-----")
+        # print(param)
         testloader = unittest.TestLoader()
         testnames = testloader.getTestCaseNames(testcase_klass)
         suite = unittest.TestSuite()

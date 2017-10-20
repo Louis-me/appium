@@ -9,6 +9,7 @@ import subprocess
 # 得到手机信息
 def getPhoneInfo(devices):
     cmd = "adb -s " + devices +" shell cat /system/build.prop "
+    print(cmd)
     # phone_info = os.popen(cmd).readlines()
     phone_info = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
     result = {}
@@ -62,4 +63,4 @@ def get_app_pix(devices):
     return result.readline().split("Physical size:")[1]
 
 if __name__=="__main__":
-    getPhoneInfo("emulator-5554")
+    getPhoneInfo("MXF5T15B10000039")
