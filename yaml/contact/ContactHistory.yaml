@@ -1,0 +1,47 @@
+testinfo:
+    - id: test008
+      title: 通讯录查看动态浏览记录
+      info: 登陆打开weblink
+testcase:
+    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='通讯录']
+      find_type: xpath
+      operate_type: adb_tap
+      info: 点击通讯录
+      # adb_tap关键字。因为popupWindow遮住了底部menu，无法用api触发点击操作，只能用adb shell命令去模拟
+    - element_info: com.huawei.works.contact:id/contact_item_name_layout
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击通讯录下的第一条数据
+    - element_info: com.huawei.works.contact:id/title
+      find_type: id
+      operate_type: click
+      info: 点击动态列表第一条数据
+    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+      find_type: xpath
+      is_webview: 1 # 切换到webview
+      operate_type: get_value
+      info: 得到情页到标题
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      is_webview: 2
+      operate_type: click
+      info: 点击返回按钮
+    - element_info: com.huawei.works.contact:id/contact_vcard_back
+      find_type: id
+      operate_type: click
+      info: 再次点击返回按钮
+    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
+      find_type: xpath
+      operate_type: adb_tap
+      info: 点击底部菜单知识
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否存在历史记录

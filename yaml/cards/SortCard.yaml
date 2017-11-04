@@ -1,0 +1,34 @@
+testinfo:
+    - id: test019
+      title: 拖动排序知识卡片
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right
+      find_type: id
+      operate_type: click
+      info: 点击排序卡片按钮
+    - element_info: com.huawei.works.knowledge:id/my_card_item_name_text
+      find_type: ids
+      index: 1
+      operate_type: get_value
+      info: 得到第二个卡片的值
+    - element_info: com.huawei.works.knowledge:id/drag_item_image
+      find_type: ids
+      index: 0
+      operate_type: location
+      info: 得到第一卡片的坐标
+    - element_info: com.huawei.works.knowledge:id/drag_item_image
+      find_type: ids
+      index: 1
+      operate_type: location
+      is_swpie: 1 # 特殊关键字，滑动指令
+      info: 得到第二个卡片的坐标并拖动
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击返回按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/title_txt
+      find_type: id
+      operate_type: get_value
+      info: 检测卡片是否排序成功

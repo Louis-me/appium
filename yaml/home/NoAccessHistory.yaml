@@ -1,0 +1,36 @@
+testinfo:
+    - id: test005
+      title: 无权限查看不在浏览历史显示
+      info: 打开知识
+testcase:
+
+    - element_info: //*[@resource-id='com.huawei.works.knowledge:id/lin_item_menus']/android.widget.TextView[2]
+      find_type: xpath
+      operate_type: click
+      info: 点击部门公告tab
+    - element_info: //*[@resource-id='com.huawei.works.knowledge:id/lin_item_content']/android.widget.TextView[1]
+      find_type: xpath
+      operate_type: get_value
+      info: 获取部门公告下的第一条数据
+    - element_info: //*[@resource-id='com.huawei.works.knowledge:id/lin_item_content']/android.widget.TextView[1]
+      find_type: xpath
+      operate_type: click
+      info: 点击部门公告下的第一条数据
+    - element_info: //android.widget.TextView[@text='您暂无权限查看此资源']
+      find_type: xpath
+      info: 点击部门公告下的第一条数据
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击历史记录按钮
+
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找应该不存在历史记录

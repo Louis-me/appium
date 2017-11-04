@@ -45,7 +45,8 @@ class OperateFile:
         if not os.path.isfile(self.file):
             f = open(self.file, self.method)
             f.close()
-            print("创建文件成功")
+            # print("创建文件成功")
+            pass
         else:
             print("文件已经存在")
     def remove_file(self):
@@ -53,7 +54,8 @@ class OperateFile:
             os.remove(self.file)
             print("删除文件成功")
         else:
-            print("文件不存在")
+            # print("文件不存在")
+            pass
 # if __name__ == '__main__':
 #     bf = OperateFile("text.xml")
 #     if bf.check_file() == False:

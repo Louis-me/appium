@@ -10,7 +10,7 @@ class AndroidDebugBridge(object):
     def call_adb(self, command):
         command_result = ''
         command_text = 'adb %s' % command
-        print(command_text)
+        # print(command_text)
         results = os.popen(command_text, "r")
         while 1:
             line = results.readline()

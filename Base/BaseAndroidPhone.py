@@ -12,7 +12,7 @@ def getPhoneInfo(devices):
     print(cmd)
     # phone_info = os.popen(cmd).readlines()
     phone_info = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
-    result = {}
+    result = {"release": "5.0", "model": "model2", "brand": "brand1", "device": "device1"}
     release = "ro.build.version.release=" # 版本
     model = "ro.product.model=" #型号
     brand = "ro.product.brand=" # 品牌
@@ -63,4 +63,4 @@ def get_app_pix(devices):
     return result.readline().split("Physical size:")[1]
 
 if __name__=="__main__":
-    getPhoneInfo("MXF5T15B10000039")
+    getPhoneInfo("DU2TAN15AJ049163")

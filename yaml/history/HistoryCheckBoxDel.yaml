@@ -1,0 +1,56 @@
+testinfo:
+    - id: test023
+      title: 多选框删除阅读历史
+      info: 打开知识，有多条阅读历史
+testcase:
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_tv_right
+      find_type: id
+      operate_type: click
+      info: 点击编辑按钮
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取历史记录下的第一条数据
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 1
+      operate_type: get_value
+      info: 获取历史记录下的第二条数据
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_checkbox
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 选择第一条数据到多选框
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_checkbox
+      find_type: ids
+      index: 1
+      operate_type: click
+      info: 选择第二条数据到多选框
+    - element_info: com.huawei.works.knowledge:id/tx_delete
+      find_type: id
+      operate_type: click
+      info: 点击删除按钮
+    - element_info: com.huawei.works.knowledge:id/btn_pos
+      find_type: id
+      operate_type: click
+      info: 确认删除
+
+
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取历史记录下的第一条数据并对比删除之前的值
+      check_time: 3
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 1
+      operate_type: get_value
+      check_time: 3
+      info: 获取历史记录下的第二条数据并对比删除之前的值

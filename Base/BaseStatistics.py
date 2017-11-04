@@ -32,11 +32,11 @@ def countInfo(**kwargs):
     check_step = "检查点步骤"  # 检查点步骤信息
 
     for case in kwargs["testCase"]:
-        step = step + case["info"] + ";"
+        step = step + case["info"] + "\n"
 
     if type(kwargs["testCheck"]) == list: # 检查点为列表
         for check in kwargs["testCheck"]:
-            check_step = check_step + check["info"] + ";"
+            check_step = check_step + check["info"] + "\n"
     elif type(kwargs["testCheck"]) == dict:
         check_step = kwargs["testCheck"]["info"]
     else:

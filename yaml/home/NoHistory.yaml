@@ -1,0 +1,20 @@
+testinfo:
+    - id: test013
+      title: 无浏览历史页面检测
+      info: 打开知识页面
+testcase:
+    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
+      find_type: xpath
+      operate_type: adb_tap
+      info: 点击知识
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击历史记录按钮
+
+
+check:
+    - element_info: com.huawei.works.knowledge:id/vlf_tv_tips
+      find_type: id
+      info: 查找不存在浏览记录
+      check_time: 3

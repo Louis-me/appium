@@ -1,0 +1,56 @@
+testinfo:
+    - id: test0006
+      title: 多次微社区浏览历史
+      info: 打开知识
+testcase:
+    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
+      find_type: xpath
+      operate_type: adb_tap
+      info: 点击知识
+    - element_info: com.huawei.works.knowledge:id/title_my_team_item
+      find_type: ids
+      operate_type: click
+      index: 0
+      info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/wsq
+      find_type: id
+      operate_type: click
+      info: 点击微社区
+    - element_info: com.huawei.works.knowledge:id/new_topic_name
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击第一个话题
+    - element_info: //android.widget.ListView/android.widget.TextView[2]
+      find_type: xpath
+      operate_type: get_value
+      info: 获取发布话题的标题
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/new_topic_name
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 再次点击第一个话题
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 再次点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击历史记录按钮
+
+check:
+    - element_info: //android.widget.ListView/android.widget.LinearLayout[3]//*[@resource-id='com.huawei.works.knowledge:id/browser_knowledge_history_text']
+      find_type: xpath
+      index: 1
+      operate_type: get_value
+      info: 查找是否存在历史记录
+      #  如果第二条数据显示存在到历史记录，说明出现重复数据

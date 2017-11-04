@@ -22,7 +22,7 @@ class AppiumServer:
         """start the appium server
         """
         for i in range(0, len(self.kwargs)):
-            print("---------start_server----------")
+            # print("---------start_server----------")
             cmd = "appium --session-override  -p %s -bp %s -U %s" %(self.kwargs[i]["port"], self.kwargs[i]["bport"], self.kwargs[i]["devices"])
             if platform.system() == "Windows":  # windows下，另外在匹配后续优化
                 subprocess.Popen(cmd, shell=True)
@@ -32,6 +32,8 @@ class AppiumServer:
                     appium_line = appium.stdout.readline().strip().decode()
                     time.sleep(1)
                     if 'listener started' in appium_line or 'Error: listen' in appium_line:
+                        print("----启动服务器成功---")
+                        print(cmd)
                         break
 
     def stop_server(self):

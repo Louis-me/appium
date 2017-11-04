@@ -1,0 +1,19 @@
+testinfo:
+    - id: test011
+      title: 删除技术专区
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/iv_card_sort_del
+      find_type: id
+      operate_type: click
+      info: 点击设置卡片按钮
+    - element_info: com.huawei.works.knowledge:id/card_del
+      find_type: id
+      operate_type: click
+      info: 点击删除按钮
+      is_time: 1
+check:
+    - element_info: //android.widget.TextView[@text='技术专区']
+      find_type: xpath
+      check_time: 2 # 检测等待时间为2秒
+      info: 检测技术专区是卡片否删除成功

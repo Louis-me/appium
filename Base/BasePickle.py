@@ -13,9 +13,8 @@ def read(path):
             data = pickle.load(f)
         except EOFError:
             data = {}
-            print("读取文件错误")
+            # print("读取文件错误")
     print("------read-------")
-    print(path)
     print(data)
     return data
 
@@ -27,9 +26,8 @@ def readInfo(path):
             print(data)
         except EOFError:
             data = []
-            print("读取文件错误")
+            # print("读取文件错误")
     print("------read-------")
-    print(path)
     print(data)
     return data
 

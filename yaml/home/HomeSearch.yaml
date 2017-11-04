@@ -1,0 +1,26 @@
+testinfo:
+    - id: test003
+      title: 知识首页-搜索
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/tv_search
+      find_type: id
+      operate_type: click
+      info: 点击搜索框
+    - element_info: com.huawei.works.search:id/searchview_query
+      find_type: id
+      operate_type: set_value # 输入内容
+      msg: 最
+      info: 输入搜索关键字最
+    - press_keycode: 66 #回车
+      info: 回车
+    - element_info: com.huawei.works.search:id/tv_knowledge_title
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击一条搜索的数据
+check:
+    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+      find_type: xpath
+      is_webview: 1
+      info: 查找详情页数据

@@ -1,0 +1,17 @@
+testinfo:
+    - id: test010
+      title: 未加入团队首页
+      info: 打开知识
+testcase:
+    - element_info: //*[@resource-id='com.huawei.works.knowledge:id/title_my_team_item' and @text='更多']
+      find_type: xpath
+      operate_type: click
+      info: 点击更多
+    - element_info: //android.widget.ListView//android.widget.GridView/android.widget.RelativeLayout[1]
+      find_type: xpath
+      operate_type: click
+      info: 点击推荐团队下的第一个团队
+check:
+    - element_info: //android.widget.CheckBox[@text='首页']
+      find_type: xpath
+      info: 检测是否进入到了团队首页

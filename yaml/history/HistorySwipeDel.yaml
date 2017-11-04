@@ -1,0 +1,30 @@
+testinfo:
+    - id: test014
+      title: 滑动删除浏览历史中的数据
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取历史记录下的第一条数据
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: swipe_left # 元素滑动
+      info: 左滑动历史记录下的第一条数据
+    - element_info: com.huawei.works.knowledge:id/tx_delete
+      find_type: id
+      operate_type: click
+      info: 点击删除按钮
+
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否删除成功

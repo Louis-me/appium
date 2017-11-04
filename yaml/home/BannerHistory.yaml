@@ -1,0 +1,29 @@
+testinfo:
+    - id: test005
+      title: banner浏览历史
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/aapi_imageview
+      find_type: id
+      operate_type: click
+      info: 点击banner图片
+    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+      find_type: xpath
+      operate_type: get_value
+      is_webview: 1
+      info: 得到详情页标题值
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      is_webview: 2
+      info: 点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否存在历史记录
