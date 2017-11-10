@@ -14,7 +14,6 @@ class DelCardPage:
         self.driver = kwargs["driver"]
         self.path = kwargs["path"]
         self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"])
-        self.result = True
 
     '''
     操作步骤
@@ -22,29 +21,9 @@ class DelCardPage:
     '''
 
     def operate(self, logTest):
-        self.result = self.page.operate(logTest, 1)
+      self.page.operate(logTest)
 
     def checkPoint(self, caseName, logTest, devices):
 
-        self.page.checkPoint(func=self.check(logTest), caseName=caseName, logTest=logTest, devices=devices)
-
-    '''
-    检查点
-    logTest： 日志记录
-    '''
-
-    def check(self, logTest):
-        _result = True
-        if self.result:
-            for item in self.page.testcheck:
-                resp = self.page.operateElement.operate(item, self.page.testInfo, logTest=logTest)
-                if resp:
-                    msg = "技术专区卡片删除不成功，依然停留在页面"
-                    print(msg)
-                    self.page.testInfo[0]["msg"] = msg
-                    _result = False
-        else:
-            _result = False
-
-        return _result
+        self.page.checkPoint(contrary=1, caseName=caseName, logTest=logTest, devices=devices, msg='技术专区卡片删除不成功，依然停留在页面')
 

@@ -26,4 +26,4 @@ check:
     - element_info: //*[@text='取消收藏成功']
       find_type: xpath
       operate_type: toast # 提示框
-      info: 查找是否存在历史记录
+      info: 检测是否取消收藏成功

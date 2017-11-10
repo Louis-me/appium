@@ -1,0 +1,49 @@
+testinfo:
+    - id: test009
+      title: 发布博客
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/title_my_team_item
+      find_type: ids
+      operate_type: click
+      index: 0
+      info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/dzb_title_content
+      find_type: ids
+      index: 0
+      info: 查找页面加载完成
+    - element_info: com.huawei.works.knowledge:id/vtb_img_send
+      find_type: id
+      operate_type: click
+      info: 点击右上角按钮
+    - element_info: //*[@resource-id='com.huawei.works:id/tv_menu_item_text' and @text='发博客']
+      find_type: xpath
+      operate_type: click
+      info: 点击发博客
+    - element_info: com.huawei.works.knowledge:id/et_title
+      find_type: id
+      msg: 博客主题标题
+      operate_type: set_value
+      info: 输入团博客的主题
+    - element_info: com.huawei.works.knowledge:id/et_content
+      find_type: id
+      operate_type: set_value
+      msg: 博客的内容123456
+      info: 输入博客的内容
+    - element_info: com.huawei.works.knowledge:id/rl_category
+      find_type: id
+      operate_type: click
+      info: 点击选择分类
+    - element_info: //android.widget.ListView/android.widget.RelativeLayout[4]
+      find_type: xpath
+      operate_type: click
+      info: 选择第4个分类
+    - element_info: com.huawei.works.knowledge:id/vtb_tv_right
+      find_type: id
+      operate_type: click
+      info: 点击发布
+
+check:
+    - element_info: //*[@text='发布成功']
+      find_type: id
+      info: 检查是否发布成功投票

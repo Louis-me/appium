@@ -1,0 +1,38 @@
+testinfo:
+    - id: test014
+      title: 滑动删我的收藏
+      info: 打开知识
+testcase:
+#    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
+#      find_type: xpath
+#      operate_type: adb_tap
+#      info: 点击知识
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击个人图片
+    - element_info: com.huawei.works.me:id/collection_layout
+      find_type: id
+      operate_type: click
+      info: 点击我的收藏
+    - element_info: com.huawei.works.me:id/collection_content
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取我的收藏下的第一条数据
+    - element_info: com.huawei.works.me:id/item_content
+      find_type: ids
+      index: 0
+      operate_type: swipe_left # 元素滑动
+      info: 左滑动我的收藏下的第一条数据
+    - element_info: //android.widget.TextView[@text='删除']
+      find_type: xpath
+      operate_type: click
+      info: 点击删除按钮
+
+check:
+    - element_info: com.huawei.works.me:id/collection_content
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否删除成功

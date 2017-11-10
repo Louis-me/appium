@@ -11,7 +11,6 @@ class ManyHistoryPage:
         self.driver = kwargs["driver"]
         self.path = kwargs["path"]
         self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"])
-        self.result = True
 
         '''
         操作步骤
@@ -19,40 +18,11 @@ class ManyHistoryPage:
         '''
 
     def operate(self, logTest):
-        self.result = self.page.operate(logTest, 1)
+        self.page.operate(logTest)
 
     def checkPoint(self, caseName, logTest, devices):
 
-        self.page.checkPoint(func=self.check(logTest), caseName=caseName, logTest=logTest, devices=devices)
-
-        '''
-        检查点
-        caseName:测试用例函数名 用作统计
-        logTest： 日志记录
-        devices 设备名
-        '''
-
-    def check(self, logTest):
-        _result = True
-        if self.result:
-            for item in self.page.testcheck:
-                resp = self.page.operateElement.operate(item, self.page.testInfo, logTest=logTest)
-                if not resp:
-                    msg = "请检查元素" + item["element_info"] + "是否存在"
-                    print(msg)
-                    self.page.testInfo[0]["msg"] = msg
-                    _result = False
-                if resp in self.page.get_value:  # 历史数据和实际数据对比
-                    _result = False
-                    msg = "出现重复历史记录,数据为：" + resp
-                    print(msg)
-                    self.page.testInfo[0]["msg"] = msg
-                    break
-        else:
-            _result = False
-
-        return _result
-
+        self.page.checkPoint(caseName=caseName, logTest=logTest, devices=devices, contrary_getval=1)
 
 if __name__ == "__main__":
     pass

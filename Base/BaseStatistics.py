@@ -29,7 +29,7 @@ def countInfo(**kwargs):
     phone_name = get_phone["brand"] + "_" + get_phone["model"] + "_" + "android" + "_" + get_phone["release"]
     _info = {}
     step = ""  # 操作步骤信息
-    check_step = "检查点步骤"  # 检查点步骤信息
+    check_step = ""  # 检查点步骤信息
 
     for case in kwargs["testCase"]:
         step = step + case["info"] + "\n"

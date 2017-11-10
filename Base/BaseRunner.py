@@ -13,7 +13,6 @@ PATH = lambda p: os.path.abspath(
 
 def appium_testcase(devices):
 
-    # print(devices)
     desired_caps = {}
     desired_caps['platformName'] = devices["platformName"]
     desired_caps['platformVersion'] = devices["platformVersion"]
@@ -28,10 +27,8 @@ def appium_testcase(devices):
     desired_caps["resetKeyboard"] = "True"
     desired_caps["recreateChromeDriverSessions"] = "True"
     # 解决多次切换到webview报错问题，每次切换到非chrome-Driver时kill掉session 注意这个设置在appium 1.5版本上才做了处理
-    # desired_caps["automationName"] = "uiautomator2"
+    desired_caps["automationName"] = "uiautomator2"
     # desired_caps['app'] = devices["app"]
-
-    # remote = "http://127.0.0.1:" + str(devices["port"]) + "/wd/hub"
     remote = "http://127.0.0.1:" + str(devices["port"]) + "/wd/hub"
     driver = webdriver.Remote(remote, desired_caps)
     return driver

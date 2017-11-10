@@ -18,7 +18,7 @@ testcase:
       info: 点击部门公告下的第一条数据
     - element_info: //android.widget.TextView[@text='您暂无权限查看此资源']
       find_type: xpath
-      info: 点击部门公告下的第一条数据
+      info: 获取无权查看资源
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       operate_type: click

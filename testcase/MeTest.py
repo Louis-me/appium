@@ -1,9 +1,9 @@
 import os
 from Base.BaseRunner import ParametrizedTestCase
-from PageObject.Home.NoHistoryPage import NoHistoryPage
-from PageObject.me.MyCollectHistoryPage import MyCollectHistoryPage
-from PageObject.me.ClearCachePage import ClearCachePage
 from PageObject.me.CancelCollectPage import CancelCollectPage
+from PageObject.me.MyCollectHistoryPage import MyCollectHistoryPage
+from PageObject.me.CollectSwipeDellPage import CollectSwipeDelPage
+from PageObject.me.CollectCheckBoxDelPage import CollectCheckBoxDelPage
 import sys
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
@@ -22,22 +22,23 @@ class MeTest(ParametrizedTestCase):
         page.operate(logTest=self.logTest)  # 调用page层中的用例执行
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)  # 调用page层的用例检查点
 
-    # def testClearCache(self):
-    #     page = ClearCachePage(driver=self.driver, path=PATH("../yaml/me/ClearCache.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-
-    # # 无浏览历史页面检测
-    # def testNoHistory(self):
-    #     page = NoHistoryPage(driver=self.driver, path=PATH("../yaml/home/NoHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-
     # 取消收藏
-    # def testCancelCollect(self):
-    #     page = CancelCollectPage(driver=self.driver, path=PATH("../yaml/me/CancelCollect.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    def testCancelCollect(self):
+        page = CancelCollectPage(driver=self.driver, path=PATH("../yaml/me/CancelCollect.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+
+    # 滑动删除
+    def testSwipeDelCollect(self):
+        page = CollectSwipeDelPage(driver=self.driver, path=PATH("../yaml/me/CollectSwipeDel.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+
+    # checkbox删除
+    def testCollectCheckBoxDel(self):
+        page = CollectCheckBoxDelPage(driver=self.driver, path=PATH("../yaml/me/CollectCheckBoxDel.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
     @classmethod
     def setUpClass(cls):

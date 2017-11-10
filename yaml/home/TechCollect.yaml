@@ -3,17 +3,6 @@ testinfo:
       title: 技术专区详情页收藏
       info: 打开知识
 testcase:
-#    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
-#      find_type: id
-#      operate_type: click
-#      info: 点击历史记录按钮
-#    - element_info: com.huawei.works.knowledge:id/vtb_img_left
-#      find_type: id
-#      operate_type: click
-#      info: 点击返回按钮
-#      is_time: 3
-#    # 上面两步，主要是配合接口的使用。接口排序后，需要切换页面刷新
-
     - element_info: com.huawei.works.knowledge:id/title
       find_type: ids
       index: 0
@@ -21,7 +10,6 @@ testcase:
       info: 点击技术专区下对第一条数据
     - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
       find_type: xpath
-      operate_type: get_value
       is_webview: 1 # 切换到webview
       info: 查找详情页到标题
     - element_info: com.huawei.works.knowledge:id/vdr_fav
@@ -29,22 +17,8 @@ testcase:
       is_webview: 2 # 切换到native
       operate_type: click
       info: 点击收藏按钮
-    - element_info: com.huawei.works.knowledge:id/vtb_img_left
-      find_type: id
-      operate_type: click
-      info: 点击返回按钮
-    - element_info: com.huawei.works.knowledge:id/vtb_img_left
-      find_type: id
-      operate_type: click
-      info: 点击个人图片
-    - element_info: com.huawei.works.me:id/collection_layout
-      find_type: id
-      operate_type: click
-      info: 点击收藏
 
 check:
-    - element_info: com.huawei.works.me:id/collection_content
-      find_type: ids
-      index: 0
-      operate_type: get_value
-      info: 检测下我收藏的第一条数据是否正确
+    - element_info: //*[@text='收藏成功']
+      find_type: xpath
+      info: 检测是否收藏成功

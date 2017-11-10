@@ -1,0 +1,47 @@
+testinfo:
+    - id: test019
+      title: 测试微群团队博客浏览历史
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/title_my_team_item
+      find_type: ids
+      operate_type: click
+      index: 0
+      info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/fcc_btn_more
+      find_type: id
+      operate_type: click
+      info: 点击新增tab按钮
+    - element_info: //android.widget.TextView[@text='110团队博客']
+      find_type: xpath
+      operate_type: click
+      info: 点击团队博客的tab
+    - element_info: com.huawei.works.knowledge:id/dzb_title
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击博客下的第一条内容
+    - element_info: /html/head/title
+      find_type: xpath
+      operate_type: get_value
+      is_webview: 1
+      info: 得到详情页标题值
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      is_webview: 2
+      info: 点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 再次点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否存在历史记录

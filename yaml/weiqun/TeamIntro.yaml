@@ -1,0 +1,26 @@
+testinfo:
+    - id: test009
+      title: 测试微群团队介绍
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/title_my_team_item
+      find_type: ids
+      operate_type: click
+      index: 0
+      is_time: 5
+      info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/vtb_img_send
+      find_type: id
+      operate_type: click
+      info: 点击右上角按钮
+    - element_info: //*[@resource-id='com.huawei.works:id/tv_menu_item_text' and @text='团队介绍']
+      find_type: xpath
+      operate_type: click
+      info: 点击团队介绍
+
+
+
+check:
+    - element_info: com.huawei.works.knowledge:id/group
+      find_type: id
+      info: 检查团队介绍内容

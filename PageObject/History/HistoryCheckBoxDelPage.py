@@ -11,7 +11,6 @@ class HistoryCheckBoxDelPage:
         self.driver = kwargs["driver"]
         self.path = kwargs["path"]
         self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"])
-        self.result = True
 
     '''
     操作步骤
@@ -19,7 +18,7 @@ class HistoryCheckBoxDelPage:
     '''
 
     def operate(self, logTest):
-        self.result = self.page.operate(logTest)
+        self.page.operate(logTest)
 
     '''
     检查点
@@ -29,24 +28,7 @@ class HistoryCheckBoxDelPage:
     '''
 
     def checkPoint(self, caseName, logTest, devices):
-        self.page.checkPoint(func=self.check(logTest), caseName=caseName, logTest=logTest, devices=devices)
-
-    def check(self, logTest):
-        flag = True
-        if self.result:
-            for item in self.page.testcheck:
-                resp = self.page.operateElement.operate(item, self.page.testInfo, logTest=logTest)
-
-                if resp in self.page.get_value:  # 删除前后历史数据和实际数据对比
-                    flag = False
-                    msg = "删除数据失败,想要删除的数据为：" + ".".join(self.page.get_value) + ",当前获取的数据为：" + resp
-                    print(msg)
-                    self.page.testInfo[0]["msg"] = msg
-                    break
-        else:
-            flag = False
-
-        return flag
+        self.page.checkPoint(contrary=1, caseName=caseName, logTest=logTest, devices=devices)
 
 
 if __name__ == "__main__":

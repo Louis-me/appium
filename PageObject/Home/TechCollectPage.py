@@ -18,13 +18,11 @@ class TechCollectPage:
         '''
 
     def operate(self, logTest):
-        self.page.operate(logTest, 1)
+        self.page.operate(logTest)
 
     def checkPoint(self, caseName, logTest, devices):
 
-        self.page.checkPoint(caseName=caseName, logTest=logTest, devices=devices)
-
-
+        self.page.checkPoint(toast=1, caseName=caseName, logTest=logTest, devices=devices)
 
 if __name__ == "__main__":
     pass

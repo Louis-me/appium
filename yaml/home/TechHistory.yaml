@@ -14,7 +14,7 @@ testcase:
       index: 0
       operate_type: click
       info: 点击技术专区下对第一条数据
-    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+    - element_info: /html/head/title
       find_type: xpath
       is_webview: 1 # 切换到webview
       info: 查找详情页到标题

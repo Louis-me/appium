@@ -1,21 +1,22 @@
 from PageObject.Home.BannerHistoryPage import BannerHistoryPage
 from PageObject.Home.DeptNoticeHistoryPage import DeptNoticeHistoryPage
 from PageObject.Home.HomeSearchHistoryPage import HomeSearhHistoryPage
-from PageObject.Home.HomeSearhPage import HomeSearchPage
 from PageObject.Home.HomeSwipeDownPage import HomeSwipeDownPage
 from PageObject.Home.ManyHistoryPage import ManyHistoryPage
 from PageObject.Home.MyClassHistoryPage import MyClassHistoryPage
 from PageObject.Home.NoAccessHistoryPage import NoAccessHistoryPage
 from PageObject.Home.NoHistoryPage import NoHistoryPage
 from Base.BaseRunner import ParametrizedTestCase
-from PageObject.Home.DelCardPage import *
+from PageObject.Home.DelCardPage import DelCardPage
 from PageObject.Home.TechHistoryPage import TechHistoryPage
 from PageObject.Home.TechNoNullPage import TechNotNullPage
-from PageObject.me.ClearCachePage import ClearCachePage
-from PageObject.weiqun.WeiBBSHistoryPage import WeiBBsHistoryPage
+from PageObject.Home.ClearCachePage import ClearCachePage
+from PageObject.Home.WeiBBSHistoryPage import WeiBBsHistoryPage
 from PageObject.Home.TopNewHistoryPage import TopNewHistoryPage
 from PageObject.Home.TechCollectPage import TechCollectPage
-from TestCase.TestCaseBase import *
+from PageObject.Home.HotAnswerHistoryPage import HotAnswerHistoryPage
+from PageObject.Home.DayNewHistoryPage import DayNewHistoryPage
+from Base.BaseTestBase import *
 import sys
 
 PATH = lambda p: os.path.abspath(
@@ -24,26 +25,26 @@ PATH = lambda p: os.path.abspath(
 
 
 class HomeTest(ParametrizedTestCase):
-    def testA1ClearCache(self):
-        page = ClearCachePage(driver=self.driver, path=PATH("../yaml/me/ClearCache.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    # # 清除缓存
+    # def testA1ClearCache(self):
+    #     page = ClearCachePage(driver=self.driver, path=PATH("../yaml/me/ClearCache.yaml"))
+    #     page.operate(logTest=self.logTest)
+    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
-    # 无浏览历史页面检测
-    def testA2NoHistory(self):
-        page = NoHistoryPage(driver=self.driver, path=PATH("../yaml/home/NoHistory.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-
+    # # 无浏览历史页面检测
+    # def testA2NoHistory(self):
+    #     page = NoHistoryPage(driver=self.driver, path=PATH("../yaml/home/NoHistory.yaml"))
+    #     page.operate(logTest=self.logTest)
+    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    #
     # 首页下拉
-    def testHomeSwipeDown(self):
+    def testAHomeSwipeDown(self):
         page = HomeSwipeDownPage(driver=self.driver, path=PATH("../yaml/home/HomeSwipeDown.yaml"),)
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
     # banner浏览历史记录
     def testBannerHistory(self):
-
         page = BannerHistoryPage(driver=self.driver, path=PATH("../yaml/home/BannerHistory.yaml"))
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
@@ -70,6 +71,22 @@ class HomeTest(ParametrizedTestCase):
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
 
+    # 热门问答浏览历史记录
+    def testHotAnswerHistory(self):
+        devices = self.devicesName
+        hotAnswer_card(login(), devices)
+        page = HotAnswerHistoryPage(driver=self.driver, path=PATH("../yaml/home/HotAnswerHistory.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
+
+    # 每日新闻浏览历史记录
+    def testDayNewHistory(self):
+        devices = self.devicesName
+        dayNew_card(login(), devices)
+        page = DayNewHistoryPage(driver=self.driver, path=PATH("../yaml/home/DayNewHistory.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
+
     # 技术专区列表内容为空检测
     def testTechNotNull(self):
 
@@ -79,8 +96,7 @@ class HomeTest(ParametrizedTestCase):
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
 
-        # 多次浏览后的历史记录
-
+    # 多次浏览后的历史记录
     def testManyHistory(self):
 
         page = ManyHistoryPage(driver=self.driver, path=PATH("../yaml/home/ManyHistory.yaml"))

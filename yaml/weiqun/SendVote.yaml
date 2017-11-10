@@ -1,0 +1,81 @@
+testinfo:
+    - id: test009
+      title: 发布帖子
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/title_my_team_item
+      find_type: ids
+      operate_type: click
+      index: 0
+      info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/dzb_title_content
+      find_type: ids
+      index: 0
+      info: 查找页面加载完成
+    - element_info: com.huawei.works.knowledge:id/vtb_img_send
+      find_type: id
+      operate_type: click
+      info: 点击右上角按钮
+    - element_info: //*[@resource-id='com.huawei.works:id/tv_menu_item_text' and @text='我要发帖']
+      find_type: xpath
+      operate_type: click
+      info: 点击我要提问
+    - element_info: com.huawei.works.knowledge:id/et_title
+      find_type: id
+      operate_type: set_value
+      msg: 投票标题的内容123456
+      info: 输入投票的标题
+    - element_info: com.huawei.works.knowledge:id/et_content
+      find_type: id
+      operate_type: set_value
+      msg: 团队投票的内容123456
+      info: 输入投票的内容
+    - element_info: com.huawei.works.knowledge:id/rl_category
+      find_type: id
+      operate_type: click
+      info: 点击选择分类
+    - element_info: //android.widget.ListView/android.widget.RelativeLayout[1]
+      find_type: xpath
+      operate_type: click
+      info: 选择第1个分类
+    - element_info: com.huawei.works.knowledge:id/iv_vote
+      find_type: id
+      operate_type: click
+      info: 点击投票按钮
+    - element_info: com.huawei.works.knowledge:id/tv_title
+      find_type: id
+      operate_type: set_value
+      msg: 自动化测试主题111
+      info: 输入自动化测试投票主题
+    - element_info: //android.widget.ListView/android.widget.LinearLayout[1]/android.widget.EditText
+      find_type: xpath
+      operate_type: set_value
+      msg:  是
+      info: 选型1输入是
+    - element_info: //android.widget.ListView/android.widget.LinearLayout[2]/android.widget.EditText
+      find_type: xpath
+      operate_type: set_value
+      msg: 否
+      info: 选型2输入否
+    - element_info: com.huawei.works.knowledge:id/tv_time
+      find_type: id
+      operate_type: click
+      info: 点击结束时间
+    - element_info: com.huawei.works.knowledge:id/tv_sure
+      find_type: id
+      operate_type: click
+      info: 确定结束时间
+    - element_info: com.huawei.works.knowledge:id/vtb_tv_right
+      find_type: id
+      operate_type: click
+      info: 点击下一步
+    - element_info: com.huawei.works.knowledge:id/vtb_layout_right
+      find_type: id
+      operate_type: click
+      info: 点击发布
+
+
+check:
+    - element_info: //*[@text='发布成功']
+      find_type: id
+      info: 检查是否发布成功投票

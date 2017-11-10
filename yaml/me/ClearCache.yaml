@@ -3,10 +3,10 @@ testinfo:
       title: 清除缓存
       info: 打开知识，我的收藏有数据
 testcase:
-    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
-      find_type: xpath
-      operate_type: adb_tap
-      info: 点击知识
+#    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
+#      find_type: xpath
+#      operate_type: adb_tap
+#      info: 点击知识
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       operate_type: click
@@ -15,9 +15,6 @@ testcase:
       find_type: id
       operate_type: click
       info: 点击设置
-#    - swipe: up # 上拉
-#      info: 上拉
-#      is_time : 1 # 等待3
     - element_info: com.huawei.works.me:id/clean_buffer_layout
       find_type: id
       operate_type: click
@@ -25,10 +22,12 @@ testcase:
     - element_info: com.huawei.works.me:id/clear_btn
       find_type: id
       operate_type: click
+      check_time: 5
       info: 点击立即清理缓存
     - element_info: //android.widget.Button[@text='我知道了']
       find_type: xpath
       operate_type: click
+      check_time: 5
       info: 点击我知道了
     - element_info: com.huawei.works.me:id/back_btn
       find_type: id

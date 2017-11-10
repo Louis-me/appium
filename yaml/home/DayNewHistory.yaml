@@ -1,0 +1,35 @@
+testinfo:
+    - id: test004
+      title: 每日新闻卡片浏览记录
+      info: 打开知识
+testcase:
+
+    - element_info: com.huawei.works.knowledge:id/title
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取每日新闻下第一条数据对标题
+    - element_info: com.huawei.works.knowledge:id/title
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击每日新闻下对第一条数据
+    - element_info: /html/head/title
+      find_type: xpath
+      is_webview: 1 # 切换到webview
+      info: 查找详情页到标题
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      is_webview: 2 # 切换到native
+      operate_type: click
+      info: 点击返回按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否存在历史记录

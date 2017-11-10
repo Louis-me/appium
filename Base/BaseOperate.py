@@ -46,8 +46,7 @@ class OperateElement:
 
                 if mOperate.get("element_info", "0") == "0":  # 如果没有页面元素，就不检测是页面元素，可能是滑动等操作
                     return True
-                t = mOperate["check_time"] if mOperate.get("check_time",
-                                                           "0") != "0" else be.WAIT_TIME  # 如果自定义检测时间为空，就用默认的检测等待时间
+                t = mOperate["check_time"] if mOperate.get("check_time", "0") != "0" else be.WAIT_TIME  # 如果自定义检测时间为空，就用默认的检测等待时间
                 WebDriverWait(self.driver, t).until(lambda x: self.elements_by(mOperate))  # 操作元素是否存在
                 return True
         except selenium.common.exceptions.TimeoutException:
@@ -68,51 +67,55 @@ class OperateElement:
     '''
 
     def operate(self, mOperate, testInfo, logTest):
+        try:
+            if self.findElement(mOperate):
+                info = ""
+                if mOperate.get("element_info", "0") != "0":
+                    info = mOperate["element_info"] + "_" + mOperate.get("operate_type", " ")
+                elif mOperate.get("swipe", "0") != "0":
+                    info = mOperate["swipe"]
+                elif mOperate.get("press_keycode", "0") != "0":
+                    info = "输入keycode=" + str(mOperate["press_keycode"])
 
-        if self.findElement(mOperate):
-            info = ""
-            if mOperate.get("element_info", "0") != "0":
-                info = mOperate["element_info"] + "_" + mOperate.get("operate_type", " ")
-            elif mOperate.get("swipe", "0") != "0":
-                info = mOperate["swipe"]
-            elif mOperate.get("press_keycode", "0") != "0":
-                info = "输入keycode=" + str(mOperate["press_keycode"])
+                logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + info)  # 记录日志
 
-            logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + info)  # 记录日志
+                if mOperate.get("swipe", "0") == be.SWIPE_DOWN:  # 向下滑动
+                    self.swipeToDown()
+                    return True
+                if mOperate.get("swipe", "0") == be.SWIPE_UP:  # 向下滑动
+                    self.swipeToUp()
+                    return True
 
-            if mOperate.get("swipe", "0") == be.SWIPE_DOWN:  # 向下滑动
-                self.swipeToDown()
+                if mOperate.get("press_keycode", "0") != "0":  # 键盘事件
+                    self.press_keycode(mOperate["press_keycode"])
+
+                if mOperate.get("operate_type", "0") == "0":  # 如果没有此字段，说明没有相应操作，直接返回
+                    return True
+
+                if mOperate["operate_type"] == be.CLICK:
+                    self.click(mOperate)
+                    return True
+
+                if mOperate.get("is_webview", "0") == 1 and mOperate["operate_type"] == be.GET_VALUE:
+                    return self.get_web_value(mOperate)
+
+                if mOperate["operate_type"] == be.GET_VALUE:
+                    return self.get_value(mOperate)
+
+                if mOperate["operate_type"] == be.SET_VALUE:
+                    self.set_value(mOperate)
+                    return True
+                if mOperate["operate_type"] == be.ADB_TAP:  # adb shell tap模拟触屏
+                    # location
+                    self.adb_tap(mOperate)
+                    return True
+
                 return True
-            if mOperate.get("swipe", "0") == be.SWIPE_UP:  # 向下滑动
-                self.swipeToUp()
-                return True
-
-            if mOperate.get("press_keycode", "0") != "0":  # 键盘事件
-                self.press_keycode(mOperate["press_keycode"])
-
-            if mOperate.get("operate_type", "0") == "0":  # 如果没有此字段，说明没有相应操作，直接返回
-                return True
-
-            if mOperate["operate_type"] == be.CLICK:
-                self.click(mOperate)
-                return True
-
-            if mOperate.get("is_webview", "0") == 1 and mOperate["operate_type"] == be.GET_VALUE:
-                return self.get_web_value(mOperate)
-
-            if mOperate["operate_type"] == be.GET_VALUE:
-                return self.get_value(mOperate)
-
-            if mOperate["operate_type"] == be.SET_VALUE:
-                self.set_value(mOperate)
-                return True
-            if mOperate["operate_type"] == be.ADB_TAP:  # adb shell tap模拟触屏
-                # location
-                self.adb_tap(mOperate)
-                return True
-
-            return True
-        else:
+            else:
+                return False
+        except IndexError:
+            logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate["element_info"]+"索引错误")  # 记录日志
+            print(mOperate["element_info"]+"索引错误")
             return False
 
     def adb_tap(self, mOperate):
@@ -169,6 +172,8 @@ class OperateElement:
                     self.driver.switch_to.context(cons)
                     print("---切换webview---")
                     # print(self.driver.page_source)
+                    self.driver.execute_script('document.querySelectorAll("head")[0].style.display="block"')
+                    self.driver.execute_script('document.querySelectorAll("title")[0].style.display="block"')
                     return
 
     # 左滑动
@@ -210,12 +215,11 @@ class OperateElement:
         print("--swipeToUp--")
 
     def set_value(self, mOperate):
-        '''
+        """
         输入值，代替过时的send_keys
         :param mOperate:
         :return:
-        '''
-
+        """
         self.elements_by(mOperate).send_keys(mOperate["msg"])
 
     def get_value(self, mOperate):

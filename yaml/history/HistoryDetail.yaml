@@ -19,7 +19,7 @@ testcase:
       info: 点击历史记录下的第一条数据
 
 check:
-    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+    - element_info: /html/head/title
       find_type: xpath
       is_webview: 1 # 切换到webview
       operate_type: get_value

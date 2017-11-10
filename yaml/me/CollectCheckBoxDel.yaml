@@ -1,0 +1,55 @@
+testinfo:
+    - id: test014
+      title: 多选删除我的收藏
+      info: 我的收藏有多条数据，打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      operate_type: click
+      info: 点击个人图片
+    - element_info: com.huawei.works.me:id/collection_layout
+      find_type: id
+      operate_type: click
+      info: 点击我的收藏
+    - element_info: com.huawei.works.me:id/collection_content
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取我的收藏下的第一条数据
+    - element_info: com.huawei.works.me:id/collection_content
+      find_type: ids
+      index: 1
+      operate_type: get_value
+      info: 获取我的收藏下的第二条数据
+    - element_info: com.huawei.works.me:id/edit_btn
+      find_type: id
+      operate_type: click
+      info: 点击编辑按钮
+    - element_info: com.huawei.works.me:id/collection_btn
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击第一个多选框
+    - element_info: com.huawei.works.me:id/collection_btn
+      find_type: ids
+      index: 1
+      operate_type: click
+      info: 点击第二个多选框
+    - element_info: com.huawei.works.me:id/delete_btn
+      find_type: id
+      operate_type: click
+      info: 点击删除按钮
+
+check:
+    - element_info: com.huawei.works.me:id/collection_content
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 获取历史记录下的第一条数据并对比删除之前的值
+      check_time: 3
+    - element_info: com.huawei.works.me:id/collection_content
+      find_type: ids
+      index: 1
+      operate_type: get_value
+      check_time: 3
+      info: 获取历史记录下的第二条数据并对比删除之前的值

@@ -7,7 +7,7 @@ testcase:
       find_type: xpath
       operate_type: click
       info: 点击知识头条的标题
-    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+    - element_info: /html/head/title
       find_type: xpath
       operate_type: get_value
       is_webview: 1 # 切换到webview

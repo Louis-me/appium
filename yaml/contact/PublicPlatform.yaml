@@ -1,0 +1,46 @@
+testinfo:
+    - id: test008
+      title: 公众号浏览历史
+      info: 关注WeLink知识公众号，打开知识
+testcase:
+    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='通讯录']
+      find_type: xpath
+      operate_type: adb_tap
+      info: 点击通讯录
+      # adb_tap关键字。因为popupWindow遮住了底部menu，无法用api触发点击操作，只能用adb shell命令去模拟
+    - element_info: com.huawei.works.contact:id/contact_header_button3
+      find_type: id
+      operate_type: click
+      info: 点击公众号按钮
+    - element_info: //android.widget.TextView[@text='WeLink知识']
+      find_type: xpath
+      operate_type: click
+      info: 点击WebLink知识
+    - element_info: com.huawei.works.publicaccount:id/bottom_menu_item_cell_textview_has_no_Image
+      find_type: ids
+      index: 1
+      operate_type: click
+      info: 点击公众号下面等按钮
+    - element_info: com.huawei.works.publicaccount:id/ll_single_news_content
+      find_type: ids
+      index: 1
+      operate_type: click
+      info: 点击公众号中的内容
+    - element_info: com.huawei.works.contact:id/contact_vcard_back
+      find_type: id
+      operate_type: click
+      info: 再次点击返回按钮
+    - element_info: //*[@resource-id='com.huawei.works:id/w3_tab_content_layout']//android.widget.RadioButton[@text='知识']
+      find_type: xpath
+      operate_type: adb_tap
+      info: 点击底部菜单知识
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否存在历史记录

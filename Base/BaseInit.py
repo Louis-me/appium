@@ -36,14 +36,19 @@ def init():
     # data["appName"] = apkInfo.getApkName()
     # data["appSize"] = apkInfo.getApkSize()
     # data["appVersion"] = apkInfo.getApkBaseInfo()[2]
-    data["appName"] = "weblink"
-    data["appSize"] = "25M"
-    data["appVersion"] = "1.2.3"
+    data["versionCode"] = "35"
+    data["versionName"] = "1.3.5"
+    data["packingTime"] = "2017/11/8 9:30"
     data["sum"] = 0
     data["pass"] = 0
     data["fail"] = 0
-
     write(data=data, path=PATH("../Log/sum.pickle"))
+
+    # 每次都重新安装uiautomator2都两个应用
+    os.popen("adb uninstall io.appium.uiautomator2.server.test")
+    os.popen("adb uninstall io.appium.uiautomator2.server")
+    os.popen("adb install -r "+PATH("../app/appium-uiautomator2-server-v0.1.9.apk"))
+    os.popen("adb install -r "+PATH("../app/appium-uiautomator2-server-debug-androidTest.apk"))
 
 
 def destroy():

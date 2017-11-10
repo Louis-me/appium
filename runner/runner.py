@@ -13,6 +13,7 @@ from TestCase.CardsTest import CardsTest
 from TestCase.MeTest import MeTest
 from TestCase.HistoryTest import HistoryTest
 from TestCase.TeamTest import TeamTest
+from TestCase.TestWeiQunTest import TestWeiQunTest
 from Base.BaseAppiumServer import AppiumServer
 from multiprocessing import Pool
 import unittest
@@ -70,11 +71,12 @@ def runnerCaseApp(devices):
     suite = unittest.TestSuite()
 
     suite.addTest(ParametrizedTestCase.parametrize(HomeTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(HistoryTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(ContactTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(MeTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(CardsTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(TeamTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(TestWeiQunTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(HistoryTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(ContactTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(MeTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(CardsTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(TeamTest, param=devices))
     unittest.TextTestRunner(verbosity=2).run(suite)
     endtime = datetime.now()
     countDate(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), str((endtime - starttime).seconds) + "秒")

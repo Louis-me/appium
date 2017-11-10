@@ -1,0 +1,52 @@
+testinfo:
+    - id: test009
+      title: 知识搜索进入详情页历史记录
+      info: 打开知识
+testcase:
+    - element_info: com.huawei.works.knowledge:id/title_my_team_item
+      find_type: ids
+      operate_type: click
+      index: 0
+      info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击搜索框
+    - element_info: com.huawei.works.knowledge:id/vs_et_search
+      find_type: id
+      operate_type: set_value # 输入内容
+      msg: wb
+      info: 输入搜索关键字最
+    - press_keycode: 66 #回车
+      info: 回车
+     - press_keycode: 66
+      info: 再次回车
+    - element_info: com.huawei.works.search:id/tv_knowledge_title
+      find_type: ids
+      index: 0
+      operate_type: click
+      info: 点击一条搜索的数据
+    - element_info: /html/head/title
+      find_type: xpath
+      is_webview: 1 # 切换到webview
+      operate_type: get_value
+      info: 查找详情页到标题
+    - element_info: com.huawei.works.knowledge:id/vtb_img_left
+      find_type: id
+      is_webview: 2 # 切换到native
+      operate_type: click
+      info: 点击返回按钮
+    - element_info: com.huawei.works.search:id/tv_searchview_cancel
+      find_type: id
+      operate_type: click
+      info: 点击取消按钮
+    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
+      find_type: id
+      operate_type: click
+      info: 点击首页历史记录按钮
+check:
+    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
+      find_type: ids
+      index: 0
+      operate_type: get_value
+      info: 查找是否存在历史记录
