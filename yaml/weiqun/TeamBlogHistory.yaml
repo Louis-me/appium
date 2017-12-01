@@ -8,6 +8,10 @@ testcase:
       operate_type: click
       index: 0
       info: 点击测试微群
+    - element_info: com.huawei.works.knowledge:id/dzb_title_content
+      find_type: ids
+      index: 0
+      info: 查找页面加载完成
     - element_info: com.huawei.works.knowledge:id/fcc_btn_more
       find_type: id
       operate_type: click
@@ -19,13 +23,17 @@ testcase:
     - element_info: com.huawei.works.knowledge:id/dzb_title
       find_type: ids
       index: 0
+      operate_type: get_value
+      info: 得到博客下的第一条内容
+    - element_info: com.huawei.works.knowledge:id/dzb_title
+      find_type: ids
+      index: 0
       operate_type: click
       info: 点击博客下的第一条内容
-    - element_info: /html/head/title
-      find_type: xpath
-      operate_type: get_value
+    - element_info: h5-scroll
+      find_type: id
       is_webview: 1
-      info: 得到详情页标题值
+      info: 查找详情页标题值
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       operate_type: click

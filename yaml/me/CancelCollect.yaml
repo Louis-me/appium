@@ -11,7 +11,7 @@ testcase:
       find_type: id
       operate_type: click
       info: 点击我的收藏
-    - element_info: com.huawei.works.me:id/collection_content
+    - element_info: com.huawei.works.me:id/item_content
       find_type: ids
       index: 0
       operate_type: click

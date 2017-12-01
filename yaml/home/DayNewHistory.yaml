@@ -8,16 +8,17 @@ testcase:
       find_type: ids
       index: 0
       operate_type: get_value
-      info: 获取每日新闻下第一条数据对标题
+      info: 获取每日新闻下对第一条数据
     - element_info: com.huawei.works.knowledge:id/title
       find_type: ids
       index: 0
       operate_type: click
+      is_time: 3
       info: 点击每日新闻下对第一条数据
-    - element_info: /html/head/title
-      find_type: xpath
+    - element_info: h5-scroll
+      find_type: id
       is_webview: 1 # 切换到webview
-      info: 查找详情页到标题
+      info: 查找并获取详情页标题
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       is_webview: 2 # 切换到native

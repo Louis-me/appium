@@ -3,6 +3,9 @@ testinfo:
       title: 卡片列表下删除卡片
       info: 打开知识
 testcase:
+#    - element_info: com.huawei.works.knowledge:id/marquee_view
+#      find_type: id
+#      info: 检查页面加载完成
     - element_info: com.huawei.works.knowledge:id/vtb_img_right
       find_type: id
       operate_type: click

@@ -21,9 +21,7 @@ class DelCardPage:
     '''
 
     def operate(self, logTest):
-      self.page.operate(logTest)
+        self.page.operate(logTest)
 
     def checkPoint(self, caseName, logTest, devices):
-
         self.page.checkPoint(contrary=1, caseName=caseName, logTest=logTest, devices=devices, msg='技术专区卡片删除不成功，依然停留在页面')
-

@@ -3,21 +3,18 @@ testinfo:
       title: 技术专区详情页收藏
       info: 打开知识
 testcase:
+    - element_info: //android.widget.TextView[@text='技术专区']
+      find_type: xpath
+      info: 页面加载完成
     - element_info: com.huawei.works.knowledge:id/title
       find_type: ids
       index: 0
       operate_type: click
       info: 点击技术专区下对第一条数据
-    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
-      find_type: xpath
-      is_webview: 1 # 切换到webview
-      info: 查找详情页到标题
     - element_info: com.huawei.works.knowledge:id/vdr_fav
       find_type: id
-      is_webview: 2 # 切换到native
       operate_type: click
       info: 点击收藏按钮
-
 check:
     - element_info: //*[@text='收藏成功']
       find_type: xpath

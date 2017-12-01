@@ -1,4 +1,3 @@
-
 from PageObject import Pages
 
 
@@ -22,7 +21,7 @@ class HomeSearchPage:
     '''
 
     def operate(self, logTest):
-       self.page.operate(logTest)
+        self.page.operate(logTest)
 
     '''
     检查点
@@ -32,5 +31,4 @@ class HomeSearchPage:
     '''
 
     def checkPoint(self, caseName, logTest, devices):
-
         self.page.checkPoint(caseName=caseName, logTest=logTest, devices=devices)

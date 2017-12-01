@@ -6,6 +6,7 @@ testcase:
     - element_info: //*[@resource-id='com.huawei.works.knowledge:id/marquee_view']//android.widget.TextView
       find_type: xpath
       operate_type: click
+      is_time: 5
       info: 点击知识头条的标题
     - element_info: /html/head/title
       find_type: xpath

@@ -46,10 +46,10 @@ def writeInfo(data="", path="data.pickle"):
     else:
         result.append(data)
     with open(path, 'wb') as f:
-        print("------writeInfo-------")
-        print(result)
+        # print("------writeInfo-------")
+        # print(result)
         pickle.dump(result, f)
 
 if __name__ == "__main__":
-    pass
-    # operateFile.OperateFile(PATH("data.pickle")).remove_file()
+    # write("用例失败重连过一次，失败原因：", "../Log/connect64dd15b8-ca91-11e7-87ae-38c98647adce.pickle")
+    read_reconnect("../Log/connect64dd15b8-ca91-11e7-87ae-38c98647adce.pickle")

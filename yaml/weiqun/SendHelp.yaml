@@ -22,13 +22,13 @@ testcase:
       info: 点击我要提问
     - element_info: com.huawei.works.knowledge:id/et_title
       find_type: id
-      msg: 团队提问主题标题
+      msg: 请问下牙疼是病吗111111？
       operate_type: set_value
       info: 输入团队提问的主题
     - element_info: com.huawei.works.knowledge:id/et_content
       find_type: id
       operate_type: set_value
-      msg: 团队求助的内容123456
+      msg: 反对萨法里的撒疯了阿的撒辣椒粉
       info: 输入团队求助的内容
     - element_info: com.huawei.works.knowledge:id/rl_category
       find_type: id

@@ -2,8 +2,9 @@
 
 __author__ = 'shikun'
 import sys
-sys.path.append("..")
 
+sys.path.append("..")
+import platform
 from Base.BaseAndroidPhone import *
 from Base.BaseAdb import *
 from Base.BaseRunner import ParametrizedTestCase
@@ -27,17 +28,13 @@ PATH = lambda p: os.path.abspath(
 )
 
 
-
-def stopAppiumMacAndroid(devices):
-    for device in devices:
-        # mac
-        cmd = "lsof -i :{0}".format(device["port"])
-        plist = os.popen(cmd).readlines()
-        plisttmp = plist[1].split("    ")
-        plists = plisttmp[1].split(" ")
-        # print plists[0]
-        os.popen("kill -9 {0}".format(plists[0]))
-
+def kill_adb():
+    if platform.system() == "Windows":
+        # os.popen("taskkill /f /im adb.exe")
+        os.system(PATH("../app/kill5037.bat"))
+    else:
+        os.popen("killall adb")
+    os.system("adb start-server")
 
 def runnerPool(getDevices):
     devices_Pool = []
@@ -54,6 +51,7 @@ def runnerPool(getDevices):
         _initApp["port"] = getDevices[i]["port"]
         _initApp["appPackage"] = "com.huawei.works"
         _initApp["appActivity"] = "huawei.w3.ui.welcome.W3SplashScreenActivity"
+        _initApp["automationName"] = "uiautomator2"
         # _initApp["appPackage"] = apkInfo.getApkBaseInfo()[0]
         # _initApp["appActivity"] = apkInfo.getApkActivity()
         # _initApp["app"] = getDevices[i]["app"]
@@ -83,6 +81,9 @@ def runnerCaseApp(devices):
 
 
 if __name__ == '__main__':
+
+    kill_adb()
+
     devicess = AndroidDebugBridge().attached_devices()
     if len(devicess) > 0:
         l_devices = []
@@ -99,6 +100,6 @@ if __name__ == '__main__':
         appium_server.start_server()
         runnerPool(l_devices)
         writeExcel()
-        stopAppiumMacAndroid(l_devices)
+        appium_server.stop_server(l_devices)
     else:
         print("没有可用的安卓设备")

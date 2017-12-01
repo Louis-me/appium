@@ -28,7 +28,8 @@ class HistoryCheckBoxDelPage:
     '''
 
     def checkPoint(self, caseName, logTest, devices):
-        self.page.checkPoint(contrary=1, caseName=caseName, logTest=logTest, devices=devices)
+        self.page.checkPoint(excepts=1, contrary_getval=1, caseName=caseName, logTest=logTest, devices=devices)
+
 
 
 if __name__ == "__main__":

@@ -22,13 +22,13 @@ testcase:
       info: 点击发博客
     - element_info: com.huawei.works.knowledge:id/et_title
       find_type: id
-      msg: 博客主题标题
+      msg: 大家好我是1234456
       operate_type: set_value
-      info: 输入团博客的主题
+      info: 输入博客主题
     - element_info: com.huawei.works.knowledge:id/et_content
       find_type: id
       operate_type: set_value
-      msg: 博客的内容123456
+      msg: 请问下牙疼是病吗1111？
       info: 输入博客的内容
     - element_info: com.huawei.works.knowledge:id/rl_category
       find_type: id

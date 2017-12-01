@@ -7,7 +7,7 @@ testcase:
       find_type: id
       operate_type: click
       info: 点击banner图片
-    - element_info: /html/head/title
+    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
       find_type: xpath
       operate_type: get_value
       is_webview: 1
@@ -26,4 +26,4 @@ check:
       find_type: ids
       index: 0
       operate_type: get_value
-      info: 查找是否存在历史记录
+      info: 存在历史记录

@@ -16,8 +16,10 @@ testcase:
     - element_info: com.huawei.works.contact:id/title
       find_type: id
       operate_type: click
+      is_time: 3
       info: 点击动态列表第一条数据
-    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+#    - element_info: //*[@id="h5-scroll"]/div[1]/div/section[2]/div[1]/div
+    - element_info: /html/head/title
       find_type: xpath
       is_webview: 1 # 切换到webview
       operate_type: get_value

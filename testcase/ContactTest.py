@@ -1,7 +1,8 @@
 import os
 
 from Base.BaseRunner import ParametrizedTestCase
-from PageObject.contact.ContactHistoryPage import *
+from PageObject.contact.ContactHistoryPage import ContactHistoryPage
+from PageObject.contact.PublicPlatHistoryPage import PublicPlatHistoryPage
 import sys
 
 PATH = lambda p: os.path.abspath(
@@ -10,10 +11,18 @@ PATH = lambda p: os.path.abspath(
 
 
 class ContactTest(ParametrizedTestCase):
-    def testContactHistory(self):
-        page = ContactHistoryPage(driver=self.driver, path=PATH("../yaml/contact/ContactHistory.yaml"))  # 调用测试用例yaml
+
+    # 通讯录好友动态浏览历史
+    def testAContactHistory(self):
+        page = ContactHistoryPage(driver=self.driver, path=PATH("../yaml/contact/ContactHistory.yaml"))
         page.operate(logTest=self.logTest)  # 调用page层中的用例执行
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)  # 调用page层的用例检查点
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+
+    # 通讯录公众号浏览历史
+    def testPublicPlatHistory(self):
+        page = PublicPlatHistoryPage(driver=self.driver, path=PATH("../yaml/contact/PublicPlatformHistory.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest,  devices=self.devicesName)
 
     @classmethod
     def setUpClass(cls):

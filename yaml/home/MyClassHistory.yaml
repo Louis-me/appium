@@ -3,20 +3,16 @@ testinfo:
       title: 我的课程浏览记录
       info: 打开知识
 testcase:
-
-    - element_info: com.huawei.works.knowledge:id/ilearning_tv_course_name
-      find_type: ids
-      index: 0
-      operate_type: get_value
-      info: 获取我的课程卡片下第一条数据对标题
     - element_info: com.huawei.works.knowledge:id/ilearning_tv_course_name
       find_type: ids
       index: 0
       operate_type: click
+      is_time: 2
       info: 点击我的课程卡片下对第一条数据
     - element_info: com.huawei.works.knowledge:id/tvw_course_title
       find_type: id
-      info: 查找详情页到标题
+      operate_type: get_value
+      info: 获取我的课程标题
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       operate_type: click

@@ -1,6 +1,6 @@
 import time
 from datetime import datetime
-
+import platform
 from Base.BaseApk import ApkInfo
 from Base.BaseElementEnmu import Element
 from Base.BaseYaml import getYam
@@ -38,7 +38,7 @@ def init():
     # data["appVersion"] = apkInfo.getApkBaseInfo()[2]
     data["versionCode"] = "35"
     data["versionName"] = "1.3.5"
-    data["packingTime"] = "2017/11/8 9:30"
+    data["packingTime"] = "2017/11/21 09:00"
     data["sum"] = 0
     data["pass"] = 0
     data["fail"] = 0
@@ -49,6 +49,8 @@ def init():
     os.popen("adb uninstall io.appium.uiautomator2.server")
     os.popen("adb install -r "+PATH("../app/appium-uiautomator2-server-v0.1.9.apk"))
     os.popen("adb install -r "+PATH("../app/appium-uiautomator2-server-debug-androidTest.apk"))
+        # os.popen("adb install -r "+PATH("../app/android-system-webview-60.apk"))
+
 
 
 def destroy():

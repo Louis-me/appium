@@ -17,6 +17,7 @@ testcase:
       index: 0
       operate_type: click
       info: 点击历史记录下的第一条数据
+      is_time: 3
 
 check:
     - element_info: /html/head/title

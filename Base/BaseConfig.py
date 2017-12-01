@@ -56,6 +56,6 @@ def post_login(**kwargs):
     result["status_code"] = r.status_code
     if result["status_code"] == 200:
         result["cookie"] = r.headers.get("Set-Cookie")
-    print("--登陆接口--")
-    print(result)
+    # print("--登陆接口--")
+    # print(result)
     return result

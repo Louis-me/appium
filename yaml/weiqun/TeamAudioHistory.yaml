@@ -8,6 +8,10 @@ testcase:
       operate_type: click
       index: 0
       info: 点击测试微群
+#    - element_info: com.huawei.works.knowledge:id/dzb_title_content
+#      find_type: ids
+#      index: 0
+#      info: 查找页面加载完成
     - element_info: com.huawei.works.knowledge:id/fcc_btn_more
       find_type: id
       operate_type: click
@@ -19,12 +23,16 @@ testcase:
     - element_info: com.huawei.works.knowledge:id/radio_title
       find_type: ids
       index: 0
+      operate_type: get_value
+      info: 获取团队音频的第一条内容
+    - element_info: com.huawei.works.knowledge:id/radio_title
+      find_type: ids
+      index: 0
       operate_type: click
       info: 点击团队音频的第一条内容
     - element_info: com.huawei.works.knowledge:id/vvd_title
       find_type: id
-      operate_type: get_value
-      info: 得到详情页标题值
+      info: 进入到详情页
     - element_info: com.huawei.works.knowledge:id/media_playerBack
       find_type: id
       operate_type: click

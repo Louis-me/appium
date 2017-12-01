@@ -24,5 +24,4 @@ class HomeSwipeDownPage:
         self.page.operate(logTest)
 
     def checkPoint(self, caseName, logTest, devices):
-
-        self.page.checkPoint(contrary=1, caseName=caseName, logTest=logTest, devices=devices)
+        self.page.checkPoint(caseName=caseName, logTest=logTest, devices=devices)

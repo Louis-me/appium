@@ -10,7 +10,7 @@ class TeamBlogHistoryPage:
     def __init__(self, **kwargs):
         self.driver = kwargs["driver"]
         self.path = kwargs["path"]
-        self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"])
+        self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"], launch_app=1)
 
     def operate(self, logTest):  # 操作步骤
         self.page.operate(logTest)

@@ -8,6 +8,8 @@ from PageObject.weiqun.SendHelpPage import SendHelpPage
 from PageObject.weiqun.SendVotePage import SendVotePage
 from PageObject.weiqun.SendBlogPage import SendBlogPage
 from PageObject.weiqun.TeamIntroPage import TeamIntroPage
+from PageObject.weiqun.SearchHistoryPage import SearchHistoryPage
+from PageObject.weiqun.WikiPage import WiKiPage
 import os
 import sys
 
@@ -22,7 +24,7 @@ PATH = lambda p: os.path.abspath(
 
 class TestWeiQunTest(ParametrizedTestCase):
     # 团队博客浏览历史
-    def testTeamBlogHistory(self):
+    def testATeamBlogHistory(self):
         page = TeamBlogHistoryPage(driver=self.driver, path=PATH("../yaml/weiqun/TeamBlogHistory.yaml"))
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
@@ -33,45 +35,51 @@ class TestWeiQunTest(ParametrizedTestCase):
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
-    # 团队求助
+    # 团队求助历史记录
     def testTeamHelp(self):
         page = TeamHelpHistoryPage(driver=self.driver, path=PATH("../yaml/weiqun/TeamHelpHistory.yaml"))
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
-    # 团队音频
+    # 团队音频历史记录
     def testTeamAudio(self):
         page = TeamAudioHistoryPage(driver=self.driver, path=PATH("../yaml/weiqun/TeamAudioHistory.yaml"))
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
-    # 团队iMiss
+    # 团队iMiss历史记录
     def testTeamMiss(self):
         page = TeamiMissHistoryPage(driver=self.driver, path=PATH("../yaml/weiqun/TeamiMissHistory.yaml"))
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
-    # 发布提问
-    def testSendHelp(self):
-        page = SendHelpPage(driver=self.driver, path=PATH("../yaml/weiqun/SendHelp.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-
-    # 发布投票
-    def testSendVote(self):
-        page = SendVotePage(driver=self.driver, path=PATH("../yaml/weiqun/SendVote.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-
-    # 发布博客
-    def testSendBlog(self):
-        page = SendBlogPage(driver=self.driver, path=PATH("../yaml/weiqun/SendBlog.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    # # 发布提问
+    # def testSendHelp(self):
+    #     page = SendHelpPage(driver=self.driver, path=PATH("../yaml/weiqun/SendHelp.yaml"))
+    #     page.operate(logTest=self.logTest)
+    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    #
+    # # 发布投票
+    # def testSendVote(self):
+    #     page = SendVotePage(driver=self.driver, path=PATH("../yaml/weiqun/SendVote.yaml"))
+    #     page.operate(logTest=self.logTest)
+    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    #
+    # # 发布博客
+    # def testSendBlog(self):
+    #     page = SendBlogPage(driver=self.driver, path=PATH("../yaml/weiqun/SendBlog.yaml"))
+    #     page.operate(logTest=self.logTest)
+    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 
     # 团队介绍
     def testTeamIntro(self):
         page = TeamIntroPage(driver=self.driver, path=PATH("../yaml/weiqun/TeamIntro.yaml"))
+        page.operate(logTest=self.logTest)
+        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+
+    # wiki
+    def testWiki(self):
+        page = WiKiPage(driver=self.driver, path=PATH("../yaml/weiqun/Wiki.yaml"))
         page.operate(logTest=self.logTest)
         page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
 

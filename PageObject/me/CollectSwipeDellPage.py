@@ -23,6 +23,7 @@ class CollectSwipeDelPage:
         self.testCase = test_msg["testcase"]
         self.testcheck = test_msg["check"]
         self.get_value = []
+        self.msg = ""
 
     '''
      操作步骤
@@ -33,9 +34,12 @@ class CollectSwipeDelPage:
         for item in self.testCase:
 
             result = self.operateElement.operate(item, self.testInfo, logTest)
-            if not result:
-                print("执行过程中失败，请检查元素是否存在" + item["element_info"])
-                self.testInfo[0]["msg"] = "执行过程中失败，请检查元素是否存在" + item["element_info"]
+            if not result["result"]:
+                m_s_g = self.msg + "\n" if self.msg != "" else ""
+                msg = m_s_g + "执行过程中失败，请检查元素是否存在" + item["element_info"]
+                print(msg)
+                self.testInfo[0]["msg"] = msg
+                self.msg = m_s_g + msg
                 self.isOperate = False
                 return False
 
@@ -55,9 +59,27 @@ class CollectSwipeDelPage:
                 endY = height + starty
                 self.driver.swipe(endX-50, endY, starty+500, endY)
             if item.get("operate_type", "0") == be.GET_VALUE:
-                re_reulst = re.findall(r'[a-zA-Z\d+\u4e00-\u9fa5]', result)  # 只匹配中文，大小写，字母
-                self.get_value.append("".join(re_reulst))
+                self.get_value.append(result["text"])
         return True
+
+    def checkPoint(self, **kwargs):
+        result = self.check(**kwargs)
+        if result is not True and be.RE_CONNECT:
+            self.msg = "用例失败重连过一次，失败原因:" + self.testInfo[0]["msg"]
+            kwargs["logTest"].buildStartLine(kwargs["caseName"] + "_失败重连")  # 记录日志
+            # self.operateElement.switchToNative()
+            self.driver.launch_app()
+            self.isOperate = True
+            self.get_value = []
+            self.operate(kwargs["logTest"])
+            result = self.check(**kwargs)
+            self.testInfo[0]["msg"] = self.msg
+        self.operateElement.switchToNative()
+        countSum(result)
+        countInfo(result=result, testInfo=self.testInfo, caseName=kwargs["caseName"],
+                  driver=self.driver, logTest=kwargs["logTest"], devices=kwargs["devices"], testCase=self.testCase,
+                  testCheck=self.testcheck)
+        return result
 
     '''
     检查点
@@ -66,24 +88,27 @@ class CollectSwipeDelPage:
     devices 设备名
     '''
 
-    def checkPoint(self, **kwargs):
+    def check(self, **kwargs):
         result = True
+        m_s_g = self.msg + "\n" if self.msg != "" else ""
+
         if self.isOperate:
             for item in self.testcheck:
                 resp = self.operateElement.operate(item, self.testInfo, kwargs["logTest"])
 
-                if resp in self.get_value:  # 删除后数据对比
-                    msg = "删除数据失败,删除前数据为：" + str(self.get_value) + "当前获取的数据为：" + resp
+                if not resp["result"]:  # 表示操作出现异常情况检查点为成功
+                    print("操作失败，简单点为成功")
+                    result = True
+                    break
+
+                if resp["text"] in self.get_value:  # 删除后数据对比
+                    msg = m_s_g + "删除数据失败,删除前数据为：" + ".".join(self.get_value) + "当前获取的数据为：" + resp["text"]
+                    self.msg = m_s_g + msg
                     print(msg)
                     self.testInfo[0]["msg"] = msg
                     break
         else:
             result = False
-
-        countSum(result)
-        countInfo(result=result, testInfo=self.testInfo, caseName=kwargs["caseName"],
-                  driver=self.driver, logTest=kwargs["logTest"], devices=kwargs["devices"], testCase=self.testCase,
-                  testCheck=self.testcheck)
         return result
 
 

@@ -1,6 +1,7 @@
 
 # -*- coding: utf-8 -*-
 
+import subprocess
 
 import os
 import random
@@ -25,15 +26,18 @@ class AndroidDebugBridge(object):
 
     # 检查设备
     def attached_devices(self):
-        result = self.call_adb("devices")
-        devices = result.partition('\n')[2].replace('\n', '').split('\tdevice')
-        # flag = [device for device in devices if len(device) > 2]
-        # if flag:
-        #     return True
-        # else:
-        #     return False
+        # result = self.call_adb("devices")
+        devices = []
+        result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE,
+                                         stderr=subprocess.PIPE).stdout.readlines()
 
-        return [device for device in devices if len(device) > 2]
+        for item in result:
+            t = item.decode().split("\tdevice")
+            if len(t) >= 2:
+                devices.append(t[0])
+        # print(result)
+        # print(devices)
+        return devices
     # 状态
     def get_state(self):
         result = self.call_adb("get-state")

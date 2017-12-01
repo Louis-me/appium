@@ -34,7 +34,7 @@ def countInfo(**kwargs):
     for case in kwargs["testCase"]:
         step = step + case["info"] + "\n"
 
-    if type(kwargs["testCheck"]) == list: # 检查点为列表
+    if type(kwargs["testCheck"]) == list:  # 检查点为列表
         for check in kwargs["testCheck"]:
             check_step = check_step + check["info"] + "\n"
     elif type(kwargs["testCheck"]) == dict:
@@ -43,27 +43,28 @@ def countInfo(**kwargs):
         print("获取检查点步骤数据错误，请检查")
         print(kwargs["testCheck"])
 
-    _info["step"] = step # 用例操作步骤
-    _info["checkStep"] = check_step # 用例检查点
+    _info["step"] = step  # 用例操作步骤
+    _info["checkStep"] = check_step  # 用例检查点
 
     if kwargs["result"]:
         _info["result"] = "通过"
     else:
-        _info["result"] = "失败" # 用例接开关
-        _info["img"] = kwargs["logTest"].checkPointNG(driver=kwargs["driver"], caseName=kwargs["testInfo"][0]["title"], checkPoint=kwargs["caseName"]+"_"+kwargs["testInfo"][0].get("msg", "none"))
-    _info["id"] = kwargs["testInfo"][0]["id"] # 用例id
-    _info["title"] = kwargs["testInfo"][0]["title"] # 用例名称
-    _info["caseName"] = kwargs["caseName"] # 测试函数
-    _info["phoneName"] = phone_name # 手机名
-    _info["msg"] = kwargs["testInfo"][0].get("msg", "") # 备注
-    _info["info"] = kwargs["testInfo"][0]["info"] #前置条件
+        _info["result"] = "失败"  # 用例接开关
+        _info["img"] = kwargs["logTest"].checkPointNG(driver=kwargs["driver"], caseName=kwargs["testInfo"][0]["title"],
+                                                      checkPoint=kwargs["caseName"] + "_" + kwargs["testInfo"][0].get(
+                                                          "msg", "none"))
+    _info["id"] = kwargs["testInfo"][0]["id"]  # 用例id
+    _info["title"] = kwargs["testInfo"][0]["title"]  # 用例名称
+    _info["caseName"] = kwargs["caseName"]  # 测试函数
+    _info["phoneName"] = phone_name  # 手机名
+    _info["msg"] = kwargs["testInfo"][0].get("msg", "")  # 备注
+    _info["info"] = kwargs["testInfo"][0]["info"]  # 前置条件
 
     writeInfo(data=_info, path=PATH("../Log/info.pickle"))
     # print(read(PATH("../Log/info.pickle")))
 
 
 def countSum(result):
-    print("--------- countSum-------")
     data = {"sum": 0, "pass": 0, "fail": 0}
     _read = read(PATH("../Log/sum.pickle"))
     if _read:
@@ -75,6 +76,11 @@ def countSum(result):
         data["fail"] = data["fail"] + 1
     write(data=data, path=PATH("../Log/sum.pickle"))
     print(read(PATH("../Log/sum.pickle")))
+
+
+def write_reconnect(msg, path=""):
+    write(msg, path=path)
+    # print(read_reconnect(path))
 
 
 def countDate(testDate, testSumDate):
@@ -90,7 +96,7 @@ def countDate(testDate, testSumDate):
 
 
 def writeExcel():
-    workbook = xlsxwriter.Workbook('Report.xlsx')
+    workbook = xlsxwriter.Workbook(PATH('../Report/Report.xlsx'))
     worksheet = workbook.add_worksheet("测试总况")
     worksheet2 = workbook.add_worksheet("测试详情")
     operateReport = OperateReport(workbook)
@@ -99,6 +105,8 @@ def writeExcel():
     operateReport.close()
 
     destroy()  # 删除文件
+
+
 if __name__ == '__main__':
     # data = {'result': '失败', 'caseName': 'FirstOpenTest', 'title': '第一次打开', 'phoneName': 'samsung_GT-I9500_android_4.4.2', 'img': 'D:\\app\\appium\\log\\samsung_GT-I9500_android_4.4.220170607184558\\第一次打开CheckPoint_1_NG.png', 'id': 'test001'}
     # writeInfo(data, PATH("../Log/info.pickle"))
