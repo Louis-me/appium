@@ -1,8 +1,7 @@
-from Base.BaseStatistics import countSum, countInfo
 from Base.BaseYaml import getYam
 from Base.BaseOperate import OperateElement
 from Base.BaseElementEnmu import Element as be
-import re
+from PageObject.SumResult import statistics_result
 
 
 class CardsSortPage:
@@ -11,7 +10,7 @@ class CardsSortPage:
     isOperate: 操作失败，检查点就失败,kwargs: WebDriver driver, String path(yaml配置参数)
     '''
 
-    def __init__(self, **kwargs):
+    def __init__(self, kwargs):
         self.driver = kwargs["driver"]
         if kwargs.get("launch_app", "0") == "0":  # 若为空，重新打开app
             self.driver.launch_app()
@@ -22,6 +21,9 @@ class CardsSortPage:
         self.testInfo = test_msg["testinfo"]
         self.testCase = test_msg["testcase"]
         self.testcheck = test_msg["check"]
+        self.device = kwargs["device"]
+        self.logTest = kwargs["logTest"]
+        self.caseName = kwargs["caseName"]
         self.get_value = []
         self.location = []
         self.msg = ""
@@ -31,15 +33,15 @@ class CardsSortPage:
      logTest 日记记录器
     '''
 
-    def operate(self, logTest):
+    def operate(self):
         for item in self.testCase:
+            m_s_g = self.msg + "\n" if self.msg != "" else ""
 
-            result = self.operateElement.operate(item, self.testInfo, logTest)
+            result = self.operateElement.operate(item, self.testInfo, self.logTest, self.device)
             if not result["result"]:
-                m_s_g = self.msg + "\n" if self.msg != "" else ""
-                msg = m_s_g + "执行过程中失败，请检查元素是否存在" + item["element_info"]
+                msg = "执行过程中失败，请检查元素是否存在" + item["element_info"]
                 print(msg)
-
+                self.msg = m_s_g + msg
                 self.testInfo[0]["msg"] = msg
                 self.isOperate = False
                 return False
@@ -74,23 +76,23 @@ class CardsSortPage:
 
         return True
 
-    def checkPoint(self, **kwargs):
-        result = self.check(**kwargs)
+    def checkPoint(self, kwargs={}):
+        result = self.check()
         if result is not True and be.RE_CONNECT:
             self.msg = "用例失败重连过一次，失败原因:" + self.testInfo[0]["msg"]
-            kwargs["logTest"].buildStartLine(kwargs["caseName"] + "_失败重连")  # 记录日志
+            self.logTest.buildStartLine(self.caseName + "_失败重连")  # 记录日志
             self.operateElement.switchToNative()
             self.driver.launch_app()
             self.isOperate = True
-            self.operate(kwargs["logTest"])
+            self.operate()
             self.get_value = []
             self.location = ""
-            result = self.check(**kwargs)
+            result = self.check()
             self.testInfo[0]["msg"] = self.msg
-        countSum(result)
-        countInfo(result=result, testInfo=self.testInfo, caseName=kwargs["caseName"],
-                  driver=self.driver, logTest=kwargs["logTest"], devices=kwargs["devices"], testCase=self.testCase,
-                  testCheck=self.testcheck)
+        statistics_result(result=result, testInfo=self.testInfo, caseName=self.caseName,
+                          driver=self.driver, logTest=self.logTest, devices=self.device,
+                          testCase=self.testCase,
+                          testCheck=self.testcheck)
         return result
 
     '''
@@ -101,13 +103,13 @@ class CardsSortPage:
     contrary 相反检查点，意思就是如果检查结果为真，检查点就是失败
     '''
 
-    def check(self, **kwargs):
+    def check(self):
         result = True
         m_s_g = self.msg + "\n" if self.msg != "" else ""
         # 重跑后异常日志
         if self.isOperate:
             for item in self.testcheck:
-                resp = self.operateElement.operate(item, self.testInfo, kwargs["logTest"])
+                resp = self.operateElement.operate(item, self.testInfo, self.logTest, self.device)
                 if not resp["result"]:
                     msg = "请检查元素" + item["element_info"] + "是否存在"
                     self.msg = m_s_g + msg

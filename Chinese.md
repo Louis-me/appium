@@ -1,37 +1,37 @@
-# ÏîÄ¿Ãû¼°¼ò½é
-* »ùÓÚappium+python3·â×°µÄ×Ô¶¯»¯²âÊÔ¿ò¼Ü
+# ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* ï¿½ï¿½ï¿½ï¿½appium+python3ï¿½ï¿½×°ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½
 
-# ¹¦ÄÜ
+# ï¿½ï¿½ï¿½ï¿½
 * python3
-* unittest²ÎÊý»¯
+* unittestï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 * objectpage
-* Êý¾ÝÎ¬»¤ÓÃµÄYMAL
-* excelµÄ²âÊÔ±¨¸æ
-* Ö§³Ö¶àÉè±¸andoird²¢ÐÐ
+* ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½ï¿½Ãµï¿½YMAL
+* excelï¿½Ä²ï¿½ï¿½Ô±ï¿½ï¿½ï¿½
+* Ö§ï¿½Ö¶ï¿½ï¿½è±¸andoirdï¿½ï¿½ï¿½ï¿½
 
-# ³£ÓÃÄ¿Â¼
-* Base·â×°³£ÓÃ·½·¨
-* Log¼ÇÂ¼²»Í¬Éè±¸µÄ²Ù×÷ÓÃÀýµÄÈÕÖ¾£¬²Ù×÷Ê§°ÜµÄ½ØÍ¼
-* PageObject ·Åpage
-* testÄ¿Â¼Ð´²âÊÔÓÃÀý
-* runner ÔËÐÐÈë¿Ú
-
-
-# ÅäÖÃ
+# ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
+* Baseï¿½ï¿½×°ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½
+* Logï¿½ï¿½Â¼ï¿½ï¿½Í¬ï¿½è±¸ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ÜµÄ½ï¿½Í¼
+* PageObject ï¿½ï¿½page
+* testÄ¿Â¼Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* runner ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
+# ï¿½ï¿½ï¿½ï¿½
 
 
 
-# ÊµÀý-µÚÒ»´ÎÆô¶¯app
 
 
-**ÅäÖÃÓÃÀýyaml**
+# Êµï¿½ï¿½-ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½app
+
+
+**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yaml**
 
 ```
 testinfo:
     - id: test001
-      title: µÚÒ»´Î´ò¿ª
+      title: ï¿½ï¿½Ò»ï¿½Î´ï¿½
 testcase:
     - operate_type: swipeLeft
       time: 4
@@ -52,10 +52,10 @@ check:
 ```
 class FirstOpen:
     '''
-    kwargs: WebDriver driver, String path(yamlÅäÖÃ²ÎÊý)
-    isOperate: ²Ù×÷Ê§°Ü£¬¼ì²éµã¾ÍÊ§°Ü
-    testInfo£º
-    testCase£º
+    kwargs: WebDriver driver, String path(yamlï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½)
+    isOperate: ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+    testInfoï¿½ï¿½
+    testCaseï¿½ï¿½
     '''
 
     def __init__(self, **kwargs):
@@ -68,8 +68,8 @@ class FirstOpen:
 
 
     '''
-    ²Ù×÷²½Öè
-    logTest ÈÕ¼Ç¼ÇÂ¼Æ÷
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    logTest ï¿½Õ¼Ç¼ï¿½Â¼ï¿½ï¿½
     '''
 
     def operate(self, logTest):
@@ -77,24 +77,24 @@ class FirstOpen:
             result = self.operateElement.operate(item, self.testInfo, logTest)
 
             if not result:
-                print("²Ù×÷Ê§°Ü")
+                print("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½")
                 self.isOperate = False
                 break
 
     '''
-    ¼ì²éµã
-    caseName:º¯ÊýÃû
-    logTest ¼ÇÂ¼ÈÕÖ¾£ºÒ»¸öÊÖ»ú¼ÇÂ¼µ¥¶À¼ÇÂ¼Ò»¸öÈÕÖ¾
+    ï¿½ï¿½ï¿½ï¿½
+    caseName:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    logTest ï¿½ï¿½Â¼ï¿½ï¿½Ö¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼Ò»ï¿½ï¿½ï¿½ï¿½Ö¾
     '''
 
     def checkPoint(self, caseName, logTest, devices):
         result = False
         if not self.isOperate:
-            print("²Ù×÷Ê§°Ü,¼ì²éµãÊ§°Ü")
+            print("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½")
             # return self.isOperate
         else:
             check = getYam(self.path)["check"]
-            result = self.operateElement.findElement(check)  # ¼ì²éµã
+            result = self.operateElement.findElement(check)  # ï¿½ï¿½ï¿½ï¿½
 
         countSum(result)
         countInfo(result=result, testInfo=self.testInfo, caseName=caseName, driver=self.driver, logTest=logTest, devices=devices)
@@ -122,14 +122,14 @@ class FirstOpenTest(ParametrizedTestCase):
         super(FirstOpenTest, self).setUp()
 ```
 
-# ÊµÀý-µÇÂ¼
+# Êµï¿½ï¿½-ï¿½ï¿½Â¼
 
-**ÅäÖÃyaml**
+**ï¿½ï¿½ï¿½ï¿½yaml**
 
 ```
 testinfo:
     - id: test0002
-      title: µÇÂ¼
+      title: ï¿½ï¿½Â¼
 testcase:
     - element_info: com.jianshu.haruki:id/btn_login
       find_type: id
@@ -162,10 +162,10 @@ check:
 ```
 class Login:
     '''
-    kwargs: WebDriver driver, String path(yamlÅäÖÃ²ÎÊý)
-    isOperate: ²Ù×÷Ê§°Ü£¬¼ì²éµã¾ÍÊ§°Ü
-    testInfo£º
-    testCase£º
+    kwargs: WebDriver driver, String path(yamlï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½)
+    isOperate: ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+    testInfoï¿½ï¿½
+    testCaseï¿½ï¿½
     '''
 
     def __init__(self, **kwargs):
@@ -177,8 +177,8 @@ class Login:
         self.testCase = getYam(self.path)["testcase"]
 
     '''
-    ²Ù×÷²½Öè
-     logTest ÈÕ¼Ç¼ÇÂ¼Æ÷
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     logTest ï¿½Õ¼Ç¼ï¿½Â¼ï¿½ï¿½
     '''
 
     def operate(self, logTest):
@@ -186,23 +186,23 @@ class Login:
             result = self.operateElement.operate(item, self.testInfo, logTest)
 
             if not result:
-                print("²Ù×÷Ê§°Ü")
+                print("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½")
                 self.isOperate = False
                 break
     '''
-    ¼ì²éµã
-    caseName:²âÊÔÓÃÀýº¯ÊýÃû ÓÃ×÷Í³¼Æ
-    logTest£º ÈÕÖ¾¼ÇÂ¼
-    devices Éè±¸Ãû
+    ï¿½ï¿½ï¿½ï¿½
+    caseName:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½
+    logTestï¿½ï¿½ ï¿½ï¿½Ö¾ï¿½ï¿½Â¼
+    devices ï¿½è±¸ï¿½ï¿½
     '''
 
     def checkPoint(self, caseName, logTest, devices):
         result = False
         if not self.isOperate:
-            print("²Ù×÷Ê§°Ü,¼ì²éµãÊ§°Ü")
+            print("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½")
         else:
             check = getYam(self.path)["check"]
-            result = self.operateElement.findElement(check)  # ¼ì²éµã
+            result = self.operateElement.findElement(check)  # ï¿½ï¿½ï¿½ï¿½
 
         countSum(result)
         countInfo(result=result, testInfo=self.testInfo, caseName=caseName, driver=self.driver, logTest=logTest, devices=devices)
@@ -231,17 +231,17 @@ class LoginTest(ParametrizedTestCase):
         super(LoginTest, self).setUp()
 ```
 
-# ´úÂëÈë¿ÚÊµÀý
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 
 ```
 def runnerCaseApp(devices):
     starttime = datetime.now()
     suite = unittest.TestSuite()
-    suite.addTest(ParametrizedTestCase.parametrize(FirstOpenTest, param=devices)) # ÒýÓÃ²»Í¬µÄ²âÊÔÀà
-    suite.addTest(ParametrizedTestCase.parametrize(LoginTest, param=devices)) # ÒýÓÃ²»Í¬µÄ²âÊÔÀà
+    suite.addTest(ParametrizedTestCase.parametrize(FirstOpenTest, param=devices)) # ï¿½ï¿½ï¿½Ã²ï¿½Í¬ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
+    suite.addTest(ParametrizedTestCase.parametrize(LoginTest, param=devices)) # ï¿½ï¿½ï¿½Ã²ï¿½Í¬ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
     unittest.TextTestRunner(verbosity=2).run(suite)
     endtime = datetime.now()
-    countDate(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), str((endtime - starttime).seconds) + "Ãë"
+    countDate(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), str((endtime - starttime).seconds) + "ï¿½ï¿½"
 	
 	...
 	
@@ -266,37 +266,37 @@ if __name__ == '__main__':
         stopAppiumMacAndroid(l_devices)
         writeExcel()
     else:
-        print("Ã»ÓÐ¿ÉÓÃµÄ°²×¿Éè±¸")
+        print("Ã»ï¿½Ð¿ï¿½ï¿½ÃµÄ°ï¿½×¿ï¿½è±¸")
 
 ```
 
-## ÃüÁîÔËÐÐ
+## ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 ```
 python runner.py
 ```
 
 
-# ½á¹ûÕ¹Ê¾
+# ï¿½ï¿½ï¿½Õ¹Ê¾
 
-**ÈÕÖ¾Ä¿Â¼**
+**ï¿½ï¿½Ö¾Ä¿Â¼**
 
-ÎÄ¼þ¼Ð£ºsamsung_GT-I9500_android_4.4£¬°üº¬½ØÍ¼
+ï¿½Ä¼ï¿½ï¿½Ð£ï¿½samsung_GT-I9500_android_4.4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 
 ```
-2017-06-07 19:39:35,972  - INFO - ----  test001_µÚÒ»´Î´ò¿ª_android.widget.ImageView   START     ----
+2017-06-07 19:39:35,972  - INFO - ----  test001_ï¿½ï¿½Ò»ï¿½Î´ï¿½_android.widget.ImageView   START     ----
 2017-06-07 19:39:44,433  - INFO - [CheckPoint_1]: FirstOpenTest: NG
-2017-06-07 19:40:02,013  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/btn_login   START     ----
-2017-06-07 19:40:03,075  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/et_tel   START     ----
-2017-06-07 19:40:07,460  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/et_password   START     ----
-2017-06-07 19:40:08,480  - INFO - ----  test0002_µÇÂ¼_com.jianshu.haruki:id/btn_register_1   START     ----
-2017-06-07 19:40:13,640  - INFO - ----  test0002_µÇÂ¼_//android.widget.ImageView[@index='0']   START     ----
-2017-09-23 17:28:26,074  - INFO - [CheckPoint_1]: TechZoneDetailTest_Çë¼ì²éÔªËØ//*[@id="app"]/div/div[2]/section[2]/div[1]/divÊÇ·ñ´æÔÚ: NG
+2017-06-07 19:40:02,013  - INFO - ----  test0002_ï¿½ï¿½Â¼_com.jianshu.haruki:id/btn_login   START     ----
+2017-06-07 19:40:03,075  - INFO - ----  test0002_ï¿½ï¿½Â¼_com.jianshu.haruki:id/et_tel   START     ----
+2017-06-07 19:40:07,460  - INFO - ----  test0002_ï¿½ï¿½Â¼_com.jianshu.haruki:id/et_password   START     ----
+2017-06-07 19:40:08,480  - INFO - ----  test0002_ï¿½ï¿½Â¼_com.jianshu.haruki:id/btn_register_1   START     ----
+2017-06-07 19:40:13,640  - INFO - ----  test0002_ï¿½ï¿½Â¼_//android.widget.ImageView[@index='0']   START     ----
+2017-09-23 17:28:26,074  - INFO - [CheckPoint_1]: TechZoneDetailTest_ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½//*[@id="app"]/div/div[2]/section[2]/div[1]/divï¿½Ç·ï¿½ï¿½ï¿½ï¿½: NG
 ```
 
 
 
-**²âÊÔ±¨¸æ**
+**ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½**
 
 ![sum.png](Img/sum.png "sum.png")
 

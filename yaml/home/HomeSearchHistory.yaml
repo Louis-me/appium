@@ -7,8 +7,8 @@ testcase:
       find_type: xpath
       operate_type: adb_tap
       info: 点击知识
-    - element_info: com.huawei.works.knowledge:id/tv_search
-      find_type: id
+    - element_info: //android.widget.TextView[@text="搜索"]
+      find_type: xpath
       operate_type: click
       info: 点击搜索框
     - element_info: com.huawei.works.search:id/searchview_query
@@ -23,17 +23,16 @@ testcase:
     - element_info: com.huawei.works.search:id/tv_knowledge_title
       find_type: ids
       index: 0
-      operate_type: get_value
-      info: 获取第一条搜索的数据
-    - element_info: com.huawei.works.search:id/tv_knowledge_title
-      find_type: ids
-      index: 0
       operate_type: click
       info: 点击一条搜索的数据
     - element_info: h5-scroll
       find_type: id
       is_webview: 1 # 切换到webview
       info: 查找详情页到标题
+    - element_info: /html/head/title
+      find_type: xpath
+      operate_type: get_value
+      info: 获取详情页标题
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       is_webview: 2 # 切换到native

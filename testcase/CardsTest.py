@@ -15,15 +15,28 @@ PATH = lambda p: os.path.abspath(
 class CardsTest(ParametrizedTestCase):
     # 排序
     def testASortCard(self):
-        page = CardsSortPage(driver=self.driver, path=PATH("../yaml/cards/SortCard.yaml"), launch_app=1)
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/cards/SortCard.yaml")
+        app["device"] = self.devicesName
+        app["launch_app"] = 1
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = CardsSortPage(app)
+        page.operate()
+        page.checkPoint()
 
     # 删除卡片
     def testDelCard(self):
-        page = CardsDelPage(driver=self.driver, path=PATH("../yaml/cards/CardsDel.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/cards/CardsDel.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = CardsDelPage(app)
+        page.operate()
+        page.checkPoint()
 
     @classmethod
     def setUpClass(cls):

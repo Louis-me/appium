@@ -7,16 +7,16 @@ class DeptNoticeHistoryPage:
     isOperate: 操作失败，检查点就失败,kwargs: WebDriver driver, String path(yaml配置参数)
     '''
 
-    def __init__(self, **kwargs):
-        self.driver = kwargs["driver"]
-        self.path = kwargs["path"]
-        self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"])
+    def __init__(self, kwargs):
+        _init = {"driver": kwargs["driver"], "path": kwargs["path"], "device": kwargs["device"],
+                 "logTest": kwargs["logTest"], "caseName": kwargs["caseName"]}
+        self.page = Pages.PagesObjects(_init)
 
-    def operate(self, logTest):  # 操作步骤
-        self.page.operate(logTest)
+    def operate(self):  # 操作步骤
+        self.page.operate()
 
-    def checkPoint(self, caseName, logTest, devices):  # 检查点
-        self.page.checkPoint(caseName=caseName, logTest=logTest, devices=devices)
+    def checkPoint(self):  # 检查点
+        self.page.checkPoint()
 
 
 if __name__ == "__main__":

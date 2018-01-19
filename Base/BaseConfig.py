@@ -18,7 +18,7 @@ def get(**kwargs):
         r.encoding = 'UTF-8'
         data = json.loads(r.text)
     data["status_code"] = r.status_code
-    print(data)
+    # print(data)
     return data
 # 封装HTTP POST请求方法,支持上传图片
 def post(files=None, **kwargs):

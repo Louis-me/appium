@@ -39,8 +39,6 @@ testcase:
       find_type: id
       operate_type: click
       info: 确认删除
-
-
 check:
     - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
       find_type: ids

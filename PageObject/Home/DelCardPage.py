@@ -3,25 +3,21 @@ from PageObject import Pages
 
 class DelCardPage:
     '''
-    删除技术卡片
-    kwargs: WebDriver driver, String path(yaml配置参数)
-    isOperate: 操作失败，检查点就失败
-    testInfo：
-    testCase：
+    删除技术卡片：
     '''
 
-    def __init__(self, **kwargs):
-        self.driver = kwargs["driver"]
-        self.path = kwargs["path"]
-        self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"])
+    def __init__(self, kwargs):
+        _init = {"driver": kwargs["driver"], "path": kwargs["path"], "device": kwargs["device"],
+                 "logTest": kwargs["logTest"], "caseName": kwargs["caseName"]}
+        self.page = Pages.PagesObjects(_init)
 
     '''
     操作步骤
-     logTest 日记记录器
     '''
 
-    def operate(self, logTest):
-        self.page.operate(logTest)
+    def operate(self):
+        self.page.operate()
 
-    def checkPoint(self, caseName, logTest, devices):
-        self.page.checkPoint(contrary=1, caseName=caseName, logTest=logTest, devices=devices, msg='技术专区卡片删除不成功，依然停留在页面')
+    def checkPoint(self):
+        _check = {"check": "contrary"}
+        self.page.checkPoint(_check)

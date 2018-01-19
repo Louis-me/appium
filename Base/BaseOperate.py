@@ -1,6 +1,8 @@
 import re
 
 import os
+
+import appium.common.exceptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 
@@ -48,7 +50,8 @@ class OperateElement:
                     self.switchToNative()
                 if mOperate.get("element_info", "0") == "0":  # 如果没有页面元素，就不检测是页面元素，可能是滑动等操作
                     return {"result": True}
-                t = mOperate["check_time"] if mOperate.get("check_time","0") != "0" else be.WAIT_TIME  # 如果自定义检测时间为空，就用默认的检测等待时间
+                t = mOperate["check_time"] if mOperate.get("check_time",
+                                                           "0") != "0" else be.WAIT_TIME  # 如果自定义检测时间为空，就用默认的检测等待时间
                 WebDriverWait(self.driver, t).until(lambda x: self.elements_by(mOperate))  # 操作元素是否存在
                 return {"result": True}
         except selenium.common.exceptions.TimeoutException:
@@ -57,6 +60,9 @@ class OperateElement:
         except selenium.common.exceptions.NoSuchElementException:
             # print("查找元素" + mOperate["element_info"] + "不存在")
             return {"result": False}
+        except selenium.common.exceptions.WebDriverException:
+            print("WebDriver出现问题了")
+            return {"result": False, "text": "selenium.common.exceptions.WebDriverException异常"}
 
     '''
     查找元素.mOperate是字典
@@ -65,73 +71,17 @@ class OperateElement:
     find_type: find类型
     testInfo: 用例介绍
     logTest: 记录日志
+    device: 设备名
     '''
 
-    def operate(self, mOperate, testInfo, logTest):
+    def operate(self, mOperate, testInfo, logTest, device):
         res = self.findElement(mOperate)
         if res["result"]:
-            return self.operate_by(mOperate, testInfo, logTest)
+            return self.operate_by(mOperate, testInfo, logTest, device)
         else:
             return res
 
-    '''
-  调试代码
-
-    '''
-
-    # def operate_debug(self, mOperate, testInfo, logTest):
-    #     try:
-    #         if self.findElement(mOperate):
-    #
-    #             info = mOperate.get("element_info", " ") + "_" + mOperate.get("operate_type", " ") + mOperate.get(
-    #                 "code", " ") + mOperate.get("msg", " ")
-    #             logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + info)  # 记录日志
-    #
-    #             if mOperate.get("operate_type", "0") == be.SWIPE_DOWN:  # 向下滑动
-    #                 self.swipeToDown()
-    #                 return {"result": True}
-    #             if mOperate.get("operate_type", "0") == be.SWIPE_UP:  # 向下滑动
-    #                 self.swipeToUp()
-    #                 return {"result": True}
-    #
-    #             if mOperate.get("operate_type", "0") == be.PRESS_KEY_CODE:  # 键盘事件
-    #                 self.press_keycode(mOperate["code"])
-    #
-    #             if mOperate.get("operate_type", "0") == "0":  # 如果没有此字段，说明没有相应操作，直接返回
-    #                 return {"result": True}
-    #
-    #             if mOperate["operate_type"] == be.CLICK:
-    #                 self.click(mOperate)
-    #                 return {"result": True}
-    #
-    #             if mOperate["operate_type"] == be.GET_VALUE:
-    #                 return self.get_value(mOperate)
-    #
-    #             if mOperate["operate_type"] == be.SET_VALUE:
-    #                 self.set_value(mOperate)
-    #                 return {"result": True}
-    #             if mOperate["operate_type"] == be.ADB_TAP:  # adb shell tap模拟触屏
-    #                 self.adb_tap(mOperate)
-    #                 return {"result": True}
-    #             if mOperate["operate_type"] == be.GET_CONTENT_DESC:
-    #                 self.get_content_desc(mOperate)
-    #             return {"result": True}
-    #         else:
-    #             return {"result": False}
-    #     except IndexError:
-    #         logTest.buildStartLine(
-    #             testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate["element_info"] + "索引错误")  # 记录日志
-    #         print(mOperate["element_info"] + "索引错误")
-    #         return {"result": False}
-    #
-    #     except selenium.common.exceptions.NoSuchElementException:
-    #         logTest.buildStartLine(
-    #             testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate[
-    #                 "element_info"] + "页面元素不存在或没加载完成")  # 记录日志
-    #         print(mOperate["element_info"] + "页面元素不存在或没有加载完成")
-    #         return {"result": False}
-
-    def operate_by(self, mOperate, testInfo, logTest):
+    def operate_by(self, mOperate, testInfo, logTest, device):
         try:
             info = mOperate.get("element_info", " ") + "_" + mOperate.get("operate_type", " ") + str(mOperate.get(
                 "code", " ")) + mOperate.get("msg", " ")
@@ -145,10 +95,9 @@ class OperateElement:
                 be.CLICK: lambda: self.click(mOperate),
                 be.GET_VALUE: lambda: self.get_value(mOperate),
                 be.SET_VALUE: lambda: self.set_value(mOperate),
-                be.ADB_TAP: lambda: self.adb_tap(mOperate),
+                be.ADB_TAP: lambda: self.adb_tap(mOperate, device),
                 be.GET_CONTENT_DESC: lambda: self.get_content_desc(mOperate),
                 be.PRESS_KEY_CODE: lambda: self.press_keycode(mOperate)
-
 
             }
             return elements[mOperate.get("operate_type")]()
@@ -176,13 +125,16 @@ class OperateElement:
             return {"result": True}
 
     # 获取到元素到坐标点击，主要解决浮动层遮档无法触发driver.click的问题
-    def adb_tap(self, mOperate):
+    def adb_tap(self, mOperate, device):
 
         bounds = self.elements_by(mOperate).location
         x = str(bounds["x"])
         y = str(bounds["y"])
 
-        os.system("adb shell input tap " + x + " " + y)
+        cmd = "adb -s " + device + " shell input tap " + x + " " + y
+        print(cmd)
+        os.system(cmd)
+
         return {"result": True}
 
     def toast(self, xpath, logTest, testInfo):
@@ -198,6 +150,7 @@ class OperateElement:
 
     # 点击事件
     def click(self, mOperate):
+        # print(self.driver.page_source)
         if mOperate["find_type"] == be.find_element_by_id or mOperate["find_type"] == be.find_element_by_xpath:
             self.elements_by(mOperate).click()
         elif mOperate.get("find_type") == be.find_elements_by_id:
@@ -227,22 +180,25 @@ class OperateElement:
     '''
 
     def switchToWebview(self):
-
-        n = 1
-        while n < 10:
-            time.sleep(3)
-            n = n + 1
-            print(self.driver.contexts)
-            for cons in self.driver.contexts:
-                if cons.lower().startswith("webview"):
-                    self.driver.switch_to.context(cons)
-                    # print(self.driver.page_source)
-                    self.driver.execute_script('document.querySelectorAll("html")[0].style.display="block"')
-                    self.driver.execute_script('document.querySelectorAll("head")[0].style.display="block"')
-                    self.driver.execute_script('document.querySelectorAll("title")[0].style.display="block"')
-                    print("切换webview成功")
-                    return {"result": True}
-        return {"result": False}
+        try:
+            n = 1
+            while n < 10:
+                time.sleep(3)
+                n = n + 1
+                print(self.driver.contexts)
+                for cons in self.driver.contexts:
+                    if cons.lower().startswith("webview"):
+                        self.driver.switch_to.context(cons)
+                        # print(self.driver.page_source)
+                        self.driver.execute_script('document.querySelectorAll("html")[0].style.display="block"')
+                        self.driver.execute_script('document.querySelectorAll("head")[0].style.display="block"')
+                        self.driver.execute_script('document.querySelectorAll("title")[0].style.display="block"')
+                        print("切换webview成功")
+                        return {"result": True}
+            return {"result": False}
+        except appium.common.exceptions.NoSuchContextException:
+            print("切换webview失败")
+            return {"result": False, "text": "appium.common.exceptions.NoSuchContextException异常"}
 
     # 左滑动
     def swipeLeft(self, mOperate):

@@ -1,8 +1,7 @@
-from Base.BaseStatistics import countSum, countInfo
 from Base.BaseYaml import getYam
 from Base.BaseOperate import OperateElement
 from Base.BaseElementEnmu import Element as be
-import re
+from PageObject.SumResult import statistics_result
 
 
 class CollectSwipeDelPage:
@@ -11,7 +10,7 @@ class CollectSwipeDelPage:
     isOperate: 操作失败，检查点就失败,kwargs: WebDriver driver, String path(yaml配置参数)
     '''
 
-    def __init__(self, **kwargs):
+    def __init__(self, kwargs):
         self.driver = kwargs["driver"]
         if kwargs.get("launch_app", "0") == "0":  # 若为空，重新打开app
             self.driver.launch_app()
@@ -22,6 +21,9 @@ class CollectSwipeDelPage:
         self.testInfo = test_msg["testinfo"]
         self.testCase = test_msg["testcase"]
         self.testcheck = test_msg["check"]
+        self.device = kwargs["device"]
+        self.logTest = kwargs["logTest"]
+        self.caseName = kwargs["caseName"]
         self.get_value = []
         self.msg = ""
 
@@ -30,13 +32,12 @@ class CollectSwipeDelPage:
      logTest 日记记录器
     '''
 
-    def operate(self, logTest):
+    def operate(self):
+        m_s_g = self.msg + "\n" if self.msg != "" else ""
         for item in self.testCase:
-
-            result = self.operateElement.operate(item, self.testInfo, logTest)
+            result = self.operateElement.operate(item, self.testInfo, self.logTest, self.device)
             if not result["result"]:
-                m_s_g = self.msg + "\n" if self.msg != "" else ""
-                msg = m_s_g + "执行过程中失败，请检查元素是否存在" + item["element_info"]
+                msg = "执行过程中失败，请检查元素是否存在" + item["element_info"]
                 print(msg)
                 self.testInfo[0]["msg"] = msg
                 self.msg = m_s_g + msg
@@ -62,23 +63,24 @@ class CollectSwipeDelPage:
                 self.get_value.append(result["text"])
         return True
 
-    def checkPoint(self, **kwargs):
-        result = self.check(**kwargs)
+    def checkPoint(self):
+        result = self.check()
         if result is not True and be.RE_CONNECT:
             self.msg = "用例失败重连过一次，失败原因:" + self.testInfo[0]["msg"]
-            kwargs["logTest"].buildStartLine(kwargs["caseName"] + "_失败重连")  # 记录日志
+            self.logTest.buildStartLine(self.caseName + "_失败重连")  # 记录日志
             # self.operateElement.switchToNative()
             self.driver.launch_app()
             self.isOperate = True
             self.get_value = []
-            self.operate(kwargs["logTest"])
-            result = self.check(**kwargs)
+            self.operate()
+            result = self.check()
             self.testInfo[0]["msg"] = self.msg
         self.operateElement.switchToNative()
-        countSum(result)
-        countInfo(result=result, testInfo=self.testInfo, caseName=kwargs["caseName"],
-                  driver=self.driver, logTest=kwargs["logTest"], devices=kwargs["devices"], testCase=self.testCase,
-                  testCheck=self.testcheck)
+
+        statistics_result(result=result, testInfo=self.testInfo, caseName=self.caseName,
+                          driver=self.driver, logTest=self.logTest, devices=self.device,
+                          testCase=self.testCase,
+                          testCheck=self.testcheck)
         return result
 
     '''
@@ -88,13 +90,13 @@ class CollectSwipeDelPage:
     devices 设备名
     '''
 
-    def check(self, **kwargs):
+    def check(self, kwargs={}):
         result = True
         m_s_g = self.msg + "\n" if self.msg != "" else ""
 
         if self.isOperate:
             for item in self.testcheck:
-                resp = self.operateElement.operate(item, self.testInfo, kwargs["logTest"])
+                resp = self.operateElement.operate(item, self.testInfo, self.logTest, self.device)
 
                 if not resp["result"]:  # 表示操作出现异常情况检查点为成功
                     print("操作失败，简单点为成功")
@@ -102,7 +104,7 @@ class CollectSwipeDelPage:
                     break
 
                 if resp["text"] in self.get_value:  # 删除后数据对比
-                    msg = m_s_g + "删除数据失败,删除前数据为：" + ".".join(self.get_value) + "当前获取的数据为：" + resp["text"]
+                    msg = "删除数据失败,删除前数据为：" + ".".join(self.get_value) + "当前获取的数据为：" + resp["text"]
                     self.msg = m_s_g + msg
                     print(msg)
                     self.testInfo[0]["msg"] = msg

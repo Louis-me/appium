@@ -1,12 +1,11 @@
 testinfo:
     - id: test019
-      title: 团队求助浏览历史
+      title: wiki详情
       info: 打开知识
 testcase:
-    - element_info: com.huawei.works.knowledge:id/title_my_team_item
-      find_type: ids
+    - element_info: //*[starts-with(@text,'测试微群')]
+      find_type: xpath
       operate_type: click
-      index: 0
       info: 点击测试微群
     - element_info: com.huawei.works.knowledge:id/dzb_title_content
       find_type: ids
@@ -23,28 +22,11 @@ testcase:
     - element_info: //*[@resource-id='iscrollup']/android.view.View/android.view.View/android.view.View[1]
       find_type: xpath
       operate_type: click
-      is_time: 5
       info: 点击wiki下到第一条数据
-#    - element_info: /html/head/title
-#      find_type: xpath
-#      is_webview: 1
-#      operate_type: get_value
-#      info: 获取详情页标题
-#    - element_info: com.huawei.works.knowledge:id/vtb_img_left
-#      find_type: id
-#      operate_type: click
-#      is_webview: 2
-#      info: 点击返回按钮
-#    - element_info: com.huawei.works.knowledge:id/vtb_img_left
-#      find_type: id
-#      operate_type: click
-#      info: 再次点击返回按钮
-#    - element_info: com.huawei.works.knowledge:id/vtb_img_right2
-#      find_type: id
-#      operate_type: click
-#      info: 点击首页历史记录按钮
+
+
 check:
-      - element_info: //*[@id='iscrollup']//*[@class='h5-article-title det-title undefined']
-        find_type: xpath
+      - element_info: h5-scroll
+        find_type: id
         is_webview: 1
         info: 进入到详情页

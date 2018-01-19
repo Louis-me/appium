@@ -14,9 +14,16 @@ PATH = lambda p: os.path.abspath(
 class TeamTest(ParametrizedTestCase):
     # 我没有加入到团队首页
     def testAOtherTeamHome(self):
-        page = OtherTeamHomePage(driver=self.driver, path=PATH("../yaml/team/OtherTeamHome.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/team/OtherTeamHome.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+
+        page = OtherTeamHomePage(app)
+        page.operate()
+        page.checkPoint()
 
     @classmethod
     def setUpClass(cls):

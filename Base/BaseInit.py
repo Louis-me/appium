@@ -1,63 +1,45 @@
-import time
-from datetime import datetime
-import platform
-from Base.BaseApk import ApkInfo
 from Base.BaseElementEnmu import Element
-from Base.BaseYaml import getYam
 from Base.BasePickle import *
-import os
 from Base.BaseFile import *
-
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
 
 
-def init():
-    # getDevices = getYam(PATH("../yaml/devices.yaml"))
-    # apkPath = PATH("../yaml/" + getYam(PATH("../yaml/run.yaml"))["app"])
-    # print(apkPath)
-    # apkInfo = ApkInfo(apkPath=apkPath)
-    # for item in getDevices:
-    #     # item["app"] = apkPath
-    #     # item["appPackage"] = apkInfo.getApkBaseInfo()[0]
-    #     # item["appActivity"] = apkInfo.getApkActivity()
-    #     item["appPackage"] = "com.huawei.works"
-    #     item["appActivity"] = "huawei.w3.ui.welcome.W3SplashScreenActivity"
-
+def mk_file():
     destroy()
-    of = OperateFile(PATH("../Log/info.pickle"))
-    of.mkdir_file()
-    of = OperateFile(PATH("../Log/sum.pickle"))
-    of.mkdir_file()
+    mkdir_file(PATH("../Log/"+Element.INFO_FILE))
+    mkdir_file(PATH("../Log/"+Element.SUM_FILE))
+    mkdir_file(PATH("../Log/" + Element.DEVICES_FILE))
 
-    data = read(PATH("../Log/sum.pickle"))
+    data = read(PATH("../Log/"+Element.INFO_FILE))
     # data["appName"] = apkInfo.getApkName()
     # data["appSize"] = apkInfo.getApkSize()
     # data["appVersion"] = apkInfo.getApkBaseInfo()[2]
-    data["versionCode"] = "35"
-    data["versionName"] = "1.3.5"
-    data["packingTime"] = "2017/11/21 09:00"
+    data["versionCode"] = "40"
+    data["versionName"] = "1.4.0"
+    data["packingTime"] = "2017/12/4 13:00"
     data["sum"] = 0
     data["pass"] = 0
     data["fail"] = 0
-    write(data=data, path=PATH("../Log/sum.pickle"))
+    write(data=data, path=PATH("../Log/"+Element.SUM_FILE))
 
+
+def init(devices):
     # 每次都重新安装uiautomator2都两个应用
-    os.popen("adb uninstall io.appium.uiautomator2.server.test")
-    os.popen("adb uninstall io.appium.uiautomator2.server")
-    os.popen("adb install -r "+PATH("../app/appium-uiautomator2-server-v0.1.9.apk"))
-    os.popen("adb install -r "+PATH("../app/appium-uiautomator2-server-debug-androidTest.apk"))
-        # os.popen("adb install -r "+PATH("../app/android-system-webview-60.apk"))
-
+    os.popen("adb -s %s uninstall io.appium.uiautomator2.server.test" % devices)
+    os.popen("adb -s %s uninstall io.appium.uiautomator2.server" % devices)
+    os.popen("adb -s %s install -r %s" % (devices, PATH("../app/appium-uiautomator2-server-v0.1.9.apk")))
+    os.popen("adb -s %s install -r %s" % (devices, PATH("../app/appium-uiautomator2-server-debug-androidTest.apk")))
+    # os.popen("adb install -r "+PATH("../app/android-system-webview-60.apk"))
 
 
 def destroy():
-    of = OperateFile(PATH("../Log/info.pickle"))
-    of.remove_file()
-    of = OperateFile(PATH("../Log/sum.pickle"))
-    of.remove_file()
+    remove_file(PATH("../Log/"+Element.INFO_FILE))
+    remove_file(PATH("../Log/"+Element.SUM_FILE))
+    remove_file(PATH("../Log/"+Element.DEVICES_FILE))
+
 
 if __name__ == '__main__':
     print(destroy())

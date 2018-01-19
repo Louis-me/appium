@@ -12,16 +12,17 @@ testcase:
       index: 0
       operate_type: get_value
       info: 获取历史记录下的第一条数据
-    - element_info: com.huawei.works.knowledge:id/browser_knowledge_history_text
-      find_type: ids
-      index: 0
+    - element_info: //android.widget.ListView/android.widget.LinearLayout[2]
+      find_type: xpath
       operate_type: click
       info: 点击历史记录下的第一条数据
-      is_time: 3
+    - element_info: h5-scroll
+      find_type: id
+      is_webview: 1
+      info: 等待页面完
 
 check:
     - element_info: /html/head/title
       find_type: xpath
-      is_webview: 1 # 切换到webview
       operate_type: get_value
       info: 查找是否打开详情页

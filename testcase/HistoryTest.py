@@ -16,27 +16,55 @@ PATH = lambda p: os.path.abspath(
 class HistoryTest(ParametrizedTestCase):
     # 滑动删除浏览历史记录
     def testBSwipeDelHistory(self):
-        page = HistorySwipeDelPage(driver=self.driver, path=PATH("../yaml/history/HistorySwipeDel.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/history/HistorySwipeDel.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+
+        page = HistorySwipeDelPage(app)
+        page.operate()
+        page.checkPoint()
 
     # 从浏览历史进入到详情页
     def testADetail(self):
-        page = HistoryDetailPage(driver=self.driver, path=PATH("../yaml/history/HistoryDetail.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/history/HistoryDetail.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+
+        page = HistoryDetailPage(app)
+        page.operate()
+        page.checkPoint()
 
         # 多选框删除阅读历史
     def testCCheckBoxDel(self):
-        page = HistoryCheckBoxDelPage(driver=self.driver, path=PATH("../yaml/history/HistoryCheckBoxDel.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/history/HistoryCheckBoxDel.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+
+        page = HistoryCheckBoxDelPage(app)
+        page.operate()
+        page.checkPoint()
 
     # 一键清空
     def testZDelALl(self):
-        page = HistoryDellAllPage(driver=self.driver, path=PATH("../yaml/history/HistoryDelAll.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/history/HistoryDelAll.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+
+        page = HistoryDellAllPage(app)
+        page.operate()
+        page.checkPoint()
 
     @classmethod
     def setUpClass(cls):

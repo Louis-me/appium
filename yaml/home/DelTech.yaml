@@ -1,6 +1,6 @@
 testinfo:
     - id: test011
-      title: 删除技术专区
+      title: 首页删除技术专区卡片
       info: 打开知识
 testcase:
     - element_info: com.huawei.works.knowledge:id/iv_card_sort_del

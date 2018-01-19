@@ -11,18 +11,30 @@ PATH = lambda p: os.path.abspath(
 
 
 class ContactTest(ParametrizedTestCase):
-
     # 通讯录好友动态浏览历史
     def testAContactHistory(self):
-        page = ContactHistoryPage(driver=self.driver, path=PATH("../yaml/contact/ContactHistory.yaml"))
-        page.operate(logTest=self.logTest)  # 调用page层中的用例执行
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/contact/ContactHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+
+        page = ContactHistoryPage(app)
+        page.operate()  # 调用page层中的用例执行
+        page.checkPoint()
 
     # 通讯录公众号浏览历史
     def testPublicPlatHistory(self):
-        page = PublicPlatHistoryPage(driver=self.driver, path=PATH("../yaml/contact/PublicPlatformHistory.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest,  devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/contact/PublicPlatformHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = PublicPlatHistoryPage(app)
+        page.operate()
+        page.checkPoint()
 
     @classmethod
     def setUpClass(cls):

@@ -18,8 +18,8 @@ from TestCase.TestWeiQunTest import TestWeiQunTest
 from Base.BaseAppiumServer import AppiumServer
 from multiprocessing import Pool
 import unittest
-from Base.BaseInit import init
-from Base.BaseStatistics import countDate, writeExcel
+from Base.BaseInit import init, mk_file
+from Base.BaseStatistics import countDate, writeExcel, countSumDevices
 from Base.BasePickle import *
 from datetime import datetime
 
@@ -52,6 +52,7 @@ def runnerPool(getDevices):
         _initApp["appPackage"] = "com.huawei.works"
         _initApp["appActivity"] = "huawei.w3.ui.welcome.W3SplashScreenActivity"
         _initApp["automationName"] = "uiautomator2"
+        _initApp["systemPort"] = getDevices[i]["systemPort"]
         # _initApp["appPackage"] = apkInfo.getApkBaseInfo()[0]
         # _initApp["appActivity"] = apkInfo.getApkActivity()
         # _initApp["app"] = getDevices[i]["app"]
@@ -67,18 +68,16 @@ def runnerPool(getDevices):
 def runnerCaseApp(devices):
     starttime = datetime.now()
     suite = unittest.TestSuite()
-
-    suite.addTest(ParametrizedTestCase.parametrize(HomeTest, param=devices))
+    # suite.addTest(ParametrizedTestCase.parametrize(HomeTest, param=devices))
     # suite.addTest(ParametrizedTestCase.parametrize(TestWeiQunTest, param=devices))
     # suite.addTest(ParametrizedTestCase.parametrize(HistoryTest, param=devices))
     # suite.addTest(ParametrizedTestCase.parametrize(ContactTest, param=devices))
     # suite.addTest(ParametrizedTestCase.parametrize(MeTest, param=devices))
-    # suite.addTest(ParametrizedTestCase.parametrize(CardsTest, param=devices))
+    suite.addTest(ParametrizedTestCase.parametrize(CardsTest, param=devices))
     # suite.addTest(ParametrizedTestCase.parametrize(TeamTest, param=devices))
     unittest.TextTestRunner(verbosity=2).run(suite)
     endtime = datetime.now()
     countDate(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), str((endtime - starttime).seconds) + "秒")
-
 
 if __name__ == '__main__':
 
@@ -86,14 +85,15 @@ if __name__ == '__main__':
 
     devicess = AndroidDebugBridge().attached_devices()
     if len(devicess) > 0:
+        mk_file()
         l_devices = []
-        init()
-
         for dev in devicess:
             app = {}
             app["devices"] = dev
+            init(dev)
             app["port"] = str(random.randint(4700, 4900))
             app["bport"] = str(random.randint(4700, 4900))
+            app["systemPort"] = str(random.randint(4700, 4900))
             l_devices.append(app)
 
         appium_server = AppiumServer(l_devices)

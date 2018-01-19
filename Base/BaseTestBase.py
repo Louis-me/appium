@@ -5,6 +5,13 @@ import urllib.request
 import os
 
 
+def findcards_home(cookie):
+    header = {"Cookie": cookie}
+    host = "XXX"
+    protocol = "https"
+    url = "XXX"
+    resp = BaseConfig.get(protocol=protocol, url=url, host=host, headers=header)
+    print(resp)
 
 def login():
     header1 = {"uuid": "8FS5T17107002234", "deviceName": "android_VIE-AL10_6.0", "appName": "WeLink",
@@ -13,7 +20,7 @@ def login():
                "Content-Type": "application/x-www-form-urlencoded", "etworkType": "wifi", "isp": "unKnown",
                "User-Agent": "WeLink/2.5.3(android;android23;VIE - AL10)", "Accept-Language": "zh",
                "guid": "860075032836307kwx272211"}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     pwd = urllib.request.quote(
         "OR2ILJqjNrz9DPwLIE+bbiTKxjF+6c5yMCoqN6TgbtWupjkEvt6PS71zV1RYTENdDca7npl/sRSp9AdDEyz1JtTuFsaIJTVN8vejr1OZlm/6NCz+gQH91Jc8GORAKj5OFbWSBX98Hku7+xJbKc4eSVEMHAzDXnmrFsf0oMKYM8s=")
@@ -52,8 +59,10 @@ def tech_card(cookie, devices):
     # "cid": "c4ce46fc-81a8-420a-98e9-d25f9bc95010" 热点回答
     # "cid": "706a8c0a-06df-4d2b-9133-00f4c3e834c3" 视听专区
     # "cid": "64b70bed-f05c-447e-a5b4-33c196d430c8" 部门公告
+    # "cid": "bf6883cd-0ebf-4fc3-ad79-99eaf10076e2" 直播
 
-    # u = https://w3m.huawei.com/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings
+
+    # u = https://XXX/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings
     cid = "60111b71-4470-4e15-8bf0-557a46747587;a430169d-a921-403e-945c-222813c5fed1;a69f991f8-354e-4657-aa16-99681e2f889a;b51460a9-4e24-4187-9c9c-711b73fae9bf;" \
           "92b7e9a7-5d5f-4de6-9330-1291367d004c;7f74caff-8f95-4146-bd5b-587d43d57660;98424416-4382-44c3-868f-8a6c0a924af5;f91822e8-d12a-459d-881d-76ce3c6601ce;" \
           "fcc42495-f803-44b4-bfc6-938c0a734589;d8660fbc-1b2a-4243-9d19-7cd063f61401;fed0fdd3-19c9-4efb-959a-400572344030;7e1cf43a-b462-4b1a-a9a6-5f7b38792003;" \
@@ -61,7 +70,7 @@ def tech_card(cookie, devices):
           "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8"
     traceId = "WE-" + str(uuid.uuid1())
     header = {"Cookie": cookie, "traceId": traceId}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
     data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
@@ -78,7 +87,7 @@ def dayNew_card(cookie, devices):
           "b51460a9-4e24-4187-9c9c-711b73fae9bf;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8"
     traceId = "WE-" + str(uuid.uuid1())
     header = {"Cookie": cookie, "traceId": traceId}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
     data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
@@ -96,7 +105,7 @@ def hotAnswer_card(cookie, devices):
           "b51460a9-4e24-4187-9c9c-711b73fae9bf;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8"
     traceId = "WE-" + str(uuid.uuid1())
     header = {"Cookie": cookie, "traceId": traceId}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
     data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
@@ -106,7 +115,7 @@ def hotAnswer_card(cookie, devices):
     rm_cache(devices)
 
 
-# 技术专区卡片排在第一位
+# 部门公告卡片排在第一位
 def notice_card(cookie, devices):
     cid = "60111b71-4470-4e15-8bf0-557a46747587;a430169d-a921-403e-945c-222813c5fed1;a69f991f8-354e-4657-aa16-99681e2f889a;64b70bed-f05c-447e-a5b4-33c196d430c8;" \
           "fcc42495-f803-44b4-bfc6-938c0a734589;7f74caff-8f95-4146-bd5b-587d43d57660;98424416-4382-44c3-868f-8a6c0a924af5;f91822e8-d12a-459d-881d-76ce3c6601ce;" \
@@ -115,7 +124,7 @@ def notice_card(cookie, devices):
           "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;b51460a9-4e24-4187-9c9c-711b73fae9bf"
     traceId = "WE-" + str(uuid.uuid1())
     header = {"Cookie": cookie, "traceId": traceId}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
     data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
@@ -134,13 +143,12 @@ def your_commend(cookie, devices):
           "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8"
     traceId = "WE-" + str(uuid.uuid1())
     header = {"Cookie": cookie, "traceId": traceId}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
     data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
             "w3account": "swx507549"}
     resp = BaseConfig.post(protocol=protocol, url=url, host=host, headers=header, data=data)
-    # print("--我的课程卡片排第一位--")
     print(resp)
     rm_cache(devices)
 
@@ -153,16 +161,68 @@ def myClass_card(cookie, devices):
           "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8"
     traceId = "WE-" + str(uuid.uuid1())
     header = {"Cookie": cookie, "traceId": traceId}
-    host = "w3m.huawei.com"
+    host = "XXX"
     protocol = "https"
     url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
     data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
             "w3account": "swx507549"}
     resp = BaseConfig.post(protocol=protocol, url=url, host=host, headers=header, data=data)
-    # print("--我的课程卡片排第一位--")
     print(resp)
     rm_cache(devices)
 
+# 精选博客卡片排第一位
+def good_blog_card(cookie, devices):
+    cid = "60111b71-4470-4e15-8bf0-557a46747587;a430169d-a921-403e-945c-222813c5fed1;a69f991f8-354e-4657-aa16-99681e2f889a;7f74caff-8f95-4146-bd5b-587d43d57660;" \
+          "fcc42495-f803-44b4-bfc6-938c0a734589;0d262f53-ab9c-4b4e-b6c2-41367c81e427;98424416-4382-44c3-868f-8a6c0a924af5;f91822e8-d12a-459d-881d-76ce3c6601ce;" \
+          "92b7e9a7-5d5f-4de6-9330-1291367d004c;d8660fbc-1b2a-4243-9d19-7cd063f61401;fed0fdd3-19c9-4efb-959a-400572344030;7e1cf43a-b462-4b1a-a9a6-5f7b38792003;" \
+          "4b04ab4f-2e52-49b0-8b99-3913db800697;e23ec72c-61bd-47b7-8389-f9f4ffbe1160;b51460a9-4e24-4187-9c9c-711b73fae9bf;b6a25e71-4a7f-4d3a-ae35-0e6ed3bc7a81;" \
+          "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8"
+    traceId = "WE-" + str(uuid.uuid1())
+    header = {"Cookie": cookie, "traceId": traceId}
+    host = "XXX"
+    protocol = "https"
+    url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
+    data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
+            "w3account": "swx507549"}
+    resp = BaseConfig.post(protocol=protocol, url=url, host=host, headers=header, data=data)
+    print(resp)
+    rm_cache(devices)
+
+# 直播卡片排第一位
+def live_card(cookie, devices):
+    cid = "60111b71-4470-4e15-8bf0-557a46747587;a430169d-a921-403e-945c-222813c5fed1;a69f991f8-354e-4657-aa16-99681e2f889a;bf6883cd-0ebf-4fc3-ad79-99eaf10076e2;" \
+          "fcc42495-f803-44b4-bfc6-938c0a734589;0d262f53-ab9c-4b4e-b6c2-41367c81e427;98424416-4382-44c3-868f-8a6c0a924af5;f91822e8-d12a-459d-881d-76ce3c6601ce;" \
+          "92b7e9a7-5d5f-4de6-9330-1291367d004c;d8660fbc-1b2a-4243-9d19-7cd063f61401;fed0fdd3-19c9-4efb-959a-400572344030;7e1cf43a-b462-4b1a-a9a6-5f7b38792003;" \
+          "4b04ab4f-2e52-49b0-8b99-3913db800697;e23ec72c-61bd-47b7-8389-f9f4ffbe1160;b51460a9-4e24-4187-9c9c-711b73fae9bf;b6a25e71-4a7f-4d3a-ae35-0e6ed3bc7a81;" \
+          "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8;7f74caff-8f95-4146-bd5b-587d43d57660"
+    traceId = "WE-" + str(uuid.uuid1())
+    header = {"Cookie": cookie, "traceId": traceId}
+    host = "XXX"
+    protocol = "https"
+    url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
+    data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
+            "w3account": "swx507549"}
+    resp = BaseConfig.post(protocol=protocol, url=url, host=host, headers=header, data=data)
+    print(resp)
+    rm_cache(devices)
+
+# 视听卡片排第一位
+def video_audio_card(cookie, devices):
+    cid = "60111b71-4470-4e15-8bf0-557a46747587;a430169d-a921-403e-945c-222813c5fed1;a69f991f8-354e-4657-aa16-99681e2f889a;706a8c0a-06df-4d2b-9133-00f4c3e834c3;" \
+          "fcc42495-f803-44b4-bfc6-938c0a734589;0d262f53-ab9c-4b4e-b6c2-41367c81e427;98424416-4382-44c3-868f-8a6c0a924af5;f91822e8-d12a-459d-881d-76ce3c6601ce;" \
+          "92b7e9a7-5d5f-4de6-9330-1291367d004c;d8660fbc-1b2a-4243-9d19-7cd063f61401;fed0fdd3-19c9-4efb-959a-400572344030;7e1cf43a-b462-4b1a-a9a6-5f7b38792003;" \
+          "4b04ab4f-2e52-49b0-8b99-3913db800697;e23ec72c-61bd-47b7-8389-f9f4ffbe1160;b51460a9-4e24-4187-9c9c-711b73fae9bf;b6a25e71-4a7f-4d3a-ae35-0e6ed3bc7a81;" \
+          "c4ce46fc-81a8-420a-98e9-d25f9bc95010;706a8c0a-06df-4d2b-9133-00f4c3e834c3;64b70bed-f05c-447e-a5b4-33c196d430c8;7f74caff-8f95-4146-bd5b-587d43d57660"
+    traceId = "WE-" + str(uuid.uuid1())
+    header = {"Cookie": cookie, "traceId": traceId}
+    host = "XXX"
+    protocol = "https"
+    url = "/mcloud/mag/ProxyForText/knowledge/api/v1/we/savesettings"
+    data = {"appid": 3, "modules": [{"moduleid": 8, "settings": [{"key": "we720.hot.cn", "value": cid}]}],
+            "w3account": "swx507549"}
+    resp = BaseConfig.post(protocol=protocol, url=url, host=host, headers=header, data=data)
+    print(resp)
+    rm_cache(devices)
 
 if __name__ == '__main__':
-    pass
+    findcards_home(login())

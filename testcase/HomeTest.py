@@ -17,7 +17,11 @@ from PageObject.Home.TopNewHistoryPage import TopNewHistoryPage
 from PageObject.Home.TechCollectPage import TechCollectPage
 from PageObject.Home.HotAnswerHistoryPage import HotAnswerHistoryPage
 from PageObject.Home.DayNewHistoryPage import DayNewHistoryPage
-from PageObject.Home.YourCommendHistoryPage import YourCommendHistoryPage
+from PageObject.Home.YourCommendDetailLinkPage import YourCommendDetailLinkPage
+from PageObject.Home.HotAnswerMyTeamHistoryPage import HotAnswerMyTeamHistoryPage
+from PageObject.Home.GoodBologHistoryPage import GoodBlogHistoryPage
+from PageObject.Home.LivePage import LivePage
+from PageObject.Home.VideoAudioHistory import VideoAudioHistoryPage
 from Base.BaseTestBase import *
 import sys
 
@@ -29,133 +33,259 @@ PATH = lambda p: os.path.abspath(
 class HomeTest(ParametrizedTestCase):
     # # 清除缓存
     # def testA1ClearCache(self):
-    #     page = ClearCachePage(driver=self.driver, path=PATH("../yaml/me/ClearCache.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-
+    #     app = {}
+    #     app["logTest"] = self.logTest
+    #     app["driver"] = self.driver
+    #     app["path"] = PATH("../yaml/me/ClearCache.yaml")
+    #     app["device"] = self.devicesName
+    #     app["caseName"] = sys._getframe().f_code.co_name
+    #     page = ClearCachePage(app)
+    #     page.operate()
+    #     page.checkPoint()
 
     # 首页下拉
     def testAHomeSwipeDown(self):
-        page = HomeSwipeDownPage(driver=self.driver, path=PATH("../yaml/home/HomeSwipeDown.yaml"), )
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/HomeSwipeDown.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
 
-    # 一键清阅读历史空
-    # def testZ1DelALl(self):
-    #     page = HistoryDellAllPage(driver=self.driver, path=PATH("../yaml/history/HistoryDelAll.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-    #
-    # # 无浏览历史页面检测
-    # def testZ2NoHistory(self):
-    #     page = NoHistoryPage(driver=self.driver, path=PATH("../yaml/home/NoHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+        page = HomeSwipeDownPage(app)
+        page.operate()
+        page.checkPoint()
 
     # banner浏览历史记录
-    def testBannerHistory(self):
-        page = BannerHistoryPage(driver=self.driver, path=PATH("../yaml/home/BannerHistory.yaml"))
-        page.operate(logTest=self.logTest)
-        page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
+    def testB0annerHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/BannerHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = BannerHistoryPage(app)
+        page.operate()
+        page.checkPoint()
 
-    # # 知识头条浏览历史
-    # def testTopNewHistory(self):
-    #     page = TopNewHistoryPage(driver=self.driver, path=PATH("../yaml/home/TopNewHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-    #
-    # # 为您推荐详情页连接跳转浏览历史
-    # def testYourCommendHistory(self):
-    #     devices = self.devicesName
-    #     your_commend(login(), devices)
-    #     page = YourCommendHistoryPage(driver=self.driver, path=PATH("../yaml/home/YourCommendHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
+    # 一键清阅读历史空
+    def testB1DelALl(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/history/HistoryDelAll.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = HistoryDellAllPage(app)
+        page.operate()
+        page.checkPoint()
 
-    # # 技术专区收藏
-    # def testTechCollect(self):
-    #     devices = self.devicesName
-    #     tech_card(login(), devices)
-    #     page = TechCollectPage(driver=self.driver, path=PATH("../yaml/home/TechCollect.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 技术专区浏览历史记录
-    # def testTechHistory(self):
-    #     devices = self.devicesName
-    #     tech_card(login(), devices)
-    #     page = TechHistoryPage(driver=self.driver, path=PATH("../yaml/home/TechHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 热门问答浏览历史记录
-    # def testHotAnswerHistory(self):
-    #     devices = self.devicesName
-    #     hotAnswer_card(login(), devices)
-    #     page = HotAnswerHistoryPage(driver=self.driver, path=PATH("../yaml/home/HotAnswerHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 每日新闻浏览历史记录
-    # def testDayNewHistory(self):
-    #     devices = self.devicesName
-    #     dayNew_card(login(), devices)
-    #     page = DayNewHistoryPage(driver=self.driver, path=PATH("../yaml/home/DayNewHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 多次浏览后的历史记录
-    # def testManyHistory(self):
-    #     page = ManyHistoryPage(driver=self.driver, path=PATH("../yaml/home/ManyHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-    #
-    # # 我的课程浏览历史记录
-    # def testMyClassHistory(self):
-    #     devices = self.devicesName
-    #     myClass_card(login(), devices)
-    #     page = MyClassHistoryPage(driver=self.driver, path=PATH("../yaml/home/MyClassHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 部门公告浏览历史记录
-    # def testDeptNoticeHistory(self):
-    #     devices = self.devicesName
-    #     notice_card(login(), devices)
-    #
-    #     page = DeptNoticeHistoryPage(driver=self.driver, path=PATH("../yaml/home/DeptNoticeHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 搜索后的浏览历史记录
-    # def testHomeSearchHistory(self):
-    #     page = HomeSearhHistoryPage(driver=self.driver, path=PATH("../yaml/home/HomeSearchHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-    #
-    # # 没有权限浏览的历史记录
-    # def testNoAccessHistory(self):
-    #     devices = self.devicesName
-    #     notice_card(login(), devices)
-    #
-    #     page = NoAccessHistoryPage(driver=self.driver, path=PATH("../yaml/home/NoAccessHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
-    #
-    # # 测试微群浏览历史记录
-    # def testBWeiBBSHistory(self):
-    #     page = WeiBBsHistoryPage(driver=self.driver, path=PATH("../yaml/home/WeiBBSHistory.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=self.devicesName)
-    #
-    # # 删除首页卡片
-    # def testZDelHomeCard(self):
-    #     devices = self.devicesName
-    #     tech_card(login(), devices)
-    #
-    #     page = DelCardPage(driver=self.driver, path=PATH("../yaml/home/DelTech.yaml"))
-    #     page.operate(logTest=self.logTest)
-    #     page.checkPoint(caseName=sys._getframe().f_code.co_name, logTest=self.logTest, devices=devices)
+    # 无浏览历史页面检测
+    def testB2NoHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/NoHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = NoHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 技术专区收藏
+    def testTechCollect(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/TechCollect.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        tech_card(login(), app["device"])
+        page = TechCollectPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 热门问答-最高悬赏浏览历史记录
+    def testHotAnswerHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/HotAnswerHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        hotAnswer_card(login(), app["device"])
+        page = HotAnswerHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 热门问答-我的团队问答浏览历史记录
+    def testHotAnswerMyTeamHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/HotAnswerMyTeamHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        hotAnswer_card(login(), app["device"])
+        page = HotAnswerMyTeamHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 精选博客-浏览历史记录
+    def testGoodBlogHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/GoodBlogHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        good_blog_card(login(), app["device"])
+        page = GoodBlogHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 直播详情页
+    def testLive(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/Live.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        live_card(login(), app["device"])
+        page = LivePage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 视听专区详情页
+    def testVideoAudioHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/VideoAudioHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        video_audio_card(login(), app["device"])
+        page = VideoAudioHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 为您推荐详情页链接跳转
+    def testYourCommendDetailLink(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/YourCommendDetailLink.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        your_commend(login(), app["device"])
+        page = YourCommendDetailLinkPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 每日新闻浏览历史记录
+    def testDayNewHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/DayNewHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        dayNew_card(login(), app["device"])
+        page = DayNewHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 多次浏览后的历史记录
+    def testManyHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/ManyHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = ManyHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 我的课程浏览历史记录
+    def testMyClassHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/MyClassHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        myClass_card(login(), app["device"])
+        page = MyClassHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 部门公告浏览历史记录
+    def testDeptNoticeHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/DeptNoticeHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        notice_card(login(), app["device"])
+
+        page = DeptNoticeHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 搜索后的浏览历史记录
+    def testHomeSearchHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/HomeSearchHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = HomeSearhHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 没有权限浏览的历史记录
+    def testNoAccessHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/NoAccessHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        notice_card(login(), app["device"])
+
+        page = NoAccessHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 测试微群浏览历史记录
+    def testBWeiBBSHistory(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/WeiBBSHistory.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        page = WeiBBsHistoryPage(app)
+        page.operate()
+        page.checkPoint()
+
+    # 删除首页卡片
+    def testZDelHomeCard(self):
+        app = {}
+        app["logTest"] = self.logTest
+        app["driver"] = self.driver
+        app["path"] = PATH("../yaml/home/DelTech.yaml")
+        app["device"] = self.devicesName
+        app["caseName"] = sys._getframe().f_code.co_name
+        tech_card(login(), app["device"])
+
+        page = DelCardPage(app)
+        page.operate()
+        page.checkPoint()
 
     @classmethod
     def setUpClass(cls):

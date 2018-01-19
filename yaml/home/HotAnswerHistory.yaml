@@ -7,7 +7,7 @@ testcase:
       find_type: xpath
       operate_type: click
       info: 点击热点问答卡片
-    - element_info: //*[@resource-id="com.huawei.works.knowledge:id/fki_v_indicator"]//android.widget.TextView[@text='高悬赏问答']
+    - element_info: //android.widget.TextView[@text='高悬赏问答']
       find_type: xpath
       operate_type: click
       info: 点击高悬赏问答
@@ -16,11 +16,14 @@ testcase:
       operate_type: click
       is_time: 5
       info: 点击数据列表第一条数据
+    - element_info: h5-scroll
+      find_type: id
+      is_webview: 1
+      info: 查找详情页加载完成
     - element_info: /html/head/title
       find_type: xpath
       operate_type: get_value
-      is_webview: 1
-      info: 得到详情页标题值
+      info: 得到详情页标题
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       operate_type: click
@@ -29,7 +32,6 @@ testcase:
     - element_info: com.huawei.works.knowledge:id/vtb_img_left
       find_type: id
       operate_type: click
-      is_webview: 2
       info: 再点击返回按钮
     - element_info: com.huawei.works.knowledge:id/vtb_img_right2
       find_type: id

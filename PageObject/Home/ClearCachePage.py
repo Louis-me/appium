@@ -8,15 +8,17 @@ class ClearCachePage:
     '''
 
     def __init__(self, **kwargs):
+        _init = {"driver": kwargs["driver"], "path": kwargs["path"], "device": kwargs["device"], "launch_app": 1,
+                 "logTest": kwargs["logTest"], "caseName": kwargs["caseName"]}
         self.driver = kwargs["driver"]
         self.path = kwargs["path"]
-        self.page = Pages.PagesObjects(driver=self.driver, path=kwargs["path"], launch_app=1)
+        self.page = Pages.PagesObjects(_init)
 
-    def operate(self, logTest):  # 操作步骤
-        self.page.operate(logTest)
+    def operate(self):  # 操作步骤
+        self.page.operate()
 
-    def checkPoint(self, caseName, logTest, devices):  # 检查点
-        self.page.checkPoint(caseName=caseName, logTest=logTest, devices=devices)
+    def checkPoint(self):  # 检查点
+        self.page.checkPoint()
 
 
 if __name__ == "__main__":

@@ -2,29 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddb0de69-ad6e-4042-9b9f-25fcf6c5fbf9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Base/BaseAppiumServer1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PageObject/TechZoneDetailPage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PageObject/TechZoneListPage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runner/runner1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcase/TechZoneDetailTest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcase/TechZoneListTest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yaml/TechZoneDetail.yaml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yaml/TechZoneList.yaml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Img/detail.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yaml/devices.yaml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yaml/run.yaml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runner/Report.xlsx" afterPath="$PROJECT_DIR$/runner/Report.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/appium.iml" afterPath="$PROJECT_DIR$/.idea/appium.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/runner/tttt.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Appium_IOS.docx" afterPath="$PROJECT_DIR$/doc/Appium_IOS.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/自动化框架使用说明.docx" afterPath="$PROJECT_DIR$/doc/自动化框架使用说明.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/Report.xlsx" afterPath="$PROJECT_DIR$/report/Report.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseAdb.py" afterPath="$PROJECT_DIR$/Base/BaseAdb.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseAndroidPhone.py" afterPath="$PROJECT_DIR$/Base/BaseAndroidPhone.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseApk.py" afterPath="$PROJECT_DIR$/Base/BaseApk.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseAppiumServer.py" afterPath="$PROJECT_DIR$/Base/BaseAppiumServer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseConfig.py" afterPath="$PROJECT_DIR$/Base/BaseConfig.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseElementEnmu.py" afterPath="$PROJECT_DIR$/Base/BaseElementEnmu.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseEmail.py" afterPath="$PROJECT_DIR$/Base/BaseEmail.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseExcel.py" afterPath="$PROJECT_DIR$/Base/BaseExcel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseFile.py" afterPath="$PROJECT_DIR$/Base/BaseFile.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseInit.py" afterPath="$PROJECT_DIR$/Base/BaseInit.py" />
@@ -33,22 +17,81 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BasePickle.py" afterPath="$PROJECT_DIR$/Base/BasePickle.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseRunner.py" afterPath="$PROJECT_DIR$/Base/BaseRunner.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseStatistics.py" afterPath="$PROJECT_DIR$/Base/BaseStatistics.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseWebServer.py" afterPath="$PROJECT_DIR$/Base/BaseWebServer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseYaml.py" afterPath="$PROJECT_DIR$/Base/BaseYaml.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/HTMLTestRunner.py" afterPath="$PROJECT_DIR$/Base/HTMLTestRunner.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Base/BaseTestBase.py" afterPath="$PROJECT_DIR$/Base/BaseTestBase.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/CHANGELOG.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chinese.md" afterPath="$PROJECT_DIR$/Chinese.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/FirstOpenPage.py" afterPath="$PROJECT_DIR$/PageObject/FirstOpenPage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/LoginPage.py" afterPath="$PROJECT_DIR$/PageObject/LoginPage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/WritePage.py" afterPath="$PROJECT_DIR$/PageObject/WritePage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/History/HistoryCheckBoxDelPage.py" afterPath="$PROJECT_DIR$/PageObject/History/HistoryCheckBoxDelPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/History/HistoryDelAllPage.py" afterPath="$PROJECT_DIR$/PageObject/History/HistoryDelAllPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/History/HistoryDetailPage.py" afterPath="$PROJECT_DIR$/PageObject/History/HistoryDetailPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/History/HistorySwipeDellPage.py" afterPath="$PROJECT_DIR$/PageObject/History/HistorySwipeDellPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/BannerHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/BannerHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/ClearCachePage.py" afterPath="$PROJECT_DIR$/PageObject/Home/ClearCachePage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/DayNewHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/DayNewHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/DelCardPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/DelCardPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/DeptNoticeHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/DeptNoticeHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/HomeSearchHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/HomeSearchHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/HomeSwipeDownPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/HomeSwipeDownPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/HotAnswerHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/HotAnswerHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/ManyHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/ManyHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/MyClassHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/MyClassHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/NoAccessHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/NoAccessHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/NoHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/NoHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/TechCollectPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/TechCollectPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Home/WeiBBSHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/Home/WeiBBSHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/Pages.py" afterPath="$PROJECT_DIR$/PageObject/Pages.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/cards/CardsDelPage.py" afterPath="$PROJECT_DIR$/PageObject/cards/CardsDelPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/cards/CardsSortPage.py" afterPath="$PROJECT_DIR$/PageObject/cards/CardsSortPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/contact/ContactHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/contact/ContactHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/contact/PublicPlatHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/contact/PublicPlatHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/me/CancelCollectPage.py" afterPath="$PROJECT_DIR$/PageObject/me/CancelCollectPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/me/CollectCheckBoxDelPage.py" afterPath="$PROJECT_DIR$/PageObject/me/CollectCheckBoxDelPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/me/CollectSwipeDellPage.py" afterPath="$PROJECT_DIR$/PageObject/me/CollectSwipeDellPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/me/MyCollectHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/me/MyCollectHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/team/OtherTeamHomePage.py" afterPath="$PROJECT_DIR$/PageObject/team/OtherTeamHomePage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/SendBlogPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/SendBlogPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/SendHelpPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/SendHelpPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/SendVotePage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/SendVotePage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/TeamAudioHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/TeamAudioHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/TeamBlogHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/TeamBlogHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/TeamDiscussHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/TeamDiscussHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/TeamHelpHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/TeamHelpHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/TeamIntroPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/TeamIntroPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/TeamiMissHistoryPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/TeamiMissHistoryPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PageObject/weiqun/WikiPage.py" afterPath="$PROJECT_DIR$/PageObject/weiqun/WikiPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mark.md" afterPath="$PROJECT_DIR$/mark.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runner/runner.py" afterPath="$PROJECT_DIR$/runner/runner.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/firstOpen.yaml" afterPath="$PROJECT_DIR$/yaml/firstOpen.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/login.yaml" afterPath="$PROJECT_DIR$/yaml/login.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/write.yaml" afterPath="$PROJECT_DIR$/yaml/write.yaml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/FirstOpenTest.py" afterPath="$PROJECT_DIR$/testcase/FirstOpenTest.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/LoginTest.py" afterPath="$PROJECT_DIR$/testcase/LoginTest.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/WriteTest.py" afterPath="$PROJECT_DIR$/testcase/WriteTest.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/__init__.py" afterPath="$PROJECT_DIR$/testcase/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/CardsTest.py" afterPath="$PROJECT_DIR$/testcase/CardsTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/ContactTest.py" afterPath="$PROJECT_DIR$/testcase/ContactTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/HistoryTest.py" afterPath="$PROJECT_DIR$/testcase/HistoryTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/HomeTest.py" afterPath="$PROJECT_DIR$/testcase/HomeTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/MeTest.py" afterPath="$PROJECT_DIR$/testcase/MeTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/TeamTest.py" afterPath="$PROJECT_DIR$/testcase/TeamTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcase/TestWeiQunTest.py" afterPath="$PROJECT_DIR$/testcase/TestWeiQunTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/use.md" afterPath="$PROJECT_DIR$/use.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/contact/ContactHistory.yaml" afterPath="$PROJECT_DIR$/yaml/contact/ContactHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/history/HistoryCheckBoxDel.yaml" afterPath="$PROJECT_DIR$/yaml/history/HistoryCheckBoxDel.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/history/HistoryDetail.yaml" afterPath="$PROJECT_DIR$/yaml/history/HistoryDetail.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/home/DelTech.yaml" afterPath="$PROJECT_DIR$/yaml/home/DelTech.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/home/HomeSearchHistory.yaml" afterPath="$PROJECT_DIR$/yaml/home/HomeSearchHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/home/HomeSwipeDown.yaml" afterPath="$PROJECT_DIR$/yaml/home/HomeSwipeDown.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/home/HotAnswerHistory.yaml" afterPath="$PROJECT_DIR$/yaml/home/HotAnswerHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/home/TechCollect.yaml" afterPath="$PROJECT_DIR$/yaml/home/TechCollect.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/home/WeiBBSHistory.yaml" afterPath="$PROJECT_DIR$/yaml/home/WeiBBSHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/me/CancelCollect.yaml" afterPath="$PROJECT_DIR$/yaml/me/CancelCollect.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/me/CollectCheckBoxDel.yaml" afterPath="$PROJECT_DIR$/yaml/me/CollectCheckBoxDel.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/me/CollectSwipeDel.yaml" afterPath="$PROJECT_DIR$/yaml/me/CollectSwipeDel.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/me/MyCollectHistory.yaml" afterPath="$PROJECT_DIR$/yaml/me/MyCollectHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/SearchHistory.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/SearchHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/SendBlog.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/SendBlog.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/SendHelp.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/SendHelp.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/SendVote.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/SendVote.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/TeamAudioHistory.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/TeamAudioHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/TeamBlogHistory.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/TeamBlogHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/TeamDiscussHistory.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/TeamDiscussHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/TeamHelpHistory.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/TeamHelpHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/TeamIntro.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/TeamIntro.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/TeamiMissHistory.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/TeamiMissHistory.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yaml/weiqun/Wiki.yaml" afterPath="$PROJECT_DIR$/yaml/weiqun/Wiki.yaml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,10 +111,39 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="171" column="0" lean-forward="false" selection-start-line="171" selection-start-column="0" selection-end-line="172" selection-end-column="13" />
-              <folding />
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CHANGELOG.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="use.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/use.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -80,48 +152,20 @@
         <entry file="file://$PROJECT_DIR$/Base/BaseAdb.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="849">
-              <caret line="73" column="36" lean-forward="false" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
+              <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FirstOpenPage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PageObject/FirstOpenPage.py">
+      <file leaf-file-name="BaseTestBase.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Base/BaseTestBase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="849">
-              <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/report/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FirstOpenTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcase/FirstOpenTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="write.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yaml/write.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="589">
+              <caret line="31" column="53" lean-forward="true" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,28 +174,47 @@
         <entry file="file://$PROJECT_DIR$/Base/BaseAppiumServer1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="608">
-              <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+              <caret line="35" column="49" lean-forward="false" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="runner1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/runner/runner1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="94" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chinese.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chinese.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Chinese.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-1216">
+                <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="English.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/English.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mark.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mark.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -215,7 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Base/BasePhone.py" />
         <option value="$PROJECT_DIR$/Base/BaseCountPhone.py" />
         <option value="$PROJECT_DIR$/Base/BaseFile.py" />
         <option value="$PROJECT_DIR$/Base/BaseWebServer.py" />
@@ -266,6 +328,7 @@
         <option value="$PROJECT_DIR$/runner/runner.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Chinese.md" />
+        <option value="$PROJECT_DIR$/Base/BaseTestBase.py" />
       </list>
     </option>
   </component>
@@ -313,7 +376,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,51 +416,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appium" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appium" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="testcase" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appium" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appium" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="runner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appium" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appium" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -740,7 +761,7 @@
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -788,30 +809,13 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Python34/Lib/ntpath.py" />
-    <entry file="file://$PROJECT_DIR$/../Python34/Lib/genericpath.py" />
-    <entry file="file://$PROJECT_DIR$/Base/BaseFile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Python34/Lib/subprocess.py" />
-    <entry file="file://$PROJECT_DIR$/Log/samsung_GT-I9500_android_4.4.220170607165154/第一次打开CheckPoint_1_NG.png" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170607195902/outPut.log" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170607200140/outPut.log" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170607201104/outPut.log" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170607201815/登录CheckPoint_1_NG.png" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170607201815/outPut.log" />
     <entry file="file://$PROJECT_DIR$/yaml/firstOpen.yaml" />
-    <entry file="file://$PROJECT_DIR$/yaml/login.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/yaml/login.yaml" />
     <entry file="file://$PROJECT_DIR$/Base/BaseStatistics.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
@@ -837,13 +841,7 @@
     <entry file="file://$PROJECT_DIR$/Log/info.pickle" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170703140548/outPut.log" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170703140919/outPut.log" />
-    <entry file="file://$PROJECT_DIR$/PageObject/LoginPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PageObject/LoginPage.py" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170703141359/发布文章CheckPoint_1_NG.png" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170703141359/outPut.log" />
     <entry file="file://$PROJECT_DIR$/Log/Huawei_H60-L02_android_4.4.220170703142133/outPut.log" />
@@ -856,20 +854,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcase/WriteTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PageObject/WritePage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="50" column="30" lean-forward="false" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/WriteTest.py" />
+    <entry file="file://$PROJECT_DIR$/PageObject/WritePage.py" />
     <entry file="file://$PROJECT_DIR$/Base/BaseExcel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3268">
@@ -881,7 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,7 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="589">
           <caret line="39" column="21" lean-forward="false" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -911,23 +895,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="11" column="117" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="117" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcase/LoginTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="46" lean-forward="false" selection-start-line="1" selection-start-column="46" selection-end-line="1" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/LoginTest.py" />
     <entry file="file://$PROJECT_DIR$/Base/BaseApk.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -942,7 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1045">
           <caret line="55" column="30" lean-forward="false" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,39 +924,99 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageObject/FirstOpenPage.py" />
+    <entry file="file://$PROJECT_DIR$/yaml/FirstOpenTest.py" />
+    <entry file="file://$PROJECT_DIR$/testcase/FirstOpenTest.py" />
+    <entry file="file://$PROJECT_DIR$/yaml/devices.yaml" />
+    <entry file="file://$PROJECT_DIR$/yaml/run.yaml" />
+    <entry file="file://$PROJECT_DIR$/yaml/write.yaml" />
+    <entry file="file://$PROJECT_DIR$/Base/BaseAppiumServer1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="35" column="49" lean-forward="false" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/runner/runner1.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="171" column="0" lean-forward="false" selection-start-line="171" selection-start-column="0" selection-end-line="172" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Base/BaseAdb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="849">
-          <caret line="73" column="36" lean-forward="false" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
-          <folding />
+    <entry file="file://$PROJECT_DIR$/mark.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PageObject/FirstOpenPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="849">
-          <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-          <folding />
+    <entry file="file://$PROJECT_DIR$/English.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yaml/FirstOpenTest.py">
-      <provider selected="true" editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/Chinese.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-1216">
+            <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/use.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
@@ -994,59 +1028,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcase/FirstOpenTest.py">
+    <entry file="file://$PROJECT_DIR$/Base/BaseAdb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="849">
+          <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yaml/devices.yaml">
+    <entry file="file://$PROJECT_DIR$/Base/BaseTestBase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yaml/run.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yaml/write.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Base/BaseAppiumServer1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/runner/runner1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="94" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chinese.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="589">
+          <caret line="31" column="53" lean-forward="true" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

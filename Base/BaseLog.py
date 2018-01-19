@@ -88,8 +88,8 @@ class Log:
 
         self.logger.info("[CheckPoint_" + str(self.checkNo) + "]: " + checkPoint + ": OK")
 
-        # take shot
-        self.screenshotOK(driver, caseName)
+        # take shot 默认去掉成功截图
+        # self.screenshotOK(driver, caseName)
 
     def checkPointNG(self, driver, caseName, checkPoint):
         """write the case's checkPoint(NG)

@@ -5,7 +5,6 @@ import os
 def write(data, path="data.pickle"):
     with open(path, 'wb') as f:
         pickle.dump(data, f, 0)
-        print("---write------")
 def read(path):
     data = {}
     with open(path, 'rb') as f:
