@@ -31,18 +31,6 @@ PATH = lambda p: os.path.abspath(
 
 
 class HomeTest(ParametrizedTestCase):
-    # # 清除缓存
-    # def testA1ClearCache(self):
-    #     app = {}
-    #     app["logTest"] = self.logTest
-    #     app["driver"] = self.driver
-    #     app["path"] = PATH("../yaml/me/ClearCache.yaml")
-    #     app["device"] = self.devicesName
-    #     app["caseName"] = sys._getframe().f_code.co_name
-    #     page = ClearCachePage(app)
-    #     page.operate()
-    #     page.checkPoint()
-
     # 首页下拉
     def testAHomeSwipeDown(self):
         app = {}

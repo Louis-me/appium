@@ -43,4 +43,4 @@ samsung_GT-I9500_android_4.4��screenshot
 # other
 * [mark](mark.md)
 * [changelog](CHANGELOG.md)
-* [Chinese](Chinese.md)
+* [how to use](use.md)
