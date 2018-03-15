@@ -1,0 +1,30 @@
+testinfo:
+    - id: test001
+      title: 美容顾问登陆
+      info: 没有前置条件
+testcase:
+    - element_info: com.android.packageinstaller:id/permission_allow_button
+      find_type: id
+      operate_type: click
+      info: 确认手机权限
+      is_time: 10
+    - element_info: //hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[16]/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.EditText
+      find_type: xpath
+      operate_type: set_value
+      msg: "310000400400"
+      info: 输入用户名
+      is_time: 1
+    - element_info: //hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[16]/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.EditText
+      find_type: xpath
+      operate_type: set_value
+      msg: "pink2015"
+      info: 输入密码
+      is_time: 1
+    - element_info: //hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[16]/android.widget.Button
+      find_type: xpath
+      operate_type: click
+      info: 点击登陆
+      is_time: 1
+check:
+    - element_info: //hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout[2]/android.widget.Button
+      info: 检查更新日志弹框

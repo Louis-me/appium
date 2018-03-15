@@ -34,7 +34,7 @@ def appium_testcase(devices):
     desired_caps['platformName'] = devices["platformName"]
     desired_caps["automationName"] = devices['automationName']
     desired_caps['deviceName'] = devices["deviceName"]
-    desired_caps["noReset"] = "True"
+    #desired_caps["noReset"] = "True"
     desired_caps['noSign'] = "True"
     desired_caps["unicodeKeyboard"] = "True"
     desired_caps["resetKeyboard"] = "True"
