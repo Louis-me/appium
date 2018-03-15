@@ -6,8 +6,10 @@ import re
 import math
 from math import ceil
 import subprocess
-# 得到手机信息
-def getPhoneInfo(devices):
+
+
+# 得到手机信息 permission denied
+def getPhoneInfo_1(devices):
     cmd = "adb -s " + devices +" shell cat /system/build.prop "
     print(cmd)
     # phone_info = os.popen(cmd).readlines()
@@ -35,6 +37,31 @@ def getPhoneInfo(devices):
     print(result)
     return result
 
+
+def getPhoneInfo(devices):
+    cmd = "adb -s " + devices + " shell getprop |grep ro"
+    print(cmd)
+    phone_info = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
+    result = {"release": "5.0", "model": "model2", "brand": "brand1", "device": "device1"}
+    release = "[ro.build.version.release]: "  # 版本
+    model = "[ro.product.model]: "  #型号
+    brand = "[ro.product.brand]: "  # 品牌
+    device = "[ro.product.device]: "  # 设备名
+    for line in phone_info:
+        temp = line.decode()
+        value = temp.split(':')[1].replace("[", "").replace("]", "").replace("\n", "").strip()
+        if temp.find(release) >= 0:
+            result["release"] = value
+        if temp.find(model) >= 0:
+            result["model"] = value
+        if temp.find(brand) >= 0:
+            result["brand"] = value
+        if temp.find(device) >= 0:
+            result["device"] = value
+    print(result)
+    return result
+
+
 # 得到最大运行内存
 def get_men_total(devices):
     cmd = "adb -s "+devices+ " shell cat /proc/meminfo"
@@ -46,6 +73,8 @@ def get_men_total(devices):
             men_total = line[len(men_total_str) +1:].replace("kB", "").strip()
             break
     return int(men_total)
+
+
 # 得到几核cpu
 def get_cpu_kel(devices):
     cmd = "adb -s " +devices +" shell cat /proc/cpuinfo"
@@ -57,10 +86,12 @@ def get_cpu_kel(devices):
             int_cpu += 1
     return str(int_cpu) + "核"
 
+
 # 得到手机分辨率
 def get_app_pix(devices):
     result = os.popen("adb -s " + devices+ " shell wm size", "r")
     return result.readline().split("Physical size:")[1]
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     getPhoneInfo("DU2TAN15AJ049163")
