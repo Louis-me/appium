@@ -48,7 +48,6 @@ python runner.py
 * [测试用例关键字驱动说明](mark.md)
 * [使用实例](use.md)
 * [changelog](CHANGELOG.md)
-* [English](English.md)
 
 
 
