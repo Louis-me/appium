@@ -23,7 +23,6 @@ class ApkInfo():
                              stderr=subprocess.PIPE,
                              stdin=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
-        print(self.apkPath)
         match = re.compile("package: name='(\S+)' versionCode='(\d+)' versionName='(\S+)'").match(output.decode())
         if not match:
             raise Exception("can't get packageinfo")
@@ -57,7 +56,9 @@ class ApkInfo():
                              stderr=subprocess.PIPE,
                              stdin=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
+        print("=====getApkActivity=========")
         match = re.compile("launchable-activity: name=(\S+)").search(output.decode())
+        print("match=%s" %match)
         if match is not None:
             return match.group(1)
 if __name__ == '__main__':

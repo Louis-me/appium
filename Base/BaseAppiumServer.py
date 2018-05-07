@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import socket
 import urllib.request
 from urllib.error import URLError
 from multiprocessing import Process
@@ -49,7 +50,6 @@ class AppiumServer:
         :return:True or False
         """
         response = None
-        # url = " http://127.0.0.1:"+str(self.l_devices[i]["port"])+"/wd/hub"+"/status"
         time.sleep(1)
         try:
             response = urllib.request.urlopen(url, timeout=5)
@@ -59,6 +59,8 @@ class AppiumServer:
             else:
                 return False
         except URLError:
+            return False
+        except socket.timeout:
             return False
         finally:
             if response:

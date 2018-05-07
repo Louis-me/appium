@@ -18,12 +18,12 @@ def appium_testcase(devices):
     desired_caps = {}
 
     if str(devices["platformName"]).lower() == "android":
-        desired_caps['appPackage'] = devices["appPackage"]
-        desired_caps['appActivity'] = devices["appActivity"]
+        # desired_caps['appPackage'] = devices["appPackage"]
+        # desired_caps['appActivity'] = devices["appActivity"]
         desired_caps['udid'] = devices["deviceName"]
+        desired_caps['app'] = devices["app"]
         # desired_caps["recreateChromeDriverSessions"] = "True"
         # 解决多次切换到webview报错问题，每次切换到非chrome-Driver时kill掉session 注意这个设置在appium 1.5版本上才做了处理
-        # desired_caps["automationName"] = "uiautomator2"
     else:
         # desired_caps['automationName'] = devices["automationName"] # Xcode8.2以上无UIAutomation,需使用XCUITest
         desired_caps['bundleId'] = devices["bundleId"]

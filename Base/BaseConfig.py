@@ -59,3 +59,8 @@ def post_login(**kwargs):
     # print("--登陆接口--")
     # print(result)
     return result
+if __name__ == '__main__':
+
+
+    headers = {'content-type': 'application/json'}
+    post(protocol="http", host="ivt3.hschefu.com", port=9199, url="/login", data={'password': '12345678','username': 'xiangjin'}, headers=headers)

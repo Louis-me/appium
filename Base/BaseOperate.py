@@ -1,6 +1,7 @@
 import re
 
 import os
+import threading
 
 import appium.common.exceptions
 from selenium.webdriver.common.by import By
@@ -55,14 +56,14 @@ class OperateElement:
                 WebDriverWait(self.driver, t).until(lambda x: self.elements_by(mOperate))  # 操作元素是否存在
                 return {"result": True}
         except selenium.common.exceptions.TimeoutException:
-            # print("查找元素" + mOperate["element_info"] + "超时")
-            return {"result": False}
+            # print("==查找元素超时==")
+            return {"result": False, "type": be.TIME_OUT}
         except selenium.common.exceptions.NoSuchElementException:
-            # print("查找元素" + mOperate["element_info"] + "不存在")
-            return {"result": False}
+            # print("==查找元素不存在==")
+            return {"result": False, "type": be.NO_SUCH}
         except selenium.common.exceptions.WebDriverException:
-            print("WebDriver出现问题了")
-            return {"result": False, "text": "selenium.common.exceptions.WebDriverException异常"}
+            # print("WebDriver出现问题了")
+            return {"result": False, "type": be.WEB_DROVER_EXCEPTION}
 
     '''
     查找元素.mOperate是字典
@@ -81,45 +82,47 @@ class OperateElement:
         else:
             return res
 
-    def operate_by(self, mOperate, testInfo, logTest, device):
+    def operate_by(self, operate, testInfo, logTest, device):
         try:
-            info = mOperate.get("element_info", " ") + "_" + mOperate.get("operate_type", " ") + str(mOperate.get(
-                "code", " ")) + mOperate.get("msg", " ")
+            info = operate.get("element_info", " ") + "_" + operate.get("operate_type", " ") + str(operate.get(
+                "code", " ")) + operate.get("msg", " ")
             logTest.buildStartLine(testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + info)  # 记录日志
+            print("==操作步骤：%s==" % info)
 
-            if mOperate.get("operate_type", "0") == "0":  # 如果没有此字段，说明没有相应操作，一般是检查点，直接判定为成功
+            if operate.get("operate_type", "0") == "0":  # 如果没有此字段，说明没有相应操作，一般是检查点，直接判定为成功
                 return {"result": True}
+
+            # threading._start_new_thread(self.click_windows(device),())
             elements = {
                 be.SWIPE_DOWN: lambda: self.swipeToDown(),
                 be.SWIPE_UP: lambda: self.swipeToUp(),
-                be.CLICK: lambda: self.click(mOperate),
-                be.GET_VALUE: lambda: self.get_value(mOperate),
-                be.SET_VALUE: lambda: self.set_value(mOperate),
-                be.ADB_TAP: lambda: self.adb_tap(mOperate, device),
-                be.GET_CONTENT_DESC: lambda: self.get_content_desc(mOperate),
-                be.PRESS_KEY_CODE: lambda: self.press_keycode(mOperate)
+                be.CLICK: lambda: self.click(operate),
+                be.GET_VALUE: lambda: self.get_value(operate),
+                be.SET_VALUE: lambda: self.set_value(operate),
+                be.ADB_TAP: lambda: self.adb_tap(operate, device),
+                be.GET_CONTENT_DESC: lambda: self.get_content_desc(operate),
+                be.PRESS_KEY_CODE: lambda: self.press_keycode(operate)
 
             }
-            return elements[mOperate.get("operate_type")]()
+            return elements[operate.get("operate_type")]()
         except IndexError:
             logTest.buildStartLine(
-                testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate["element_info"] + "索引错误")  # 记录日志
-            print(mOperate["element_info"] + "索引错误")
-            return {"result": False}
+                testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + operate["element_info"] + "索引错误")  # 记录日志
+            # print(operate["element_info"] + "索引错误")
+            return {"result": False, "type": be.INDEX_ERROR}
 
         except selenium.common.exceptions.NoSuchElementException:
             logTest.buildStartLine(
-                testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate[
+                testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + operate[
                     "element_info"] + "页面元素不存在或没加载完成")  # 记录日志
-            print(mOperate["element_info"] + "页面元素不存在或没有加载完成")
-
-            return {"result": False}
+            # print(operate["element_info"] + "页面元素不存在或没有加载完成")
+            return {"result": False, "type": be.NO_SUCH}
         except selenium.common.exceptions.StaleElementReferenceException:
             logTest.buildStartLine(
-                testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + mOperate[
+                testInfo[0]["id"] + "_" + testInfo[0]["title"] + "_" + operate[
                     "element_info"] + "页面元素已经变化")  # 记录日志
-            print(mOperate["element_info"] + "页面元素已经变化")
-            return {"result": False}
+            # print(operate["element_info"] + "页面元素已经变化")
+            return {"result": False, "type": be.STALE_ELEMENT_REFERENCE_EXCEPTION}
         except KeyError:
             # 如果key不存在，一般都是在自定义的page页面去处理了，这里直接返回为真
             return {"result": True}
@@ -257,7 +260,6 @@ class OperateElement:
         :return:
         '''
 
-        resutl = ""
         if mOperate.get("find_type") == be.find_elements_by_id:
             element_info = self.elements_by(mOperate)[mOperate["index"]]
             if mOperate.get("is_webview", "0") == 1:
@@ -275,6 +277,35 @@ class OperateElement:
 
         re_reulst = re.findall(r'[a-zA-Z\d+\u4e00-\u9fa5]', result)
         return {"result": True, "text": "".join(re_reulst)}
+
+    def click_windows(self, device):
+        try:
+            button0 = 'com.huawei.systemmanager:id/btn_allow'
+            # button1 = 'com.android.packageinstaller:id/btn_allow_once'
+            # button2 = 'com.android.packageinstaller:id/bottom_button_two'
+            # button3 = 'com.android.packageinstaller:id/btn_continue_install'
+            # button4 = 'android:id/button1'
+            # button5 = 'vivo:id/vivo_adb_install_ok_button'
+            button_list = [button0]
+            for elem in button_list:
+                find = self.driver.find_element_by_id(elem)
+                WebDriverWait(self.driver, 1).until(lambda x: self.elements_by(find(elem)))
+                bounds = find.location
+                x = str(bounds["x"])
+                y = str(bounds["y"])
+                cmd = "adb -s " + device + " shell input tap " + x + " " + y
+                print(cmd)
+                os.system(cmd)
+                print("==点击授权弹框_%s==" % elem)
+        except selenium.common.exceptions.TimeoutException:
+            # print("==查找元素超时==")
+            pass
+        except selenium.common.exceptions.NoSuchElementException:
+            # print("==查找元素不存在==")
+           pass
+        except selenium.common.exceptions.WebDriverException:
+            # print("WebDriver出现问题了")
+           pass
 
     # 封装常用的标签
     def elements_by(self, mOperate):

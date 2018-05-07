@@ -1,3 +1,4 @@
+from Base.BaseError import get_error
 from Base.BaseYaml import getYam
 from Base.BaseOperate import OperateElement
 import time
@@ -23,13 +24,13 @@ class PagesObjects:
         self.driver = kwargs["driver"]
         if kwargs.get("launch_app", "0") == "0":  # 若为空，重新打开app
             self.driver.launch_app()
-        self.path = kwargs["path"]
+        # self.path = kwargs["path"]
         self.operateElement = OperateElement(self.driver)
         self.isOperate = True
-        test_msg = getYam(self.path)
-        self.testInfo = test_msg["testinfo"]
-        self.testCase = test_msg["testcase"]
-        self.testcheck = test_msg["check"]
+        self.test_msg = kwargs["test_msg"]
+        self.testInfo = self.test_msg[1]["testinfo"]
+        self.testCase = self.test_msg[1]["testcase"]
+        self.testcheck = self.test_msg[1]["check"]
         self.device = kwargs["device"]
         self.logTest = kwargs["logTest"]
         self.caseName = kwargs["caseName"]
@@ -42,6 +43,9 @@ class PagesObjects:
     '''
 
     def operate(self):
+        if self.test_msg[0] is False: # 如果用例编写错误
+            self.isOperate = False
+            return False
         for item in self.testCase:
             m_s_g = self.msg + "\n" if self.msg != "" else ""
             result = self.operateElement.operate(item, self.testInfo, self.logTest, self.device)
@@ -66,19 +70,19 @@ class PagesObjects:
 
     def checkPoint(self, kwargs={}):
         result = self.check(kwargs)
-        # print(self.driver.page_source)
-        if result is not True and be.RE_CONNECT:
-            self.msg = "用例失败重连过一次，失败原因:" + self.testInfo[0]["msg"]
-            self.logTest.buildStartLine(self.caseName + "_失败重连")  # 记录日志
+        if self.test_msg[0] is not False:  # 如果用例编写正确
+            if result is not True and be.RE_CONNECT:
+                self.msg = "用例失败重连过一次，失败原因:" + self.testInfo[0]["msg"]
+                self.logTest.buildStartLine(self.caseName + "_失败重连")  # 记录日志
+                self.operateElement.switchToNative()
+                self.driver.launch_app()
+                self.isOperate = True
+                self.get_value = []
+                self.is_get = False
+                self.operate()
+                result = self.check(kwargs)
+                self.testInfo[0]["msg"] = self.msg
             self.operateElement.switchToNative()
-            self.driver.launch_app()
-            self.isOperate = True
-            self.get_value = []
-            self.is_get = False
-            self.operate()
-            result = self.check(kwargs)
-            self.testInfo[0]["msg"] = self.msg
-        self.operateElement.switchToNative()
 
         statistics_result(result=result, testInfo=self.testInfo, caseName=self.caseName,
                           driver=self.driver, logTest=self.logTest, devices=self.device,
@@ -100,42 +104,56 @@ class PagesObjects:
         result = True
         m_s_g = self.msg + "\n" if self.msg != "" else ""
         # 如果有重跑机制，成功后会默认把日志传进来
-        # if kwargs.get("check_point", "0") != "0":
+
+
+        # if kwargs.get("check_point", "0") != "0": 自定义检查点
         #     return kwargs["check_point"]
 
         if self.isOperate:
             for item in self.testcheck:
-                if kwargs.get("toast", "0") != "0":
-                    resp = self.operateElement.toast(item["element_info"], testInfo=self.testInfo,
-                                                     logTest=self.logTest)
+                if kwargs.get("check", be.DEFAULT_CHECK) == be.TOAST:
+                    result = \
+                    self.operateElement.toast(item["element_info"], testInfo=self.testInfo, logTest=self.logTest)[
+                        "result"]
+                    if result is False:
+                        m = get_error(
+                            {"type": be.DEFAULT_CHECK, "element_info": item["element_info"], "info": item["info"]})
+                        self.msg = m_s_g + m
+                        print(m)
+                        self.testInfo[0]["msg"] = m
+                    break
                 else:
                     resp = self.operateElement.operate(item, self.testInfo, self.logTest, self.device)
 
-                if kwargs.get("check", "0") == "0" and not resp["result"]:
-                    m = "请检查元素" + item["element_info"] + "是否存在，" + item["info"] + " 操作是否成功"
+                if kwargs.get("check", be.DEFAULT_CHECK) == be.DEFAULT_CHECK and not resp["result"]:
+                    m = get_error(
+                        {"type": be.DEFAULT_CHECK, "element_info": item["element_info"], "info": item["info"]})
                     self.msg = m_s_g + m
                     print(m)
                     self.testInfo[0]["msg"] = m
                     result = False
                     break
-                if kwargs.get("check", "0") == "contrary" and resp["result"]:
-                    m = "请检查%s" % item["info"] + "是否成功"
+                if kwargs.get("check", be.DEFAULT_CHECK) == be.CONTRARY and resp["result"]:
+                    m = get_error({"type": be.CONTRARY, "element_info": item["element_info"], "info": item["info"]})
                     self.msg = m_s_g + m
-                    print(self.msg)
-                    self.testInfo[0]["msg"] = m
+                    print(m)
+                    self.testInfo[0]["msg"] = self.msg
                     result = False
                     break
-                if kwargs.get("check", "0") == "contrary_getval" and self.is_get and resp["result"] in self.get_value:
-                    m = "对比数据失败，当前取到到数据为:%s,历史取到数据为:%s" % resp["text"] % self.get_value
+                # 检查点关键字contrary_getval: 相反值检查点，如果对比成功，说明失败
+                if kwargs.get("check", be.DEFAULT_CHECK) == be.CONTRARY_GETVAL and self.is_get and resp["result"] \
+                        in self.get_value:
+                    m = get_error(
+                        {"type": be.CONTRARY_GETVAL, "current": item["element_info"], "history": resp["text"]})
                     self.msg = m_s_g + m
                     print(m)
                     self.testInfo[0]["msg"] = m
                     result = False
                     break
-                if kwargs.get("check",
-                              "0") == "0" and self.is_get and resp["text"] not in self.get_value:  # 历史数据和实际数据对比
+                if kwargs.get("check", be.DEFAULT_CHECK) == be.COMPARE and self.is_get and resp["text"] \
+                        not in self.get_value:  # 历史数据和实际数据对比
                     result = False
-                    m = "对比数据失败,获取历史数据为：" + ".".join(self.get_value) + ",当前获取的数据为：" + resp["text"]
+                    m = get_error({"type": be.COMPARE, "current": item["element_info"], "history": resp["text"]})
                     self.msg = m_s_g + m
                     print(m)
                     self.testInfo[0]["msg"] = m

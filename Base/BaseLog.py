@@ -87,7 +87,7 @@ class Log:
         self.checkNo += 1
 
         self.logger.info("[CheckPoint_" + str(self.checkNo) + "]: " + checkPoint + ": OK")
-
+        print("==用例_%s检查点成功==" % caseName)
         # take shot 默认去掉成功截图
         # self.screenshotOK(driver, caseName)
 
