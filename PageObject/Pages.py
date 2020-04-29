@@ -133,31 +133,6 @@ class PagesObjects:
                     self.testInfo[0]["msg"] = m
                     result = False
                     break
-                if kwargs.get("check", be.DEFAULT_CHECK) == be.CONTRARY and resp["result"]:
-                    m = get_error({"type": be.CONTRARY, "element_info": item["element_info"], "info": item["info"]})
-                    self.msg = m_s_g + m
-                    print(m)
-                    self.testInfo[0]["msg"] = self.msg
-                    result = False
-                    break
-                # 检查点关键字contrary_getval: 相反值检查点，如果对比成功，说明失败
-                if kwargs.get("check", be.DEFAULT_CHECK) == be.CONTRARY_GETVAL and self.is_get and resp["result"] \
-                        in self.get_value:
-                    m = get_error(
-                        {"type": be.CONTRARY_GETVAL, "current": item["element_info"], "history": resp["text"]})
-                    self.msg = m_s_g + m
-                    print(m)
-                    self.testInfo[0]["msg"] = m
-                    result = False
-                    break
-                if kwargs.get("check", be.DEFAULT_CHECK) == be.COMPARE and self.is_get and resp["text"] \
-                        not in self.get_value:  # 历史数据和实际数据对比
-                    result = False
-                    m = get_error({"type": be.COMPARE, "current": item["element_info"], "history": resp["text"]})
-                    self.msg = m_s_g + m
-                    print(m)
-                    self.testInfo[0]["msg"] = m
-                    break
         else:
             result = False
         return result
