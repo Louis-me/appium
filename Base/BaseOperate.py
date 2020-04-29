@@ -100,6 +100,7 @@ class OperateElement:
                 be.GET_VALUE: lambda: self.get_value(operate),
                 be.SET_VALUE: lambda: self.set_value(operate),
                 be.ADB_TAP: lambda: self.adb_tap(operate, device),
+                be.TAP: lambda: self.tap(operate),
                 be.GET_CONTENT_DESC: lambda: self.get_content_desc(operate),
                 be.PRESS_KEY_CODE: lambda: self.press_keycode(operate)
 
@@ -137,6 +138,16 @@ class OperateElement:
         cmd = "adb -s " + device + " shell input tap " + x + " " + y
         print(cmd)
         os.system(cmd)
+
+        return {"result": True}
+
+    def tap(self, operate):
+        x1 = operate["bounds"][0][0]
+        y1 = operate["bounds"][0][1]
+
+        x2 = operate["bounds"][0][1]
+        y2 = operate["bounds"][1][1]
+        self.driver.tap([(x1, y1), (x2, y2)], operate.get("duration", 300))
 
         return {"result": True}
 
@@ -302,10 +313,10 @@ class OperateElement:
             pass
         except selenium.common.exceptions.NoSuchElementException:
             # print("==查找元素不存在==")
-           pass
+            pass
         except selenium.common.exceptions.WebDriverException:
             # print("WebDriver出现问题了")
-           pass
+            pass
 
     # 封装常用的标签
     def elements_by(self, mOperate):
