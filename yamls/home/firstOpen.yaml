@@ -1,29 +1,25 @@
 testinfo:
     - id: test001
-      title: 第一次启动app
+      title: 第一次用例
       info: 打开app
 testcase:
-    - element_info: //android.widget.ListView//android.support.v4.view.ViewPager/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]
+    - element_info: //*[@text="跳过广告"]
       find_type: xpath
       operate_type: click
-      info: 点击个人图片
-#    - element_info: //*[@text="收藏"]
-#      find_type: xpath
-#      operate_type: click
-#      info: 点击我的收藏
-#    - element_info: com.huawei.works.me:id/item_content
-#      find_type: ids
-#      index: 0
-#      operate_type: click
-#      info: 点击我的收藏下的第一条数据
-#    - element_info: com.huawei.works.knowledge:id/vdr_fav
-#      find_type: id
-#      is_webview: 2 # 切换到native
-#      operate_type: click
-#      info: 点击取消收藏按钮
-
+      info: 跳过广告
+    - element_info: //*[@text="账号"]
+      find_type: xpath
+      operate_type: click
+      info: 点击账号
+    - element_info: //*[@text="我的钱包"]
+      find_type: xpath
+      operate_type: click
+      info: 我的钱包
+    - bounds: [[0,1217],[1080,1337]]
+      operate_type: tap
+      duration: 100
+      info: 用坐标点击优惠券
 check:
-    - element_info: com.ximalaya.ting.android.main.application:id/main_group_rank_title
-      find_type: id
-      check: default_check
+    - blouns: //*[@text="未使用"]
+      find_type: xpath
       info: 打开页面成功
