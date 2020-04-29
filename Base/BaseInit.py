@@ -28,10 +28,11 @@ def mk_file():
 
 def init(devices):
     # 每次都重新安装uiautomator2都两个应用
-    os.popen("adb -s %s uninstall io.appium.uiautomator2.server.test" % devices)
-    os.popen("adb -s %s uninstall io.appium.uiautomator2.server" % devices)
-    os.popen("adb -s %s install -r %s" % (devices, PATH("../app/appium-uiautomator2-server-v0.1.9.apk")))
-    os.popen("adb -s %s install -r %s" % (devices, PATH("../app/appium-uiautomator2-server-debug-androidTest.apk")))
+    pass
+    # os.popen("adb -s %s uninstall io.appium.uiautomator2.server.test" % devices)
+    # os.popen("adb -s %s uninstall io.appium.uiautomator2.server" % devices)
+    # os.popen("adb -s %s install -r %s" % (devices, PATH("../app/appium-uiautomator2-server-v0.1.9.apk")))
+    # os.popen("adb -s %s install -r %s" % (devices, PATH("../app/appium-uiautomator2-server-debug-androidTest.apk")))
     # os.popen("adb install -r "+PATH("../app/android-system-webview-60.apk"))
 
 
